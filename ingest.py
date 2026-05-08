@@ -49,10 +49,12 @@ def process_single_pdf(pdf_path: Path) -> List[Dict[str, Any]]:
     """
     pages_data = []
     try:
-        doc = fitz.open(pdf_path)
+        # Older versions of PyMuPDF require string paths instead of pathlib.Path
+        doc = fitz.open(str(pdf_path))
         doc_id = pdf_path.stem
         
-        for page_num in range(len(doc)):
+        # Use page_count instead of len(doc) for better backward compatibility
+        for page_num in range(doc.page_count):
             page = doc.load_page(page_num)
             text = page.get_text("text")
             cleaned_text = clean_text(text)
