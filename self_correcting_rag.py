@@ -59,7 +59,7 @@ if not GROQ_API_KEY:
 CHROMA_DB_DIR = os.path.join("data", "chroma_db_hf")
 COLLECTION_NAME = "bioasq_chunks"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-LLM_MODEL = "llama-3.3-70b-versatile"
+LLM_MODEL = "llama3-8b-8192"
 NLI_MODEL_NAME = "cross-encoder/nli-deberta-base"
 
 # =====================================================================
@@ -115,6 +115,7 @@ class GraphState(TypedDict):
     documents_relevant: str  # "yes" | "no"
     hallucination_retries: int
     retrieval_retries: int
+    verified_citations: List[Dict[str, str]]
 
 # =====================================================================
 # 🛠️ HELPER PARSERS & CALCULATORS
@@ -143,13 +144,15 @@ def parse_grader_response(response_text: str) -> str:
         return "yes"
     return "no"
 
-def compute_entailment_scores(sentence: str, documents: List[Any]) -> float:
+from typing import Tuple
+
+def compute_entailment_scores(sentence: str, documents: List[Any]) -> Tuple[float, Any]:
     """
     Computes the maximum NLI entailment probability score for a sentence
-    against each of the retrieved document chunks.
+    against each of the retrieved document chunks, returning a tuple of (score, winning_document).
     """
     if not documents:
-        return 0.0
+        return 0.0, None
         
     # Cross-encoder pairs: (Context Chunk, Answer Sentence)
     pairs = [(doc.page_content, sentence) for doc in documents]
@@ -166,8 +169,12 @@ def compute_entailment_scores(sentence: str, documents: List[Any]) -> float:
     # Extract entailment probabilities (index 1)
     entailment_probs = probs[:, 1]
     
-    # Return highest entailment score among all retrieved passages
-    return float(np.max(entailment_probs))
+    # Use np.argmax on the entailment probabilities to find the index of the highest-scoring chunk
+    winning_idx = int(np.argmax(entailment_probs))
+    max_score = float(entailment_probs[winning_idx])
+    winning_document = documents[winning_idx]
+    
+    return max_score, winning_document
 
 # =====================================================================
 # 🕸️ LANGGRAPH NODES
@@ -320,7 +327,7 @@ def generation_node(state: GraphState) -> Dict[str, Any]:
     return {"draft_answer": answer}
 
 def nli_critic_node(state: GraphState) -> Dict[str, Any]:
-    """Node 5: Verification Agent (NLI Critic). Performs sentence-level entailment checks."""
+    """Node 5: Verification Agent (NLI Critic). Performs sentence-level entailment checks and builds citations."""
     answer = state["draft_answer"]
     docs = state["documents"]
     
@@ -329,18 +336,31 @@ def nli_critic_node(state: GraphState) -> Dict[str, Any]:
     # Graceful bypass for fallbacks
     if "couldn't find any relevant biomedical information" in answer.lower():
         log_agent("NLI CRITIC", "Fallback response detected. Skipping validation.", Colors.GREEN)
-        return {"flagged_sentences": []}
+        return {"flagged_sentences": [], "verified_citations": []}
         
     # Tokenize answer into sentences
     sentences = nltk.tokenize.sent_tokenize(answer)
     flagged = []
+    verified_citations = []
     
     for idx, sentence in enumerate(sentences, 1):
         # Calculate maximum entailment score against retrieved passages
-        max_entailment = compute_entailment_scores(sentence, docs)
+        max_entailment, winning_document = compute_entailment_scores(sentence, docs)
         
         if max_entailment >= 0.80:
             log_agent("NLI CRITIC", f"Sentence {idx} passed NLI check (Max Entailment: {max_entailment:.4f})", Colors.GREEN)
+            
+            # Extract document metadata to construct verified citation payload
+            metadata = winning_document.metadata if hasattr(winning_document, 'metadata') else {}
+            doc_id = metadata.get("document_id", "doc_unknown")
+            page_num = metadata.get("page_number", "0")
+            chunk_idx = metadata.get("chunk_index", "0")
+            
+            chunk_id = f"{doc_id}_p{page_num}_c{chunk_idx}"
+            verified_citations.append({
+                "sentence": sentence,
+                "chunk_id": chunk_id
+            })
         else:
             log_agent("NLI CRITIC", f"Sentence {idx} FAILED NLI check (Max Entailment: {max_entailment:.4f} < 0.80)!", Colors.RED)
             print(f"   -> Flagged: \"{sentence}\"")
@@ -355,6 +375,7 @@ def nli_critic_node(state: GraphState) -> Dict[str, Any]:
         
     return {
         "flagged_sentences": flagged,
+        "verified_citations": verified_citations,
         "hallucination_retries": next_retries
     }
 
@@ -435,7 +456,7 @@ app = workflow.compile()
 # 🚀 INTERACTIVE SYSTEM EXECUTION RUNNER
 # =====================================================================
 def run_pipeline(question: str) -> str:
-    """Runs the self-correcting agentic pipeline on the given question."""
+    """Runs the self-correcting agentic pipeline on the given question and outputs clean citation JSON."""
     print("\n" + "="*80)
     print(f"[*] INITIATING SELF-CORRECTING AGENTIC RAG FOR: \"{question}\"")
     print("="*80)
@@ -448,7 +469,8 @@ def run_pipeline(question: str) -> str:
         "flagged_sentences": [],
         "documents_relevant": "no",
         "hallucination_retries": 0,
-        "retrieval_retries": 0
+        "retrieval_retries": 0,
+        "verified_citations": []
     }
     
     final_output = app.invoke(initial_state)
@@ -456,6 +478,16 @@ def run_pipeline(question: str) -> str:
     print("\n" + "="*80)
     print(f"{Colors.GREEN}{Colors.BOLD}[*] FINAL SYSTEM ANSWER:{Colors.ENDC}")
     print(f"\"{final_output['draft_answer']}\"")
+    print("="*80 + "\n")
+    
+    # Extract final answer and citations array, package them into a clean Python dictionary, and print as formatted JSON
+    output_payload = {
+        "answer": final_output["draft_answer"],
+        "citations": final_output.get("verified_citations", [])
+    }
+    
+    print(f"{Colors.GREEN}{Colors.BOLD}[*] SYSTEM OUTPUT PAYLOAD (JSON CITATIONS):{Colors.ENDC}")
+    print(json.dumps(output_payload, indent=2))
     print("="*80 + "\n")
     
     return final_output['draft_answer']
