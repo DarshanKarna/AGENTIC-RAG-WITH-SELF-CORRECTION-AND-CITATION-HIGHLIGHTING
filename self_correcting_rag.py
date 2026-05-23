@@ -455,7 +455,7 @@ app = workflow.compile()
 # =====================================================================
 # 🚀 INTERACTIVE SYSTEM EXECUTION RUNNER
 # =====================================================================
-def run_pipeline(question: str) -> str:
+def run_pipeline(question: str) -> dict:
     """Runs the self-correcting agentic pipeline on the given question and outputs clean citation JSON."""
     print("\n" + "="*80)
     print(f"[*] INITIATING SELF-CORRECTING AGENTIC RAG FOR: \"{question}\"")
@@ -490,7 +490,7 @@ def run_pipeline(question: str) -> str:
     print(json.dumps(output_payload, indent=2))
     print("="*80 + "\n")
     
-    return final_output['draft_answer']
+    return output_payload
 
 def main():
     print(f"{Colors.BOLD}{Colors.HEADER}========================================================================")
