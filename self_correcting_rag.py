@@ -111,6 +111,7 @@ class GraphState(TypedDict):
     original_question: str
     documents: List[Any]
     draft_answer: str
+    drafts: List[str]
     flagged_sentences: List[str]
     documents_relevant: str  # "yes" | "no"
     hallucination_retries: int
@@ -324,7 +325,13 @@ def generation_node(state: GraphState) -> Dict[str, Any]:
     answer = response.content.strip()
     log_agent("GENERATOR", f"Draft Generated:\n\"{answer}\"", Colors.GREEN)
     
-    return {"draft_answer": answer}
+    drafts = state.get("drafts", [])
+    if drafts is None:
+        drafts = []
+    drafts = list(drafts)
+    drafts.append(answer)
+    
+    return {"draft_answer": answer, "drafts": drafts}
 
 def nli_critic_node(state: GraphState) -> Dict[str, Any]:
     """Node 5: Verification Agent (NLI Critic). Performs sentence-level entailment checks and builds citations."""
@@ -466,6 +473,7 @@ def run_pipeline(question: str) -> dict:
         "original_question": question,
         "documents": [],
         "draft_answer": "",
+        "drafts": [],
         "flagged_sentences": [],
         "documents_relevant": "no",
         "hallucination_retries": 0,
