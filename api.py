@@ -10,7 +10,14 @@ OS: Windows | Runtime: Python 3.13
 """
 
 import sys
-from fastapi import FastAPI, HTTPException
+import uuid
+import tempfile
+import os
+import shutil
+import re
+import fitz  # PyMuPDF
+import tiktoken
+from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uvicorn
@@ -21,8 +28,79 @@ try:
 except Exception:
     pass
 
-# Import the self-correcting RAG pipeline runner
-from self_correcting_rag import run_pipeline
+# Import the self-correcting RAG pipeline runner and active vectorstore
+from self_correcting_rag import run_pipeline, vectorstore
+
+def process_pdf(file_path: str, filename: str) -> list:
+    """
+    Extracts text from PDF page-by-page using PyMuPDF, chunks it into 500-token
+    windows with 50-token overlap using tiktoken, and returns a list of chunks
+    with metadata configured for RAG citations.
+    """
+    doc = fitz.open(file_path)
+    chunks = []
+    chunk_size = 500
+    overlap = 50
+    
+    # Generate a unique, sanitized ID for the document to prevent collisions
+    sanitized_name = re.sub(r'[^a-zA-Z0-9]', '_', filename.lower()).strip('_')
+    if not sanitized_name:
+        sanitized_name = "uploaded_pdf"
+    document_id = f"pdf_{sanitized_name}_{uuid.uuid4().hex[:4]}"
+    
+    try:
+        enc = tiktoken.get_encoding("cl100k_base")
+    except Exception:
+        enc = None
+        
+    global_chunk_idx = 0
+    
+    for page_num in range(len(doc)):
+        page = doc.load_page(page_num)
+        page_text = page.get_text().strip()
+        if not page_text:
+            continue
+            
+        if enc:
+            tokens = enc.encode(page_text)
+            start = 0
+            while start < len(tokens):
+                end = min(start + chunk_size, len(tokens))
+                chunk_text = enc.decode(tokens[start:end]).strip()
+                if chunk_text:
+                    chunks.append({
+                        "text": chunk_text,
+                        "metadata": {
+                            "document_id": document_id,
+                            "page_number": str(page_num + 1),
+                            "chunk_index": str(global_chunk_idx),
+                            "source": filename
+                        }
+                    })
+                    global_chunk_idx += 1
+                start += chunk_size - overlap
+        else:
+            # Fallback: simple whitespace-delimited word splitting
+            words = page_text.split()
+            start = 0
+            while start < len(words):
+                end = min(start + chunk_size, len(words))
+                chunk_text = " ".join(words[start:end]).strip()
+                if chunk_text:
+                    chunks.append({
+                        "text": chunk_text,
+                        "metadata": {
+                            "document_id": document_id,
+                            "page_number": str(page_num + 1),
+                            "chunk_index": str(global_chunk_idx),
+                            "source": filename
+                        }
+                    })
+                    global_chunk_idx += 1
+                start += chunk_size - overlap
+                
+    return chunks
+
 
 # Initialize FastAPI application
 app = FastAPI(
@@ -71,7 +149,55 @@ async def chat_endpoint(request_data: QueryRequest):
             detail=f"An error occurred while executing the RAG pipeline: {str(e)}"
         )
 
+@app.post("/api/upload")
+async def upload_pdf_endpoint(file: UploadFile = File(...)):
+    """
+    Endpoint to dynamically upload a PDF document.
+    Chunks text page-by-page and indexes them into the active ChromaDB vectorstore.
+    """
+    if not file.filename.lower().endswith(".pdf"):
+        raise HTTPException(status_code=400, detail="Only PDF files are supported.")
+        
+    temp_dir = tempfile.mkdtemp()
+    temp_file_path = os.path.join(temp_dir, file.filename)
+    
+    try:
+        # Save uploaded PDF to temp file
+        with open(temp_file_path, "wb") as f:
+            shutil.copyfileobj(file.file, f)
+            
+        # Extract and chunk document
+        chunks = process_pdf(temp_file_path, file.filename)
+        
+        if not chunks:
+            raise HTTPException(status_code=400, detail="No readable text could be extracted from the PDF.")
+            
+        # Prepare details for vectorstore insertion
+        texts = [c["text"] for c in chunks]
+        metadatas = [c["metadata"] for c in chunks]
+        ids = [f"{c['metadata']['document_id']}_p{c['metadata']['page_number']}_c{c['metadata']['chunk_index']}" for c in chunks]
+        
+        # Add to ChromaDB vector store using the existing Hugging Face embeddings
+        vectorstore.add_texts(texts=texts, metadatas=metadatas, ids=ids)
+        
+        return {
+            "status": "success",
+            "message": f"Successfully chunked and indexed PDF document.",
+            "filename": file.filename,
+            "chunks_count": len(chunks)
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"PDF ingestion failed: {str(e)}")
+    finally:
+        # Clean up temporary storage files
+        try:
+            shutil.rmtree(temp_dir)
+        except Exception:
+            pass
+
 # Run server using Uvicorn
+
 if __name__ == "__main__":
     print("\nStarting Uvicorn server on http://0.0.0.0:8000 ...")
     uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=False)
