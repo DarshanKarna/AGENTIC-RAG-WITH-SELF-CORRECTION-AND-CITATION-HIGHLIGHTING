@@ -33,6 +33,12 @@ const DatabaseIcon = () => (
   </svg>
 );
 
+const PaperclipIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-5 h-5">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32a1.5 1.5 0 01-2.12-2.12l10.517-10.518" />
+  </svg>
+);
+
 export default function App() {
   const [messages, setMessages] = useState([
     {
@@ -43,9 +49,11 @@ export default function App() {
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [hoveredCitation, setHoveredCitation] = useState(null); // Tracks bidirectional hover triggers (chunk_id)
   
   const messagesEndRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   // Auto-scroll to latest messages
   useEffect(() => {
@@ -102,6 +110,90 @@ export default function App() {
       ]);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Handle PDF file upload and chunking on FastAPI
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    // Only accept PDF
+    if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: "Error: Only PDF documents are currently supported for dynamic upload.",
+          citations: []
+        }
+      ]);
+      return;
+    }
+
+    setUploading(true);
+    
+    // Add user message about uploading
+    setMessages((prev) => [
+      ...prev,
+      {
+        sender: "user",
+        text: `[File Upload] Initiating upload of "${file.name}" ...`
+      },
+      {
+        sender: "bot",
+        text: `Processing PDF document "${file.name}"... Extracting text page-by-page, chunking passages into 500-token windows, and generating local vector embeddings... Please wait.`,
+        citations: []
+      }
+    ]);
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("http://localhost:8000/api/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.detail || `Server returned error status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      // Update chat with success notification
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: `🎉 Success! Dynamically processed and indexed "${file.name}" successfully.\n\n• Extracted & created: **${data.chunks_count} chunks**\n• Indexed in: **Local ChromaDB**\n\nYou can now immediately ask questions about the contents of this document!`,
+          citations: []
+        }
+      ]);
+    } catch (error) {
+      console.error("Upload error:", error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: `❌ Upload Failed: ${error.message}`,
+          citations: []
+        }
+      ]);
+    } finally {
+      setUploading(false);
+      // Reset file input value
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
+  };
+
+  const triggerFileUpload = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
     }
   };
 
@@ -291,6 +383,23 @@ export default function App() {
                 </div>
               </div>
             )}
+
+            {/* Pulsing PDF uploading placeholder bubble */}
+            {uploading && (
+              <div className="flex space-x-4 justify-start">
+                <div className="w-8 h-8 rounded-full bg-emerald-950 border border-emerald-800/50 flex items-center justify-center flex-shrink-0 shadow-inner">
+                  <BotIcon />
+                </div>
+                <div className="max-w-2xl px-5 py-4 rounded-2xl bg-slate-900/70 border border-slate-800 shadow-lg text-slate-300">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xs text-slate-500 mr-2 font-mono">Processing PDF...</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                  </div>
+                </div>
+              </div>
+            )}
             
             <div ref={messagesEndRef} />
           </div>
@@ -299,20 +408,42 @@ export default function App() {
         {/* Floating, glowing message input panel */}
         <footer className="p-6 border-t border-slate-800/60 bg-slate-900/10 backdrop-blur-md">
           <div className="max-w-3xl mx-auto">
+            {/* Hidden native file input element */}
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              accept="application/pdf"
+              className="hidden"
+            />
+            
             <form onSubmit={handleSend} className="relative flex items-center rounded-xl bg-slate-900/90 border border-slate-800/80 shadow-2xl focus-within:border-emerald-500/50 focus-within:shadow-[0_0_20px_rgba(16,185,129,0.06)] transition-all duration-300 p-2">
+              <button
+                type="button"
+                onClick={triggerFileUpload}
+                disabled={loading || uploading}
+                className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200 flex-shrink-0 mr-1 ${
+                  loading || uploading
+                    ? "bg-slate-800 text-slate-600 cursor-not-allowed"
+                    : "bg-slate-800/80 hover:bg-slate-800 text-slate-400 hover:text-slate-100 hover:scale-[1.03]"
+                }`}
+              >
+                <PaperclipIcon />
+              </button>
+              
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask a biomedical question (e.g. BRCA1 gene, p53 role, cystic fibrosis mutations)..."
-                disabled={loading}
+                disabled={loading || uploading}
                 className="w-full bg-transparent border-none text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-0 text-sm px-4 py-3"
               />
               <button
                 type="submit"
-                disabled={loading || !input.trim()}
+                disabled={loading || !input.trim() || uploading}
                 className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200 flex-shrink-0 ${
-                  input.trim() && !loading
+                  input.trim() && !loading && !uploading
                     ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-[0_4px_10px_rgba(16,185,129,0.2)] hover:scale-[1.03]"
                     : "bg-slate-800 text-slate-600 cursor-not-allowed"
                 }`}
