@@ -164,16 +164,34 @@ from typing import Tuple
 def compute_entailment_scores(sentence: str, documents: List[Any]) -> Tuple[float, Any]:
     """
     Computes the maximum NLI entailment probability score for a sentence
-    against each of the retrieved document chunks, returning a tuple of (score, winning_document).
+    against each of the retrieved document chunks, evaluating sentence-to-sentence
+    to prevent text-length mismatch issues, and returning a tuple of (score, winning_document).
     """
     if not documents:
         return 0.0, None
         
-    # Cross-encoder pairs: (Context Chunk, Answer Sentence)
-    pairs = [(doc.page_content, sentence) for doc in documents]
+    pairs = []
+    pair_to_doc = []  # Map each pair back to its originating document
     
+    for doc in documents:
+        # Split chunk content into individual sentences
+        try:
+            chunk_sentences = nltk.sent_tokenize(doc.page_content)
+        except Exception:
+            # Fallback if nltk sent_tokenize fails
+            chunk_sentences = [s.strip() for s in re.split(r'(?<=[.!?])\s+', doc.page_content) if s.strip()]
+            
+        if not chunk_sentences:
+            chunk_sentences = [doc.page_content]
+            
+        for chunk_sent in chunk_sentences:
+            pairs.append((chunk_sent.strip(), sentence))
+            pair_to_doc.append(doc)
+            
+    if not pairs:
+        return 0.0, None
+        
     # Get raw logits from DeBERTa
-    # Shape: (num_pairs, 3)
     logits = nli_model.predict(pairs)
     logits = np.atleast_2d(logits)
     
@@ -184,12 +202,13 @@ def compute_entailment_scores(sentence: str, documents: List[Any]) -> Tuple[floa
     # Extract entailment probabilities (index 1)
     entailment_probs = probs[:, 1]
     
-    # Use np.argmax on the entailment probabilities to find the index of the highest-scoring chunk
+    # Find the index of the highest-scoring sentence pair
     winning_idx = int(np.argmax(entailment_probs))
     max_score = float(entailment_probs[winning_idx])
-    winning_document = documents[winning_idx]
+    winning_document = pair_to_doc[winning_idx]
     
     return max_score, winning_document
+
 
 # =====================================================================
 # 🕸️ LANGGRAPH NODES
