@@ -94,8 +94,22 @@ vectorstore = Chroma(
 )
 retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
 
+class RobustChatGroq(ChatGroq):
+    def invoke(self, input, config=None, **kwargs):
+        try:
+            return super().invoke(input, config=config, **kwargs)
+        except Exception as e:
+            err_str = str(e)
+            if "model_decommissioned" in err_str or "decommissioned" in err_str.lower() or "not_found" in err_str:
+                current_model = getattr(self, "model_name", "llama3-8b-8192")
+                print(f"\n[SYSTEM LLM FALLBACK] Model '{current_model}' is decommissioned on Groq.")
+                print(f"[SYSTEM LLM FALLBACK] Temporarily routing query to active 'llama-3.3-70b-versatile'...\n")
+                self.model_name = "llama-3.3-70b-versatile"
+                return super().invoke(input, config=config, **kwargs)
+            raise e
+
 print("[2/3] Connecting to Groq Cloud LLM...")
-llm = ChatGroq(model=LLM_MODEL, api_key=GROQ_API_KEY, temperature=0)
+llm = RobustChatGroq(model=LLM_MODEL, api_key=GROQ_API_KEY, temperature=0)
 
 print("[3/3] Loading local NLI DeBERTa Cross-Encoder (The Critic)...")
 from sentence_transformers import CrossEncoder
