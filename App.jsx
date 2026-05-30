@@ -1,7 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
+
+// Configure pdf.js worker from CDN
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 // =====================================================================
-// 🎨 Sleek SVG Icons (Premium aesthetics, no external assets needed)
+// SVG Icons
 // =====================================================================
 const SendIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
@@ -22,43 +28,215 @@ const UserIcon = () => (
 );
 
 const CitationIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-emerald-400 mr-2">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-emerald-400 mr-1.5 flex-shrink-0">
     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-.621-.504-1.125-1.125-1.125H9.75M3 16.061V4.419c0-.847.67-1.57 1.517-1.614 3.78-.2 7.564-.2 11.34 0 .848.044 1.518.767 1.518 1.614v11.642c0 .847-.67 1.57-1.517 1.614-3.78.2-7.564.2-11.34 0A1.516 1.516 0 013 16.061z" />
   </svg>
 );
 
-const DatabaseIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-emerald-500 mr-2">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75m-16.5-3.75v3.75" />
+const PaperclipIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-5 h-5">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32a1.5 1.5 0 01-2.12-2.12l10.517-10.518" />
   </svg>
 );
 
+const ChevronLeftIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+  </svg>
+);
+
+const ChevronRightIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+  </svg>
+);
+
+const UploadCloudIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12 text-slate-500 mb-3">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+  </svg>
+);
+
+const DocumentIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-emerald-400 mr-2">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+  </svg>
+);
+
+const ZoomInIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+  </svg>
+);
+
+const ZoomOutIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM13.5 10.5h-6" />
+  </svg>
+);
+
+
+// =====================================================================
+// Helper: Parse chunk_id → page number
+// Expected format: docID_p{page}_c{chunk}
+// =====================================================================
+function parsePageFromChunkId(chunkId) {
+  if (!chunkId) return null;
+  const match = chunkId.match(/_p(\d+)_c/);
+  return match ? parseInt(match[1], 10) : null;
+}
+
+// =====================================================================
+// Escape special regex characters in a string for safe RegExp usage
+// =====================================================================
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+
 export default function App() {
+  // ----- Chat state -----
   const [messages, setMessages] = useState([
     {
       sender: "bot",
-      text: "Hello! I am your Self-Correcting RAG assistant. Ask me any biomedical question, and I will search our local scientific database, self-correct any hallucinations using NLI, and provide verified, sentence-level citations.",
+      text: "Hello! I am your Self-Correcting RAG assistant. Upload a PDF on the left, then ask me any biomedical question. I will search our local scientific database, self-correct any hallucinations using NLI, and provide verified, sentence-level citations.",
       citations: []
     }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [hoveredCitation, setHoveredCitation] = useState(null); // Tracks bidirectional hover triggers (chunk_id)
-  
+  const [uploading, setUploading] = useState(false);
+  const [hoveredCitation, setHoveredCitation] = useState(null);
+
+  // ----- PDF Viewer state -----
+  const [activePdfUrl, setActivePdfUrl] = useState(null);
+  const [activePdfName, setActivePdfName] = useState("");
+  const [numPages, setNumPages] = useState(null);
+  const [activePageNumber, setActivePageNumber] = useState(1);
+  const [highlightText, setHighlightText] = useState("");
+  const [pdfScale, setPdfScale] = useState(1.2);
+
+  // ----- Refs -----
   const messagesEndRef = useRef(null);
+  const fileInputRef = useRef(null);
+  const pdfViewerFileRef = useRef(null);
+  const pdfContainerRef = useRef(null);
 
   // Auto-scroll to latest messages
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
+  // =====================================================================
+  // PDF Document handlers
+  // =====================================================================
+  const onDocumentLoadSuccess = useCallback(({ numPages: total }) => {
+    setNumPages(total);
+    setActivePageNumber(1);
+  }, []);
+
+  const goToPrevPage = () => setActivePageNumber((p) => Math.max(1, p - 1));
+  const goToNextPage = () => setActivePageNumber((p) => Math.min(numPages || 1, p + 1));
+  const zoomIn = () => setPdfScale((s) => Math.min(3, s + 0.2));
+  const zoomOut = () => setPdfScale((s) => Math.max(0.5, s - 0.2));
+
+  // Handle PDF file selection — render in viewer + upload to backend
+  const handlePdfFileSelect = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Validate PDF
+    if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: "Error: Only PDF documents are currently supported for dynamic upload.",
+          citations: []
+        }
+      ]);
+      return;
+    }
+
+    // Immediately render PDF in viewer
+    const objectUrl = URL.createObjectURL(file);
+    setActivePdfUrl(objectUrl);
+    setActivePdfName(file.name);
+    setActivePageNumber(1);
+    setHighlightText("");
+
+    // Also upload to FastAPI for ingestion
+    setUploading(true);
+    setMessages((prev) => [
+      ...prev,
+      {
+        sender: "user",
+        text: `[File Upload] Uploading "${file.name}" ...`
+      },
+      {
+        sender: "bot",
+        text: `Processing PDF "${file.name}"... Extracting text page-by-page, chunking passages into 500-token windows, and generating local vector embeddings.`,
+        citations: []
+      }
+    ]);
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("http://localhost:8000/api/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.detail || `Server returned error status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: `Success! Processed and indexed "${file.name}".\n\n• Created: ${data.chunks_count} chunks\n• Indexed in: Local ChromaDB\n\nYou can now ask questions about this document!`,
+          citations: []
+        }
+      ]);
+    } catch (error) {
+      console.error("Upload error:", error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: `Upload Failed: ${error.message}\n\nThe PDF is still viewable on the left, but it could not be indexed for RAG queries.`,
+          citations: []
+        }
+      ]);
+    } finally {
+      setUploading(false);
+      if (pdfViewerFileRef.current) pdfViewerFileRef.current.value = "";
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
+
+  const triggerPdfViewerUpload = () => {
+    if (pdfViewerFileRef.current) pdfViewerFileRef.current.click();
+  };
+
+  const triggerChatFileUpload = () => {
+    if (fileInputRef.current) fileInputRef.current.click();
+  };
+
+  // =====================================================================
   // Handle message sending to FastAPI
+  // =====================================================================
   const handleSend = async (e) => {
     e.preventDefault();
     const query = input.trim();
     if (!query) return;
 
-    // Add user query to chat history
     setMessages((prev) => [...prev, { sender: "user", text: query }]);
     setInput("");
     setLoading(true);
@@ -75,13 +253,9 @@ export default function App() {
       }
 
       const data = await response.json();
-      
-      // Support both output schemas defensively:
-      // (answer vs draft_answer, and citations vs verified_citations)
       const answerText = data.answer || data.draft_answer || "";
       const citationsArray = data.citations || data.verified_citations || [];
 
-      // Add bot response with citations
       setMessages((prev) => [
         ...prev,
         {
@@ -106,19 +280,66 @@ export default function App() {
   };
 
   // =====================================================================
-  // 🔬 PREMIUM CITATION RENDERER (SENTENCE-LEVEL GRANULAR HIGHLIGHTING)
+  // Citation click handler — navigates PDF to the cited page
+  // =====================================================================
+  const handleCitationClick = (citation) => {
+    const pageNum = parsePageFromChunkId(citation.chunk_id);
+    if (pageNum && activePdfUrl) {
+      setActivePageNumber(pageNum);
+      setHighlightText(citation.sentence);
+    }
+  };
+
+  // =====================================================================
+  // customTextRenderer — highlights matching text on the PDF page
+  // =====================================================================
+  const makeTextRenderer = useCallback(
+    (textItem) => {
+      if (!highlightText || !highlightText.trim()) {
+        return textItem.str;
+      }
+
+      try {
+        // Build a regex from the highlight text; split into words for
+        // partial-line matching since PDF text layer splits lines into spans
+        const words = highlightText
+          .trim()
+          .split(/\s+/)
+          .filter((w) => w.length > 3)
+          .map(escapeRegex);
+
+        if (words.length === 0) return textItem.str;
+
+        // Match any of the significant words (case-insensitive)
+        const pattern = new RegExp(`(${words.join("|")})`, "gi");
+
+        if (pattern.test(textItem.str)) {
+          return textItem.str.replace(
+            pattern,
+            '<mark class="bg-yellow-300 text-transparent rounded-sm" style="background-color: #fde047; color: transparent; padding: 1px 0; mix-blend-mode: multiply;">$1</mark>'
+          );
+        }
+      } catch (err) {
+        // If regex fails, silently return original text
+        console.warn("Highlight regex error:", err);
+      }
+
+      return textItem.str;
+    },
+    [highlightText]
+  );
+
+  // =====================================================================
+  // Citation renderer for chat messages
   // =====================================================================
   const renderMessageText = (text, citations = []) => {
-    // Graceful bypass for simple introductory/fallback text or error messages
     if (!citations || citations.length === 0) {
       return <p className="text-slate-100 leading-relaxed whitespace-pre-wrap">{text}</p>;
     }
 
-    // Split paragraphs, then split sentences keeping terminal punctuation
     const paragraphs = text.split("\n");
 
     return paragraphs.map((paragraph, pIdx) => {
-      // Split sentences cleanly keeping punctuation delimiters
       const sentences = paragraph.match(/[^.!?]+[.!?]+(\s|$)/g) || [paragraph];
 
       return (
@@ -126,9 +347,8 @@ export default function App() {
           {sentences.map((sentence, sIdx) => {
             if (!sentence.trim()) return null;
 
-            // Fuzzy normalized sentence matching against citation claims
             const cleanSentence = sentence.trim().toLowerCase().replace(/[^a-z0-9]/g, "");
-            
+
             const match = citations.find((c) => {
               const cleanCitation = c.sentence.trim().toLowerCase().replace(/[^a-z0-9]/g, "");
               return (
@@ -140,23 +360,28 @@ export default function App() {
 
             if (match) {
               const isHighlighted = hoveredCitation === match.chunk_id;
+              const hasPdfPage = activePdfUrl && parsePageFromChunkId(match.chunk_id);
               return (
                 <span
                   key={sIdx}
-                  className={`relative inline px-1 rounded cursor-help transition-all duration-200 ${
+                  className={`relative inline px-1 rounded transition-all duration-200 ${
+                    hasPdfPage ? "cursor-pointer" : "cursor-help"
+                  } ${
                     isHighlighted
                       ? "bg-emerald-300/40 text-white border-b-2 border-emerald-400"
                       : "bg-emerald-500/10 hover:bg-emerald-500/25 border-b border-emerald-500/30 text-emerald-100"
                   }`}
                   onMouseEnter={() => setHoveredCitation(match.chunk_id)}
                   onMouseLeave={() => setHoveredCitation(null)}
+                  onClick={() => handleCitationClick(match)}
+                  title={hasPdfPage ? `Click to view page ${parsePageFromChunkId(match.chunk_id)} in PDF` : match.chunk_id}
                 >
                   {sentence}
-                  {/* Premium CSS Tooltip positioned absolutely above the sentence */}
-                  <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block pointer-events-none w-56 bg-slate-950 text-white text-[10px] p-2 rounded shadow-2xl z-50 border border-slate-800">
-                    <span className="text-emerald-400 font-semibold block mb-1">✓ NLI Entailment Verified</span>
-                    <span className="font-mono text-slate-400 break-all">{match.chunk_id}</span>
-                  </span>
+                  {hasPdfPage && (
+                    <span className="ml-1 inline-flex items-center text-[9px] bg-emerald-600/30 text-emerald-300 px-1 rounded font-mono">
+                      p{parsePageFromChunkId(match.chunk_id)}
+                    </span>
+                  )}
                 </span>
               );
             }
@@ -168,69 +393,173 @@ export default function App() {
     });
   };
 
-  // Get active citations list for the last bot message
-  const activeCitations = [...messages]
-    .reverse()
-    .find((m) => m.sender === "bot" && m.citations && m.citations.length > 0)?.citations || [];
-
+  // =====================================================================
+  // Render
+  // =====================================================================
   return (
     <div className="flex h-screen bg-slate-950 text-slate-100 font-sans overflow-hidden">
-      
-      {/* =====================================================================
-          🎛️ SIDEBAR: ACTIVE DOCUMENT CITATIONS (BIDIRECTIONAL HOVER SYSTEM)
-          ===================================================================== */}
-      <aside className="w-80 border-r border-slate-800/80 bg-slate-900/50 flex flex-col hidden lg:flex">
-        <header className="p-5 border-b border-slate-800 flex items-center">
-          <DatabaseIcon />
-          <h2 className="font-semibold text-sm tracking-wide uppercase text-slate-300">Verified Citations</h2>
-        </header>
-        <main className="flex-1 overflow-y-auto p-4 space-y-3">
-          {activeCitations.length === 0 ? (
-            <div className="text-center text-xs text-slate-500 mt-20 px-4">
-              Ask an in-domain medical query to see live-verified document chunk citations mapped sentence-by-sentence.
-            </div>
-          ) : (
-            activeCitations.map((cit, idx) => {
-              const isHovered = hoveredCitation === cit.chunk_id;
-              return (
-                <div
-                  key={idx}
-                  className={`p-3 rounded-lg border transition-all duration-200 cursor-default ${
-                    isHovered
-                      ? "bg-slate-800 border-emerald-500 shadow-md transform scale-[1.02]"
-                      : "bg-slate-900/60 border-slate-800 hover:border-slate-700"
-                  }`}
-                  onMouseEnter={() => setHoveredCitation(cit.chunk_id)}
-                  onMouseLeave={() => setHoveredCitation(null)}
-                >
-                  <header className="flex items-center text-[10px] font-mono text-emerald-400 font-semibold mb-2">
-                    <CitationIcon />
-                    {cit.chunk_id}
-                  </header>
-                  <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed italic bg-slate-950/40 p-2 rounded border border-slate-800/50">
-                    "{cit.sentence}"
-                  </p>
-                </div>
-              );
-            })
-          )}
-        </main>
-      </aside>
 
-      {/* =====================================================================
-          💬 MAIN CHAT AREA
-          ===================================================================== */}
-      <main className="flex-1 flex flex-col h-full bg-slate-950 relative">
-        
-        {/* Sleek Premium Header */}
-        <header className="h-16 border-b border-slate-800/80 bg-slate-900/40 flex items-center justify-between px-6 z-10">
+      {/* ==============================================================
+          LEFT PANE: PDF DOCUMENT VIEWER (50%)
+          ============================================================== */}
+      <div className="w-1/2 flex flex-col border-r border-slate-800/80 bg-slate-900/30">
+
+        {/* PDF Viewer Header */}
+        <header className="h-14 border-b border-slate-800/80 bg-slate-900/60 flex items-center justify-between px-4 flex-shrink-0">
+          <div className="flex items-center min-w-0">
+            <DocumentIcon />
+            <span className="text-sm font-semibold text-slate-200 truncate">
+              {activePdfName || "Document Viewer"}
+            </span>
+          </div>
+
+          <div className="flex items-center space-x-2 flex-shrink-0">
+            {/* Hidden file input */}
+            <input
+              type="file"
+              ref={pdfViewerFileRef}
+              onChange={handlePdfFileSelect}
+              accept="application/pdf"
+              className="hidden"
+            />
+            <button
+              onClick={triggerPdfViewerUpload}
+              disabled={uploading}
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-600/30 hover:border-emerald-500/50 transition-all duration-200 disabled:opacity-40"
+            >
+              <PaperclipIcon />
+              <span>{uploading ? "Processing..." : "Upload PDF"}</span>
+            </button>
+          </div>
+        </header>
+
+        {/* PDF Content Area */}
+        {!activePdfUrl ? (
+          /* Empty state — drop zone prompt */
+          <div className="flex-1 flex items-center justify-center">
+            <div
+              onClick={triggerPdfViewerUpload}
+              className="cursor-pointer flex flex-col items-center text-center px-8 py-12 border-2 border-dashed border-slate-700/60 rounded-2xl hover:border-emerald-500/40 hover:bg-slate-900/40 transition-all duration-300 max-w-sm"
+            >
+              <UploadCloudIcon />
+              <p className="text-sm font-medium text-slate-400 mb-1">Upload a PDF to get started</p>
+              <p className="text-xs text-slate-600">
+                Click here or use the upload button above. Your document will appear here for visual reference alongside the RAG chat.
+              </p>
+            </div>
+          </div>
+        ) : (
+          /* PDF rendering area */
+          <div className="flex-1 flex flex-col min-h-0">
+
+            {/* Page controls toolbar */}
+            <div className="flex items-center justify-between px-4 py-2 bg-slate-900/80 border-b border-slate-800/60 flex-shrink-0">
+              <div className="flex items-center space-x-1">
+                <button
+                  onClick={goToPrevPage}
+                  disabled={activePageNumber <= 1}
+                  className="p-1.5 rounded-md hover:bg-slate-800 text-slate-400 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
+                  title="Previous page"
+                >
+                  <ChevronLeftIcon />
+                </button>
+                <span className="text-xs font-mono text-slate-400 min-w-[80px] text-center">
+                  Page {activePageNumber} / {numPages || "—"}
+                </span>
+                <button
+                  onClick={goToNextPage}
+                  disabled={activePageNumber >= (numPages || 1)}
+                  className="p-1.5 rounded-md hover:bg-slate-800 text-slate-400 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
+                  title="Next page"
+                >
+                  <ChevronRightIcon />
+                </button>
+              </div>
+
+              <div className="flex items-center space-x-1">
+                <button
+                  onClick={zoomOut}
+                  disabled={pdfScale <= 0.5}
+                  className="p-1.5 rounded-md hover:bg-slate-800 text-slate-400 hover:text-white disabled:opacity-30 transition-colors"
+                  title="Zoom out"
+                >
+                  <ZoomOutIcon />
+                </button>
+                <span className="text-[10px] font-mono text-slate-500 min-w-[40px] text-center">
+                  {Math.round(pdfScale * 100)}%
+                </span>
+                <button
+                  onClick={zoomIn}
+                  disabled={pdfScale >= 3}
+                  className="p-1.5 rounded-md hover:bg-slate-800 text-slate-400 hover:text-white disabled:opacity-30 transition-colors"
+                  title="Zoom in"
+                >
+                  <ZoomInIcon />
+                </button>
+              </div>
+
+              {highlightText && (
+                <button
+                  onClick={() => setHighlightText("")}
+                  className="text-[10px] px-2 py-1 rounded bg-yellow-500/15 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/25 transition-colors"
+                >
+                  Clear Highlight
+                </button>
+              )}
+            </div>
+
+            {/* Scrollable PDF render */}
+            <div ref={pdfContainerRef} className="flex-1 overflow-auto flex justify-center bg-slate-950/50 p-4">
+              <Document
+                file={activePdfUrl}
+                onLoadSuccess={onDocumentLoadSuccess}
+                loading={
+                  <div className="flex items-center justify-center h-64">
+                    <div className="flex flex-col items-center space-y-3">
+                      <div className="w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+                      <span className="text-xs text-slate-500 font-mono">Loading PDF...</span>
+                    </div>
+                  </div>
+                }
+                error={
+                  <div className="flex items-center justify-center h-64 text-red-400 text-sm">
+                    Failed to load PDF. Please try a different file.
+                  </div>
+                }
+              >
+                <Page
+                  key={`page_${activePageNumber}_${highlightText}`}
+                  pageNumber={activePageNumber}
+                  scale={pdfScale}
+                  customTextRenderer={makeTextRenderer}
+                  className="shadow-2xl rounded-lg overflow-hidden"
+                  loading={
+                    <div className="flex items-center justify-center h-64">
+                      <div className="w-6 h-6 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                  }
+                />
+              </Document>
+            </div>
+          </div>
+        )}
+      </div>
+
+
+      {/* ==============================================================
+          RIGHT PANE: CHAT INTERFACE (50%)
+          ============================================================== */}
+      <div className="w-1/2 flex flex-col h-full bg-slate-950 relative">
+
+        {/* Chat Header */}
+        <header className="h-14 border-b border-slate-800/80 bg-slate-900/40 flex items-center justify-between px-5 flex-shrink-0 z-10">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
               <BotIcon />
             </div>
             <div>
               <h1 className="font-bold text-sm tracking-wide text-white">AGENTIC SELF-CORRECTING RAG</h1>
-              <p className="text-[10px] text-emerald-500 font-mono tracking-wider font-semibold">Active Model: Llama-3 + NLI Critic</p>
+              <p className="text-[10px] text-emerald-500 font-mono tracking-wider font-semibold">Llama-3 + NLI Critic</p>
             </div>
           </div>
           <div className="flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1">
@@ -239,80 +568,146 @@ export default function App() {
           </div>
         </header>
 
-        {/* Messages Log Container */}
-        <section className="flex-1 overflow-y-auto px-6 py-8 space-y-6">
-          <div className="max-w-3xl mx-auto space-y-6">
+        {/* Messages Container */}
+        <section className="flex-1 overflow-y-auto px-5 py-6 space-y-5">
+          <div className="space-y-5">
             {messages.map((msg, index) => {
               const isBot = msg.sender === "bot";
               return (
-                <div key={index} className={`flex space-x-4 ${isBot ? "justify-start" : "justify-end"}`}>
-                  
+                <div key={index} className={`flex space-x-3 ${isBot ? "justify-start" : "justify-end"}`}>
+
                   {isBot && (
-                    <div className="w-8 h-8 rounded-full bg-emerald-950 border border-emerald-800/50 flex items-center justify-center flex-shrink-0 shadow-inner">
+                    <div className="w-7 h-7 rounded-full bg-emerald-950 border border-emerald-800/50 flex items-center justify-center flex-shrink-0 shadow-inner mt-0.5">
                       <BotIcon />
                     </div>
                   )}
 
-                  <div className={`max-w-2xl px-5 py-3.5 rounded-2xl shadow-lg border ${
-                    isBot 
-                      ? "bg-slate-900/70 border-slate-800 text-slate-100" 
+                  <div className={`max-w-[85%] px-4 py-3 rounded-2xl shadow-lg border ${
+                    isBot
+                      ? "bg-slate-900/70 border-slate-800 text-slate-100"
                       : "bg-emerald-600 border-emerald-500 text-white ml-auto"
                   }`}>
                     {isBot ? (
-                      renderMessageText(msg.text, msg.citations)
+                      <>
+                        {renderMessageText(msg.text, msg.citations)}
+                        {/* Citation chips below the message */}
+                        {msg.citations && msg.citations.length > 0 && (
+                          <div className="mt-3 pt-3 border-t border-slate-800/60 flex flex-wrap gap-1.5">
+                            {msg.citations.map((cit, cIdx) => {
+                              const pageNum = parsePageFromChunkId(cit.chunk_id);
+                              return (
+                                <button
+                                  key={cIdx}
+                                  onClick={() => handleCitationClick(cit)}
+                                  onMouseEnter={() => setHoveredCitation(cit.chunk_id)}
+                                  onMouseLeave={() => setHoveredCitation(null)}
+                                  className={`inline-flex items-center text-[10px] font-mono px-2 py-1 rounded-md border transition-all duration-200 ${
+                                    hoveredCitation === cit.chunk_id
+                                      ? "bg-emerald-500/20 border-emerald-500 text-emerald-300 scale-105"
+                                      : "bg-slate-800/60 border-slate-700/50 text-slate-400 hover:border-emerald-500/40 hover:text-emerald-400"
+                                  } ${activePdfUrl && pageNum ? "cursor-pointer" : "cursor-default"}`}
+                                  title={cit.sentence}
+                                >
+                                  <CitationIcon />
+                                  {cit.chunk_id}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </>
                     ) : (
-                      <p className="leading-relaxed whitespace-pre-wrap">{msg.text}</p>
+                      <p className="leading-relaxed whitespace-pre-wrap text-sm">{msg.text}</p>
                     )}
                   </div>
 
                   {!isBot && (
-                    <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700/50 flex items-center justify-center flex-shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700/50 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <UserIcon />
                     </div>
                   )}
-
                 </div>
               );
             })}
 
-            {/* Pulsing loading placeholder bubble */}
+            {/* Loading indicator */}
             {loading && (
-              <div className="flex space-x-4 justify-start">
-                <div className="w-8 h-8 rounded-full bg-emerald-950 border border-emerald-800/50 flex items-center justify-center flex-shrink-0 shadow-inner">
+              <div className="flex space-x-3 justify-start">
+                <div className="w-7 h-7 rounded-full bg-emerald-950 border border-emerald-800/50 flex items-center justify-center flex-shrink-0 shadow-inner">
                   <BotIcon />
                 </div>
-                <div className="max-w-2xl px-5 py-4 rounded-2xl bg-slate-900/70 border border-slate-800 shadow-lg text-slate-300">
+                <div className="px-4 py-3 rounded-2xl bg-slate-900/70 border border-slate-800 shadow-lg text-slate-300">
                   <div className="flex items-center space-x-2">
-                    <span className="text-xs text-slate-500 mr-2 font-mono">LangGraph executing...</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                    <span className="text-xs text-slate-500 mr-1 font-mono">LangGraph executing...</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: "0ms" }}></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: "150ms" }}></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: "300ms" }}></span>
                   </div>
                 </div>
               </div>
             )}
-            
+
+            {/* Uploading indicator */}
+            {uploading && (
+              <div className="flex space-x-3 justify-start">
+                <div className="w-7 h-7 rounded-full bg-emerald-950 border border-emerald-800/50 flex items-center justify-center flex-shrink-0 shadow-inner">
+                  <BotIcon />
+                </div>
+                <div className="px-4 py-3 rounded-2xl bg-slate-900/70 border border-slate-800 shadow-lg text-slate-300">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xs text-slate-500 mr-1 font-mono">Processing PDF...</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: "0ms" }}></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: "150ms" }}></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-bounce" style={{ animationDelay: "300ms" }}></span>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div ref={messagesEndRef} />
           </div>
         </section>
 
-        {/* Floating, glowing message input panel */}
-        <footer className="p-6 border-t border-slate-800/60 bg-slate-900/10 backdrop-blur-md">
-          <div className="max-w-3xl mx-auto">
+        {/* Message Input */}
+        <footer className="p-4 border-t border-slate-800/60 bg-slate-900/10 backdrop-blur-md flex-shrink-0">
+          <div className="max-w-full mx-auto">
+            {/* Hidden file input for chat paperclip */}
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handlePdfFileSelect}
+              accept="application/pdf"
+              className="hidden"
+            />
+
             <form onSubmit={handleSend} className="relative flex items-center rounded-xl bg-slate-900/90 border border-slate-800/80 shadow-2xl focus-within:border-emerald-500/50 focus-within:shadow-[0_0_20px_rgba(16,185,129,0.06)] transition-all duration-300 p-2">
+              <button
+                type="button"
+                onClick={triggerChatFileUpload}
+                disabled={loading || uploading}
+                className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200 flex-shrink-0 mr-1 ${
+                  loading || uploading
+                    ? "bg-slate-800 text-slate-600 cursor-not-allowed"
+                    : "bg-slate-800/80 hover:bg-slate-800 text-slate-400 hover:text-slate-100 hover:scale-[1.03]"
+                }`}
+                title="Upload PDF"
+              >
+                <PaperclipIcon />
+              </button>
+
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask a biomedical question (e.g. BRCA1 gene, p53 role, cystic fibrosis mutations)..."
-                disabled={loading}
-                className="w-full bg-transparent border-none text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-0 text-sm px-4 py-3"
+                placeholder="Ask a biomedical question..."
+                disabled={loading || uploading}
+                className="w-full bg-transparent border-none text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-0 text-sm px-3 py-2.5"
               />
               <button
                 type="submit"
-                disabled={loading || !input.trim()}
-                className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200 flex-shrink-0 ${
-                  input.trim() && !loading
+                disabled={loading || !input.trim() || uploading}
+                className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200 flex-shrink-0 ${
+                  input.trim() && !loading && !uploading
                     ? "bg-emerald-600 hover:bg-emerald-500 text-white shadow-[0_4px_10px_rgba(16,185,129,0.2)] hover:scale-[1.03]"
                     : "bg-slate-800 text-slate-600 cursor-not-allowed"
                 }`}
@@ -325,8 +720,7 @@ export default function App() {
             </div>
           </div>
         </footer>
-
-      </main>
+      </div>
     </div>
   );
 }
