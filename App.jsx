@@ -316,7 +316,7 @@ export default function App() {
         if (pattern.test(textItem.str)) {
           return textItem.str.replace(
             pattern,
-            '<mark class="bg-yellow-300 text-transparent rounded-sm" style="background-color: #fde047; color: transparent; padding: 1px 0; mix-blend-mode: multiply;">$1</mark>'
+            '<mark class="rounded-sm" style="background-color: rgba(253, 224, 71, 0.4); color: transparent; padding: 1px 0;">$1</mark>'
           );
         }
       } catch (err) {
