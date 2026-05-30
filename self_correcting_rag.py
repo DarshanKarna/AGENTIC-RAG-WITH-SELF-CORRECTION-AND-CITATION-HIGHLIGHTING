@@ -27,9 +27,11 @@ try:
 except Exception:
     pass
 
-# Suppress Hugging Face symlink warnings on Windows
+# Suppress Hugging Face symlink warnings and enable offline mode on Windows
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
+os.environ["HF_HUB_OFFLINE"] = "1"
 warnings.filterwarnings("ignore", category=UserWarning)
+
 
 import numpy as np
 import nltk
