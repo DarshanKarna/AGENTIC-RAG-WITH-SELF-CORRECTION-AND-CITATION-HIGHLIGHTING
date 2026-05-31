@@ -1,0 +1,70 @@
+{
+  "dataset": "RAGTruth (QA, test split)",
+  "num_samples": 200,
+  "num_sentences": 1375,
+  "nli_threshold": 0.8,
+  "elapsed_seconds": 107.2,
+  "baseline": {
+    "hallucinated_responses": 30,
+    "hallucination_rate_pct": 15.0,
+    "total_hallucinated_sentences": 107,
+    "avg_hallucinated_sents_per_response": 0.54
+  },
+  "self_correcting_nli": {
+    "flagged_sentences": 696,
+    "residual_hallucination_rate_pct": 0.0,
+    "improvement_pct": 15.0,
+    "sentence_level": {
+      "precision": 0.0948,
+      "recall": 0.6168,
+      "f1": 0.1644,
+      "accuracy": 0.512,
+      "true_positives": 66,
+      "false_positives": 630,
+      "false_negatives": 41,
+      "true_negatives": 638
+    },
+    "case_level": {
+      "precision": 0.1562,
+      "recall": 1.0,
+      "f1": 0.2703,
+      "accuracy": 0.19,
+      "true_positives": 30,
+      "false_positives": 162,
+      "false_negatives": 0,
+      "true_negatives": 8
+    }
+  },
+  "per_model": {
+    "gpt-4-0613": {
+      "total": 30,
+      "hall": 0,
+      "detected": 0
+    },
+    "llama-2-7b-chat": {
+      "total": 31,
+      "hall": 7,
+      "detected": 7
+    },
+    "mistral-7B-instruct": {
+      "total": 30,
+      "hall": 7,
+      "detected": 7
+    },
+    "gpt-3.5-turbo-0613": {
+      "total": 37,
+      "hall": 0,
+      "detected": 0
+    },
+    "llama-2-13b-chat": {
+      "total": 34,
+      "hall": 7,
+      "detected": 7
+    },
+    "llama-2-70b-chat": {
+      "total": 38,
+      "hall": 9,
+      "detected": 9
+    }
+  }
+}
