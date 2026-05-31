@@ -127,6 +127,8 @@ class GraphState(TypedDict):
     original_question: str
     documents: List[Any]
     draft_answer: str
+    baseline_draft: str
+    baseline_hallucinated: List[str]
     drafts: List[str]
     flagged_sentences: List[str]
     documents_relevant: str  # "yes" | "no"
@@ -366,7 +368,13 @@ def generation_node(state: GraphState) -> Dict[str, Any]:
     drafts = list(drafts)
     drafts.append(answer)
     
-    return {"draft_answer": answer, "drafts": drafts}
+    # Capture the very first draft as the baseline (before any NLI correction)
+    result = {"draft_answer": answer, "drafts": drafts}
+    if not state.get("baseline_draft"):
+        result["baseline_draft"] = answer
+        log_agent("GENERATOR", "Baseline draft captured for pipeline comparison.", Colors.CYAN)
+    
+    return result
 
 def nli_critic_node(state: GraphState) -> Dict[str, Any]:
     """Node 5: Verification Agent (NLI Critic). Performs sentence-level entailment checks and builds citations."""
@@ -414,12 +422,19 @@ def nli_critic_node(state: GraphState) -> Dict[str, Any]:
         next_retries = hallucination_retries + 1
     else:
         next_retries = hallucination_retries
-        
-    return {
+    
+    # On the FIRST critic pass, save the flagged sentences as the baseline hallucinations
+    result = {
         "flagged_sentences": flagged,
         "verified_citations": verified_citations,
         "hallucination_retries": next_retries
     }
+    if not state.get("baseline_hallucinated"):
+        result["baseline_hallucinated"] = list(flagged)
+        if flagged:
+            log_agent("NLI CRITIC", f"Baseline hallucinations captured: {len(flagged)} sentence(s) flagged.", Colors.YELLOW)
+    
+    return result
 
 # =====================================================================
 # 🕸️ LANGGRAPH ROUTING EDGES
@@ -498,7 +513,7 @@ app = workflow.compile()
 # 🚀 INTERACTIVE SYSTEM EXECUTION RUNNER
 # =====================================================================
 def run_pipeline(question: str) -> dict:
-    """Runs the self-correcting agentic pipeline on the given question and outputs clean citation JSON."""
+    """Runs the self-correcting agentic pipeline and returns a structured baseline vs. corrected comparison payload."""
     print("\n" + "="*80)
     print(f"[*] INITIATING SELF-CORRECTING AGENTIC RAG FOR: \"{question}\"")
     print("="*80)
@@ -508,6 +523,8 @@ def run_pipeline(question: str) -> dict:
         "original_question": question,
         "documents": [],
         "draft_answer": "",
+        "baseline_draft": "",
+        "baseline_hallucinated": [],
         "drafts": [],
         "flagged_sentences": [],
         "documents_relevant": "no",
@@ -523,13 +540,19 @@ def run_pipeline(question: str) -> dict:
     print(f"\"{final_output['draft_answer']}\"")
     print("="*80 + "\n")
     
-    # Extract final answer and citations array, package them into a clean Python dictionary, and print as formatted JSON
+    # Build the Pipeline Comparison payload
     output_payload = {
-        "answer": final_output["draft_answer"],
-        "citations": final_output.get("verified_citations", [])
+        "baseline": {
+            "answer": final_output.get("baseline_draft", final_output["draft_answer"]),
+            "hallucinated_sentences": final_output.get("baseline_hallucinated", [])
+        },
+        "corrected": {
+            "answer": final_output["draft_answer"],
+            "citations": final_output.get("verified_citations", [])
+        }
     }
     
-    print(f"{Colors.GREEN}{Colors.BOLD}[*] SYSTEM OUTPUT PAYLOAD (JSON CITATIONS):{Colors.ENDC}")
+    print(f"{Colors.GREEN}{Colors.BOLD}[*] PIPELINE COMPARISON PAYLOAD:{Colors.ENDC}")
     print(json.dumps(output_payload, indent=2))
     print("="*80 + "\n")
     

@@ -75,6 +75,12 @@ const ZoomOutIcon = () => (
   </svg>
 );
 
+const WarningIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3.5 h-3.5 text-red-400 mr-1 flex-shrink-0 inline">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+  </svg>
+);
+
 
 // =====================================================================
 // Helper: Parse chunk_id → page number
@@ -93,6 +99,13 @@ function escapeRegex(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+// =====================================================================
+// Normalize text for fuzzy sentence matching
+// =====================================================================
+function normalizeForMatch(str) {
+  return str.trim().toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
 
 export default function App() {
   // ----- Chat state -----
@@ -100,13 +113,20 @@ export default function App() {
     {
       sender: "bot",
       text: "Hello! I am your Self-Correcting RAG assistant. Upload a PDF on the left, then ask me any biomedical question. I will search our local scientific database, self-correct any hallucinations using NLI, and provide verified, sentence-level citations.",
-      citations: []
+      citations: [],
+      // Pipeline Comparison data (null for system messages)
+      baseline: null,
+      corrected: null
     }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [hoveredCitation, setHoveredCitation] = useState(null);
+
+  // ----- Pipeline Comparison Mode -----
+  // Tracks the active mode PER message index: { [msgIndex]: 'baseline' | 'corrected' }
+  const [messageModes, setMessageModes] = useState({});
 
   // ----- PDF Viewer state -----
   const [activePdfUrl, setActivePdfUrl] = useState(null);
@@ -126,6 +146,17 @@ export default function App() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
+
+  // =====================================================================
+  // Pipeline mode helper — defaults to 'corrected'
+  // =====================================================================
+  const getMessageMode = (msgIndex) => messageModes[msgIndex] || "corrected";
+
+  const setModeForMessage = (msgIndex, mode) => {
+    setMessageModes((prev) => ({ ...prev, [msgIndex]: mode }));
+    // Clear PDF highlights when switching modes to avoid stale highlighting
+    setHighlightText("");
+  };
 
   // =====================================================================
   // PDF Document handlers
@@ -152,7 +183,9 @@ export default function App() {
         {
           sender: "bot",
           text: "Error: Only PDF documents are currently supported for dynamic upload.",
-          citations: []
+          citations: [],
+          baseline: null,
+          corrected: null
         }
       ]);
       return;
@@ -176,7 +209,9 @@ export default function App() {
       {
         sender: "bot",
         text: `Processing PDF "${file.name}"... Extracting text page-by-page, chunking passages into 500-token windows, and generating local vector embeddings.`,
-        citations: []
+        citations: [],
+        baseline: null,
+        corrected: null
       }
     ]);
 
@@ -201,7 +236,9 @@ export default function App() {
         {
           sender: "bot",
           text: `Success! Processed and indexed "${file.name}".\n\n• Created: ${data.chunks_count} chunks\n• Indexed in: Local ChromaDB\n\nYou can now ask questions about this document!`,
-          citations: []
+          citations: [],
+          baseline: null,
+          corrected: null
         }
       ]);
     } catch (error) {
@@ -211,7 +248,9 @@ export default function App() {
         {
           sender: "bot",
           text: `Upload Failed: ${error.message}\n\nThe PDF is still viewable on the left, but it could not be indexed for RAG queries.`,
-          citations: []
+          citations: [],
+          baseline: null,
+          corrected: null
         }
       ]);
     } finally {
@@ -253,15 +292,26 @@ export default function App() {
       }
 
       const data = await response.json();
-      const answerText = data.answer || data.draft_answer || "";
-      const citationsArray = data.citations || data.verified_citations || [];
+
+      // Support both new structured format and legacy flat format
+      const hasComparison = data.baseline && data.corrected;
+
+      const baselineData = hasComparison
+        ? data.baseline
+        : { answer: data.answer || data.draft_answer || "", hallucinated_sentences: [] };
+
+      const correctedData = hasComparison
+        ? data.corrected
+        : { answer: data.answer || data.draft_answer || "", citations: data.citations || data.verified_citations || [] };
 
       setMessages((prev) => [
         ...prev,
         {
           sender: "bot",
-          text: answerText,
-          citations: citationsArray
+          text: correctedData.answer,
+          citations: correctedData.citations || [],
+          baseline: baselineData,
+          corrected: correctedData
         }
       ]);
     } catch (error) {
@@ -271,7 +321,9 @@ export default function App() {
         {
           sender: "bot",
           text: `Error: Unable to connect to your FastAPI backend. Please make sure api.py is running on http://localhost:8000.\n\nDetails: ${error.message}`,
-          citations: []
+          citations: [],
+          baseline: null,
+          corrected: null
         }
       ]);
     } finally {
@@ -292,6 +344,7 @@ export default function App() {
 
   // =====================================================================
   // customTextRenderer — highlights matching text on the PDF page
+  // Uses <mark class="bg-yellow-300"> as requested
   // =====================================================================
   const makeTextRenderer = useCallback(
     (textItem) => {
@@ -316,7 +369,7 @@ export default function App() {
         if (pattern.test(textItem.str)) {
           return textItem.str.replace(
             pattern,
-            '<mark class="rounded-sm" style="background-color: rgba(253, 224, 71, 0.4); color: transparent; padding: 1px 0;">$1</mark>'
+            '<mark class="bg-yellow-300 rounded-sm" style="background-color: rgba(253, 224, 71, 0.5); color: transparent; padding: 1px 0;">$1</mark>'
           );
         }
       } catch (err) {
@@ -330,9 +383,87 @@ export default function App() {
   );
 
   // =====================================================================
-  // Citation renderer for chat messages
+  // Pipeline Toggle component (rendered inside bot chat bubbles)
   // =====================================================================
-  const renderMessageText = (text, citations = []) => {
+  const PipelineToggle = ({ msgIndex }) => {
+    const mode = getMessageMode(msgIndex);
+    return (
+      <div className="flex items-center rounded-lg bg-slate-800/80 border border-slate-700/60 p-0.5 mb-3">
+        <button
+          onClick={() => setModeForMessage(msgIndex, "baseline")}
+          className={`flex-1 text-[11px] font-semibold px-3 py-1.5 rounded-md transition-all duration-200 ${
+            mode === "baseline"
+              ? "bg-red-500/20 text-red-300 border border-red-500/40 shadow-[0_0_8px_rgba(239,68,68,0.1)]"
+              : "text-slate-400 hover:text-slate-200 border border-transparent"
+          }`}
+        >
+          <span className="mr-1.5">⚠</span>Baseline RAG
+        </button>
+        <button
+          onClick={() => setModeForMessage(msgIndex, "corrected")}
+          className={`flex-1 text-[11px] font-semibold px-3 py-1.5 rounded-md transition-all duration-200 ${
+            mode === "corrected"
+              ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-[0_0_8px_rgba(16,185,129,0.1)]"
+              : "text-slate-400 hover:text-slate-200 border border-transparent"
+          }`}
+        >
+          <span className="mr-1.5">✓</span>Self-Corrected RAG
+        </button>
+      </div>
+    );
+  };
+
+  // =====================================================================
+  // Render BASELINE text — flags hallucinated sentences with red underline
+  // =====================================================================
+  const renderBaselineText = (text, hallucinated = []) => {
+    if (!text) return null;
+
+    const paragraphs = text.split("\n");
+    const normalizedHallucinated = hallucinated.map(normalizeForMatch);
+
+    return paragraphs.map((paragraph, pIdx) => {
+      if (!paragraph.trim()) return null;
+      const sentences = paragraph.match(/[^.!?]+[.!?]+(\s|$)/g) || [paragraph];
+
+      return (
+        <p key={pIdx} className="text-slate-100 leading-relaxed mb-3 last:mb-0">
+          {sentences.map((sentence, sIdx) => {
+            if (!sentence.trim()) return null;
+
+            const normalizedSentence = normalizeForMatch(sentence);
+
+            const isHallucinated = normalizedHallucinated.some(
+              (h) =>
+                normalizedSentence === h ||
+                normalizedSentence.includes(h) ||
+                h.includes(normalizedSentence)
+            );
+
+            if (isHallucinated) {
+              return (
+                <span
+                  key={sIdx}
+                  className="relative inline px-0.5 border-b-2 border-red-500 bg-red-500/10 text-red-200 rounded-sm cursor-help transition-all duration-200 hover:bg-red-500/20"
+                  title="⚠ Hallucination: This sentence failed NLI entailment verification against the source documents."
+                >
+                  <WarningIcon />
+                  {sentence}
+                </span>
+              );
+            }
+
+            return <span key={sIdx}>{sentence}</span>;
+          })}
+        </p>
+      );
+    });
+  };
+
+  // =====================================================================
+  // Render CORRECTED text — green hoverable citation spans
+  // =====================================================================
+  const renderCorrectedText = (text, citations = []) => {
     if (!citations || citations.length === 0) {
       return <p className="text-slate-100 leading-relaxed whitespace-pre-wrap">{text}</p>;
     }
@@ -347,10 +478,10 @@ export default function App() {
           {sentences.map((sentence, sIdx) => {
             if (!sentence.trim()) return null;
 
-            const cleanSentence = sentence.trim().toLowerCase().replace(/[^a-z0-9]/g, "");
+            const cleanSentence = normalizeForMatch(sentence);
 
             const match = citations.find((c) => {
-              const cleanCitation = c.sentence.trim().toLowerCase().replace(/[^a-z0-9]/g, "");
+              const cleanCitation = normalizeForMatch(c.sentence);
               return (
                 cleanSentence === cleanCitation ||
                 cleanSentence.includes(cleanCitation) ||
@@ -391,6 +522,26 @@ export default function App() {
         </p>
       );
     });
+  };
+
+  // =====================================================================
+  // Render message content based on active pipeline mode
+  // =====================================================================
+  const renderMessageContent = (msg, msgIndex) => {
+    const hasComparison = msg.baseline && msg.corrected;
+
+    // For system/info messages without comparison data, render plain text
+    if (!hasComparison) {
+      return renderCorrectedText(msg.text, msg.citations);
+    }
+
+    const mode = getMessageMode(msgIndex);
+
+    if (mode === "baseline") {
+      return renderBaselineText(msg.baseline.answer, msg.baseline.hallucinated_sentences);
+    } else {
+      return renderCorrectedText(msg.corrected.answer, msg.corrected.citations);
+    }
   };
 
   // =====================================================================
@@ -559,7 +710,7 @@ export default function App() {
             </div>
             <div>
               <h1 className="font-bold text-sm tracking-wide text-white">AGENTIC SELF-CORRECTING RAG</h1>
-              <p className="text-[10px] text-emerald-500 font-mono tracking-wider font-semibold">Llama-3 + NLI Critic</p>
+              <p className="text-[10px] text-emerald-500 font-mono tracking-wider font-semibold">Llama-3 + NLI Critic • Pipeline Comparison</p>
             </div>
           </div>
           <div className="flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1">
@@ -573,6 +724,9 @@ export default function App() {
           <div className="space-y-5">
             {messages.map((msg, index) => {
               const isBot = msg.sender === "bot";
+              const hasComparison = msg.baseline && msg.corrected;
+              const mode = getMessageMode(index);
+
               return (
                 <div key={index} className={`flex space-x-3 ${isBot ? "justify-start" : "justify-end"}`}>
 
@@ -589,9 +743,61 @@ export default function App() {
                   }`}>
                     {isBot ? (
                       <>
-                        {renderMessageText(msg.text, msg.citations)}
-                        {/* Citation chips below the message */}
-                        {msg.citations && msg.citations.length > 0 && (
+                        {/* Pipeline Comparison Toggle — only for messages with comparison data */}
+                        {hasComparison && <PipelineToggle msgIndex={index} />}
+
+                        {/* Mode badge indicator */}
+                        {hasComparison && (
+                          <div className={`inline-flex items-center text-[10px] font-mono px-2 py-0.5 rounded-full mb-2 ${
+                            mode === "baseline"
+                              ? "bg-red-500/15 text-red-400 border border-red-500/30"
+                              : "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
+                          }`}>
+                            {mode === "baseline" ? "⚠ Unverified baseline output" : "✓ NLI-verified output"}
+                          </div>
+                        )}
+
+                        {/* Render content based on active mode */}
+                        {renderMessageContent(msg, index)}
+
+                        {/* Citation chips — only shown in corrected mode */}
+                        {hasComparison && mode === "corrected" && msg.corrected.citations && msg.corrected.citations.length > 0 && (
+                          <div className="mt-3 pt-3 border-t border-slate-800/60 flex flex-wrap gap-1.5">
+                            {msg.corrected.citations.map((cit, cIdx) => {
+                              const pageNum = parsePageFromChunkId(cit.chunk_id);
+                              return (
+                                <button
+                                  key={cIdx}
+                                  onClick={() => handleCitationClick(cit)}
+                                  onMouseEnter={() => setHoveredCitation(cit.chunk_id)}
+                                  onMouseLeave={() => setHoveredCitation(null)}
+                                  className={`inline-flex items-center text-[10px] font-mono px-2 py-1 rounded-md border transition-all duration-200 ${
+                                    hoveredCitation === cit.chunk_id
+                                      ? "bg-emerald-500/20 border-emerald-500 text-emerald-300 scale-105"
+                                      : "bg-slate-800/60 border-slate-700/50 text-slate-400 hover:border-emerald-500/40 hover:text-emerald-400"
+                                  } ${activePdfUrl && pageNum ? "cursor-pointer" : "cursor-default"}`}
+                                  title={cit.sentence}
+                                >
+                                  <CitationIcon />
+                                  {cit.chunk_id}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
+
+                        {/* Hallucination count indicator — only in baseline mode */}
+                        {hasComparison && mode === "baseline" && msg.baseline.hallucinated_sentences && msg.baseline.hallucinated_sentences.length > 0 && (
+                          <div className="mt-3 pt-3 border-t border-red-800/30">
+                            <div className="inline-flex items-center text-[10px] font-mono px-2 py-1 rounded-md bg-red-500/10 border border-red-500/30 text-red-400">
+                              <WarningIcon />
+                              <span className="ml-1">{msg.baseline.hallucinated_sentences.length} sentence(s) flagged as potential hallucinations by NLI Critic</span>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Legacy citation chips for messages without comparison data */}
+                        {!hasComparison && msg.citations && msg.citations.length > 0 && (
                           <div className="mt-3 pt-3 border-t border-slate-800/60 flex flex-wrap gap-1.5">
                             {msg.citations.map((cit, cIdx) => {
                               const pageNum = parsePageFromChunkId(cit.chunk_id);
@@ -716,7 +922,7 @@ export default function App() {
               </button>
             </form>
             <div className="text-center text-[10px] text-slate-600 mt-2 font-mono tracking-wider">
-              B.Tech AI Project • Verified Sentence-Level Grounding using Natural Language Inference
+              B.Tech AI Project • Pipeline Comparison: Baseline RAG vs. Self-Corrected NLI-Verified Output
             </div>
           </div>
         </footer>
