@@ -409,7 +409,8 @@ def nli_critic_node(state: GraphState) -> Dict[str, Any]:
             chunk_id = f"{doc_id}_p{page_num}_c{chunk_idx}"
             verified_citations.append({
                 "sentence": sentence,
-                "chunk_id": chunk_id
+                "chunk_id": chunk_id,
+                "source_text": winning_document.page_content if hasattr(winning_document, 'page_content') else ""
             })
         else:
             log_agent("NLI CRITIC", f"Sentence {idx} FAILED NLI check (Max Entailment: {max_entailment:.4f} < 0.80)!", Colors.RED)

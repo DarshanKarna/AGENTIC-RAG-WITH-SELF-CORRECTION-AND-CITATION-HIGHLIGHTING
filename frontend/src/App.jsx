@@ -338,13 +338,15 @@ export default function App() {
     const pageNum = parsePageFromChunkId(citation.chunk_id);
     if (pageNum && activePdfUrl) {
       setActivePageNumber(pageNum);
-      setHighlightText(citation.sentence);
+      // Use the actual source chunk text from the PDF, not the LLM answer sentence
+      setHighlightText(citation.source_text || citation.sentence);
     }
   };
 
   // =====================================================================
   // customTextRenderer — highlights matching text on the PDF page
-  // Uses <mark class="bg-yellow-300"> as requested
+  // Uses contiguous phrase / n-gram matching instead of individual words
+  // to avoid highlighting random words scattered across the page.
   // =====================================================================
   const makeTextRenderer = useCallback(
     (textItem) => {
@@ -353,27 +355,44 @@ export default function App() {
       }
 
       try {
-        // Build a regex from the highlight text; split into words for
-        // partial-line matching since PDF text layer splits lines into spans
-        const words = highlightText
-          .trim()
-          .split(/\s+/)
-          .filter((w) => w.length > 3)
-          .map(escapeRegex);
+        const spanText = textItem.str;
+        if (!spanText.trim()) return spanText;
 
-        if (words.length === 0) return textItem.str;
+        // --- Strategy: build contiguous n-grams from the source text ---
+        // The PDF text layer splits content into many small spans, so a
+        // long source passage will never appear as one textItem. Instead
+        // we extract sliding-window n-grams of 4-7 words from the source
+        // text and try to find exact substring matches inside this span.
+        const sourceWords = highlightText.trim().split(/\s+/);
+        const minGram = Math.min(4, sourceWords.length);
+        const maxGram = Math.min(8, sourceWords.length);
 
-        // Match any of the significant words (case-insensitive)
-        const pattern = new RegExp(`(${words.join("|")})`, "gi");
-
-        if (pattern.test(textItem.str)) {
-          return textItem.str.replace(
-            pattern,
-            '<mark class="bg-yellow-300 rounded-sm" style="background-color: rgba(253, 224, 71, 0.5); color: transparent; padding: 1px 0;">$1</mark>'
-          );
+        // Collect all unique n-gram strings
+        const ngrams = new Set();
+        for (let n = maxGram; n >= minGram; n--) {
+          for (let i = 0; i <= sourceWords.length - n; i++) {
+            ngrams.add(sourceWords.slice(i, i + n).join(" "));
+          }
         }
+
+        // Try to match each n-gram as a contiguous substring (case-insensitive)
+        let result = spanText;
+        let matched = false;
+
+        for (const gram of ngrams) {
+          const escaped = escapeRegex(gram);
+          const pattern = new RegExp(`(${escaped})`, "gi");
+          if (pattern.test(result)) {
+            result = result.replace(
+              pattern,
+              '<mark class="bg-yellow-300 rounded-sm" style="background-color: rgba(253, 224, 71, 0.5); color: transparent; padding: 1px 0;">$1</mark>'
+            );
+            matched = true;
+          }
+        }
+
+        if (matched) return result;
       } catch (err) {
-        // If regex fails, silently return original text
         console.warn("Highlight regex error:", err);
       }
 
