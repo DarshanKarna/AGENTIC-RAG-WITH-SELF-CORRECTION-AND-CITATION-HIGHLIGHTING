@@ -61,7 +61,7 @@ if not GROQ_API_KEY:
 CHROMA_DB_DIR = os.path.join("data", "chroma_db_hf")
 COLLECTION_NAME = "bioasq_chunks"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-LLM_MODEL = "llama3-8b-8192"
+LLM_MODEL = "llama-3.3-70b-versatile"
 NLI_MODEL_NAME = "cross-encoder/nli-deberta-base"
 
 # =====================================================================
