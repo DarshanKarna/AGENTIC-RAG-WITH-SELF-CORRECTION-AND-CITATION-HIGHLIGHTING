@@ -24,18 +24,21 @@ Developed as a B.Tech AI 4th-Semester Project by **Darshan Karna**.
 ## Setup & Installation
 
 ### Prerequisites
+
 - Python 3.10+
 - [Groq API Key](https://console.groq.com/) for Llama 3 access.
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <your-repo-url>
    cd <your-repo-directory>
    ```
 
 2. **Create a virtual environment and install dependencies**
+
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
@@ -51,6 +54,7 @@ Developed as a B.Tech AI 4th-Semester Project by **Darshan Karna**.
 ## Usage
 
 ### 1. Data Ingestion
+
 You can ingest data from local PDFs or HuggingFace datasets into the vector database.
 
 ```bash
@@ -62,13 +66,17 @@ python ingest.py --source hf
 ```
 
 ### 2. Running the Agentic Pipeline
+
 Run the main script to test the LangGraph self-correcting RAG pipeline directly:
+
 ```bash
 python self_correcting_rag.py
 ```
 
 ### 3. Running Evaluations
+
 Evaluate the improvements of the self-correcting pipeline over a baseline naive RAG using RAGAS:
+
 ```bash
 python evaluate.py
 ```
@@ -84,4 +92,7 @@ python evaluate.py
 - `data/`: Contains the raw documents and ChromaDB vector stores.
 
 ---
+
 **Author**: Darshan Karna
+
+hello
