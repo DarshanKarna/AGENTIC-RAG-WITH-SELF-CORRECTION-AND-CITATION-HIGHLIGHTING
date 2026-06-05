@@ -278,9 +278,9 @@ def query_reformulator_node(state: GraphState) -> Dict[str, Any]:
     reformulate_prompt = ChatPromptTemplate.from_messages([
         ("system", (
             "You are an expert query reformulation assistant. The user asked a question, but our initial search in a "
-            "biomedical database yielded irrelevant results.\n\n"
+            "database yielded irrelevant results.\n\n"
             "Your task is to rewrite the original question into a better, highly specific search query "
-            "focused strictly on biological or medical terms to retrieve relevant scientific publications.\n\n"
+            "focused strictly on key concepts to retrieve relevant documents.\n\n"
             "Provide ONLY the rewritten search query. Do not add any conversational text or explanation."
         )),
         ("human", "Original Question: {question}")
@@ -308,7 +308,7 @@ def generation_node(state: GraphState) -> Dict[str, Any]:
     # Edge case: No relevant documents found after retries
     if not docs or state["documents_relevant"] == "no":
         log_agent("GENERATOR", "No relevant context available. Returning graceful fallback.", Colors.YELLOW)
-        fallback = "I'm sorry, but I couldn't find any relevant biomedical information in the local database to answer your question."
+        fallback = "I'm sorry, but I couldn't find any relevant information in the local database to answer your question."
         return {"draft_answer": fallback}
         
     context = "\n\n".join([doc.page_content for doc in docs])
@@ -384,7 +384,7 @@ def nli_critic_node(state: GraphState) -> Dict[str, Any]:
     log_agent("NLI CRITIC", "Initiating sentence-level validation...", Colors.CYAN)
     
     # Graceful bypass for fallbacks
-    if "couldn't find any relevant biomedical information" in answer.lower():
+    if "couldn't find any relevant information" in answer.lower():
         log_agent("NLI CRITIC", "Fallback response detected. Skipping validation.", Colors.GREEN)
         return {"flagged_sentences": [], "verified_citations": []}
         

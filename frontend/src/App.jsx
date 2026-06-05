@@ -112,7 +112,7 @@ export default function App() {
   const [messages, setMessages] = useState([
     {
       sender: "bot",
-      text: "Hello! I am your Self-Correcting RAG assistant. Upload a PDF on the left, then ask me any biomedical question. I will search our local scientific database, self-correct any hallucinations using NLI, and provide verified, sentence-level citations.",
+      text: "Hello! I am your Self-Correcting RAG assistant. Upload a PDF on the left, then ask me any question. I will search our local database, self-correct any hallucinations using NLI, and provide verified, sentence-level citations.",
       citations: [],
       // Pipeline Comparison data (null for system messages)
       baseline: null,
