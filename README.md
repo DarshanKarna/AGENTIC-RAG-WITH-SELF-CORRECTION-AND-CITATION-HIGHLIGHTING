@@ -94,5 +94,3 @@ python evaluate.py
 ---
 
 **Author**: Darshan Karna
-
-hello
