@@ -924,7 +924,7 @@ export default function App() {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask a biomedical question..."
+                placeholder="Ask a question..."
                 disabled={loading || uploading}
                 className="w-full bg-transparent border-none text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-0 text-sm px-3 py-2.5"
               />
