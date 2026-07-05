@@ -4,7 +4,7 @@ baseline_rag.py - Naive RAG Retrieval & Generation
 
 Connects to the local ChromaDB vector store (populated by ingest_hf.py),
 retrieves the top-k most relevant chunks for a hardcoded query, and
-generates a grounded answer using Groq's llama3-8b-8192 via LangChain.
+generates a grounded answer using Google Gemini via LangChain.
 
 Usage:
     python baseline_rag.py
@@ -14,7 +14,7 @@ import os
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
-from langchain_groq import ChatGroq
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
@@ -25,7 +25,7 @@ from langchain_core.output_parsers import StrOutputParser
 CHROMA_DB_DIR = os.path.join("data", "chroma_db_hf")
 COLLECTION_NAME = "bioasq_chunks"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-LLM_MODEL = "llama3-8b-8192"
+LLM_MODEL = "gemini-2.0-flash"
 TOP_K = 5
 QUERY = "What is the function of the BRCA1 gene?"
 
@@ -40,12 +40,12 @@ SYSTEM_INSTRUCTION = (
 # 1. Load environment variables
 # ---------------------------------------------------------------------------
 def load_env():
-    """Load the GROQ_API_KEY from the .env file."""
+    """Load the GOOGLE_API_KEY from the .env file."""
     load_dotenv()
-    api_key = os.getenv("GROQ_API_KEY")
+    api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
         raise EnvironmentError(
-            "GROQ_API_KEY not found. Please set it in your .env file."
+            "GOOGLE_API_KEY not found. Please set it in your .env file."
         )
     return api_key
 
@@ -78,10 +78,10 @@ def init_retriever():
 # 3. Initialize the Groq LLM
 # ---------------------------------------------------------------------------
 def init_llm(api_key: str):
-    """Creates a ChatGroq instance with llama3-8b-8192."""
-    llm = ChatGroq(
+    """Creates a ChatGoogleGenerativeAI instance with Gemini."""
+    llm = ChatGoogleGenerativeAI(
         model=LLM_MODEL,
-        api_key=api_key,
+        google_api_key=api_key,
         temperature=0,  # deterministic for reproducibility
     )
     return llm
@@ -171,7 +171,7 @@ def main():
     print_retrieved_chunks(retrieved_docs)
 
     # 4. LLM
-    print(f"\nInitializing LLM ({LLM_MODEL} via Groq)...")
+    print(f"\nInitializing LLM ({LLM_MODEL} via Google Gemini)...")
     llm = init_llm(api_key)
 
     # 5. Build chain & generate answer
