@@ -3,10 +3,10 @@ self_correcting_rag.py - Self-Correcting Agentic RAG System
 ============================================================
 
 A B.Tech AI 4th-Semester Project RAG pipeline built with LangGraph, ChromaDB,
-and Groq (Llama 3). Performs:
+and Gemma 4 (local Ollama). Performs:
   1. Vector DB retrieval (ChromaDB + SentenceTransformers).
-  2. Semantic relevance grading (Llama 3 via ChatGroq).
-  3. Agentic fallback query reformulation (Llama 3 via ChatGroq).
+  2. Semantic relevance grading (Gemma 4 via ChatOllama).
+  3. Agentic fallback query reformulation (Gemma 4 via ChatOllama).
   4. Sentence-level NLI-based hallucination critic (nli-deberta-base cross-encoder).
   5. Dynamic answer regeneration logic based on critic feedback.
 
@@ -40,7 +40,7 @@ from dotenv import load_dotenv
 # LangChain & LangGraph Imports
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
-from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import StateGraph, START, END
 
@@ -53,15 +53,12 @@ except Exception:
 
 # Loading global environment
 load_dotenv()
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-if not GROQ_API_KEY:
-    raise EnvironmentError("GROQ_API_KEY not found. Please verify your .env file.")
 
 # Global Configuration Constants
 CHROMA_DB_DIR = os.path.join("data", "chroma_db_hf")
 COLLECTION_NAME = "bioasq_chunks"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-LLM_MODEL = "llama-3.3-70b-versatile"
+LLM_MODEL = "gemma"
 NLI_MODEL_NAME = "cross-encoder/nli-deberta-base"
 
 # =====================================================================
@@ -96,22 +93,8 @@ vectorstore = Chroma(
 )
 retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
 
-class RobustChatGroq(ChatGroq):
-    def invoke(self, input, config=None, **kwargs):
-        try:
-            return super().invoke(input, config=config, **kwargs)
-        except Exception as e:
-            err_str = str(e)
-            if "model_decommissioned" in err_str or "decommissioned" in err_str.lower() or "not_found" in err_str:
-                current_model = getattr(self, "model_name", "llama3-8b-8192")
-                print(f"\n[SYSTEM LLM FALLBACK] Model '{current_model}' is decommissioned on Groq.")
-                print(f"[SYSTEM LLM FALLBACK] Temporarily routing query to active 'llama-3.3-70b-versatile'...\n")
-                self.model_name = "llama-3.3-70b-versatile"
-                return super().invoke(input, config=config, **kwargs)
-            raise e
-
-print("[2/3] Connecting to Groq Cloud LLM...")
-llm = RobustChatGroq(model=LLM_MODEL, api_key=GROQ_API_KEY, temperature=0)
+print("[2/3] Connecting to local Ollama LLM (Gemma 4)...")
+llm = ChatOllama(model=LLM_MODEL, temperature=0, base_url="http://localhost:11434")
 
 print("[3/3] Loading local NLI DeBERTa Cross-Encoder (The Critic)...")
 from sentence_transformers import CrossEncoder
