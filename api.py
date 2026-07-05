@@ -150,6 +150,7 @@ async def chat_endpoint(request_data: QueryRequest):
         result = run_pipeline(question)
         return result
     except Exception as e:
+        print(f"ERROR in RAG Pipeline: {repr(e)}")
         raise HTTPException(
             status_code=500,
             detail=f"An error occurred while executing the RAG pipeline: {str(e)}"
