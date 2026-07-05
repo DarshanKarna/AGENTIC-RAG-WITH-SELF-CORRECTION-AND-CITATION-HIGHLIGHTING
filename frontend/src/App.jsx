@@ -133,7 +133,19 @@ export default function App() {
   const [activePdfName, setActivePdfName] = useState("");
   const [numPages, setNumPages] = useState(null);
   const [activePageNumber, setActivePageNumber] = useState(1);
-  const [highlightText, setHighlightText] = useState("");
+  const [highlights, setHighlights] = useState([]);
+
+  // Distinct highlight color palette for multiple citations
+  // text is transparent because the PDF canvas already renders visible text;
+  // the text layer sits on top purely for selection/search.
+  const HIGHLIGHT_COLORS = [
+    { bg: "rgba(253, 224, 71, 0.5)" },
+    { bg: "rgba(16, 185, 129, 0.5)" },
+    { bg: "rgba(96, 165, 250, 0.5)" },
+    { bg: "rgba(248, 113, 113, 0.5)" },
+    { bg: "rgba(167, 139, 250, 0.5)" },
+    { bg: "rgba(251, 146, 60, 0.5)" }
+  ];
   const [pdfScale, setPdfScale] = useState(1.2);
 
   // ----- Refs -----
@@ -155,7 +167,7 @@ export default function App() {
   const setModeForMessage = (msgIndex, mode) => {
     setMessageModes((prev) => ({ ...prev, [msgIndex]: mode }));
     // Clear PDF highlights when switching modes to avoid stale highlighting
-    setHighlightText("");
+    setHighlights([]);
   };
 
   // =====================================================================
@@ -196,7 +208,6 @@ export default function App() {
     setActivePdfUrl(objectUrl);
     setActivePdfName(file.name);
     setActivePageNumber(1);
-    setHighlightText("");
 
     // Also upload to FastAPI for ingestion
     setUploading(true);
@@ -338,8 +349,15 @@ export default function App() {
     const pageNum = parsePageFromChunkId(citation.chunk_id);
     if (pageNum && activePdfUrl) {
       setActivePageNumber(pageNum);
-      // Use the actual source chunk text from the PDF, not the LLM answer sentence
-      setHighlightText(citation.source_text || citation.sentence);
+      const sourceText = citation.source_text || citation.sentence;
+      // Check if this citation text is already highlighted
+      const alreadyExists = highlights.some((h) => h.text === sourceText);
+      if (!alreadyExists) {
+        setHighlights((prev) => [
+          ...prev,
+          { text: sourceText, colorIndex: prev.length % HIGHLIGHT_COLORS.length }
+        ]);
+      }
     }
   };
 
@@ -350,7 +368,7 @@ export default function App() {
   // =====================================================================
   const makeTextRenderer = useCallback(
     (textItem) => {
-      if (!highlightText || !highlightText.trim()) {
+      if (!highlights || highlights.length === 0) {
         return textItem.str;
       }
 
@@ -358,47 +376,85 @@ export default function App() {
         const spanText = textItem.str;
         if (!spanText.trim()) return spanText;
 
-        // --- Strategy: build contiguous n-grams from the source text ---
-        // The PDF text layer splits content into many small spans, so a
-        // long source passage will never appear as one textItem. Instead
-        // we extract sliding-window n-grams of 4-7 words from the source
-        // text and try to find exact substring matches inside this span.
-        const sourceWords = highlightText.trim().split(/\s+/);
-        const minGram = Math.min(4, sourceWords.length);
-        const maxGram = Math.min(8, sourceWords.length);
-
-        // Collect all unique n-gram strings
-        const ngrams = new Set();
-        for (let n = maxGram; n >= minGram; n--) {
-          for (let i = 0; i <= sourceWords.length - n; i++) {
-            ngrams.add(sourceWords.slice(i, i + n).join(" "));
-          }
-        }
-
-        // Try to match each n-gram as a contiguous substring (case-insensitive)
-        let result = spanText;
+        let charColors = new Array(spanText.length).fill(null);
         let matched = false;
 
-        for (const gram of ngrams) {
-          const escaped = escapeRegex(gram);
-          const pattern = new RegExp(`(${escaped})`, "gi");
-          if (pattern.test(result)) {
-            result = result.replace(
-              pattern,
-              '<mark class="bg-yellow-300 rounded-sm" style="background-color: rgba(253, 224, 71, 0.5); color: transparent; padding: 1px 0;">$1</mark>'
-            );
-            matched = true;
+        // Iterate over each highlight and map distinct colors to characters
+        for (const highlight of highlights) {
+          if (!highlight.text || !highlight.text.trim()) continue;
+
+          const color = HIGHLIGHT_COLORS[highlight.colorIndex % HIGHLIGHT_COLORS.length];
+          const sourceWords = highlight.text.trim().split(/\s+/);
+          const minGram = Math.min(4, sourceWords.length);
+          const maxGram = Math.min(8, sourceWords.length);
+
+          const ngrams = new Set();
+          for (let n = maxGram; n >= minGram; n--) {
+            for (let i = 0; i <= sourceWords.length - n; i++) {
+              ngrams.add(sourceWords.slice(i, i + n).join(" "));
+            }
+          }
+
+          const lowerSpan = spanText.toLowerCase();
+          for (const gram of ngrams) {
+            const lowerGram = gram.toLowerCase();
+            let startIndex = 0;
+            let index;
+            while ((index = lowerSpan.indexOf(lowerGram, startIndex)) > -1) {
+              matched = true;
+              // Color the matching characters
+              for (let i = index; i < index + lowerGram.length; i++) {
+                if (!charColors[i]) {
+                  charColors[i] = color.bg;
+                }
+              }
+              startIndex = index + 1; // move forward to find overlapping matches
+            }
           }
         }
 
-        if (matched) return result;
+        if (matched) {
+          let result = "";
+          let currentColor = null;
+          let currentChunk = "";
+
+          const escapeHtml = (str) =>
+            str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+          for (let i = 0; i < spanText.length; i++) {
+            if (charColors[i] !== currentColor) {
+              if (currentChunk) {
+                const escaped = escapeHtml(currentChunk);
+                if (currentColor) {
+                  result += `<mark style="background-color: ${currentColor}; color: transparent; padding: 1px 0; border-radius: 2px;">${escaped}</mark>`;
+                } else {
+                  result += escaped;
+                }
+              }
+              currentColor = charColors[i];
+              currentChunk = spanText[i];
+            } else {
+              currentChunk += spanText[i];
+            }
+          }
+          
+          if (currentChunk) {
+            const escaped = escapeHtml(currentChunk);
+            if (currentColor) {
+              result += `<mark style="background-color: ${currentColor}; color: transparent; padding: 1px 0; border-radius: 2px;">${escaped}</mark>`;
+            } else {
+              result += escaped;
+            }
+          }
+          return result;
+        }
       } catch (err) {
-        console.warn("Highlight regex error:", err);
+        console.warn("Highlight rendering error:", err);
       }
 
       return textItem.str;
     },
-    [highlightText]
+    [highlights]
   );
 
   // =====================================================================
@@ -668,12 +724,12 @@ export default function App() {
                 </button>
               </div>
 
-              {highlightText && (
+              {highlights.length > 0 && (
                 <button
-                  onClick={() => setHighlightText("")}
+                  onClick={() => setHighlights([])}
                   className="text-[10px] px-2 py-1 rounded bg-yellow-500/15 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/25 transition-colors"
                 >
-                  Clear Highlight
+                  Clear Highlights ({highlights.length})
                 </button>
               )}
             </div>
@@ -698,7 +754,7 @@ export default function App() {
                 }
               >
                 <Page
-                  key={`page_${activePageNumber}_${highlightText}`}
+                  key={`page_${activePageNumber}_${highlights.map(h => h.text).join('|')}`}
                   pageNumber={activePageNumber}
                   scale={pdfScale}
                   customTextRenderer={makeTextRenderer}
