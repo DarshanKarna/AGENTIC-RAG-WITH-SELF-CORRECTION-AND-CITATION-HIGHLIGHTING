@@ -21,8 +21,8 @@ from datasets import Dataset
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy
 
-# Set up LangChain Google Gemini for RAGAS evaluation
-from langchain_google_genai import ChatGoogleGenerativeAI
+# Set up LangChain Ollama for RAGAS evaluation
+from langchain_ollama import ChatOllama
 from langchain_huggingface import HuggingFaceEmbeddings
 
 # Import our LangGraph application to get baseline and corrected drafts
@@ -39,8 +39,8 @@ TEST_QUERIES = [
     "Who won the FIFA World Cup in 2022?"
 ]
 
-# Configure Google Gemini LLM and HuggingFace Embeddings to be used by RAGAS natively
-EVAL_LLM = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0)
+# Configure Local Ollama LLM (Gemma) and HuggingFace Embeddings to be used by RAGAS natively
+EVAL_LLM = ChatOllama(model="gemma", temperature=0, base_url="http://localhost:11434")
 EVAL_EMBEDDINGS = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 def calculate_correction_delta(baseline_faithfulness: float, corrected_faithfulness: float) -> float:

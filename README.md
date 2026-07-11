@@ -1,6 +1,6 @@
 # Agentic RAG with Self-Correction and Citation Highlighting
 
-A robust, enterprise-grade Retrieval-Augmented Generation (RAG) system built with LangGraph, ChromaDB, and Groq (Llama 3). This project features a state-of-the-art agentic pipeline with sentence-level hallucination detection, dynamic self-correction, query reformulation, and source citation highlighting.
+A robust, enterprise-grade Retrieval-Augmented Generation (RAG) system built with LangGraph, ChromaDB, and local Gemma via Ollama. This project features a state-of-the-art agentic pipeline with sentence-level hallucination detection, dynamic self-correction, query reformulation, and source citation highlighting.
 
 Developed as a B.Tech AI 4th-Semester Project by **Darshan Karna**.
 
@@ -26,7 +26,7 @@ graph TD
     A[User Query] --> B{Retrieve Documents}
     B --> C[Document Relevance Grader]
     C -- Irrelevant --> D[Reformulate Query] --> B
-    C -- Relevant --> E[LLM Generator: Llama 3]
+    C -- Relevant --> E[LLM Generator: Gemma]
     E --> F[Draft Answer]
     F --> G[DeBERTa NLI Critic]
     G -- Hallucination Detected --> H[Regenerate with Correction Prompt] --> E
@@ -35,7 +35,7 @@ graph TD
 
 1. **Retrieval**: Uses `all-MiniLM-L6-v2` SentenceTransformers to query `ChromaDB`.
 2. **Relevance Grading**: An LLM critic checks if retrieved documents answer the question. If not, the query is reformulated.
-3. **Draft Generation**: Llama 3 generates an initial draft answer.
+3. **Draft Generation**: Gemma generates an initial draft answer.
 4. **NLI Verification**: The DeBERTa critic scores the entailment of each sentence. Unsubstantiated claims are flagged as hallucinations.
 5. **Regeneration**: If hallucinations exist, the draft is sent back to the generator with specific instructions to remove or fix the flagged claims.
 
@@ -66,7 +66,7 @@ graph TD
 ### Prerequisites
 - Python 3.10+
 - Node.js & npm (for the React frontend)
-- [Groq API Key](https://console.groq.com/) for Llama 3 access
+- [Ollama](https://ollama.com/) running locally with the `gemma` model pulled
 
 ---
 
@@ -89,11 +89,13 @@ graph TD
    pip install -r requirements.txt
    ```
 
-3. **Configure Environment Variables**
-   Create a `.env` file in the root directory and add your API keys:
-   ```env
-   GROQ_API_KEY=your_groq_api_key_here
-   ```
+3. **Set Up Local LLM (Ollama)**
+   - Download and install [Ollama](https://ollama.com/).
+   - Pull the `gemma` model:
+     ```bash
+     ollama pull gemma
+     ```
+   - Ensure the Ollama local service is running (by default on `http://localhost:11434`).
 
 4. **Run Ingestion**
    Ingest sample data into ChromaDB:

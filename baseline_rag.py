@@ -14,7 +14,7 @@ import os
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
@@ -25,7 +25,7 @@ from langchain_core.output_parsers import StrOutputParser
 CHROMA_DB_DIR = os.path.join("data", "chroma_db_hf")
 COLLECTION_NAME = "bioasq_chunks"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-LLM_MODEL = "gemini-2.0-flash"
+LLM_MODEL = "gemma"
 TOP_K = 5
 QUERY = "What is the function of the BRCA1 gene?"
 
@@ -40,14 +40,8 @@ SYSTEM_INSTRUCTION = (
 # 1. Load environment variables
 # ---------------------------------------------------------------------------
 def load_env():
-    """Load the GOOGLE_API_KEY from the .env file."""
+    """Load the .env file if present."""
     load_dotenv()
-    api_key = os.getenv("GOOGLE_API_KEY")
-    if not api_key:
-        raise EnvironmentError(
-            "GOOGLE_API_KEY not found. Please set it in your .env file."
-        )
-    return api_key
 
 
 # ---------------------------------------------------------------------------
@@ -75,14 +69,14 @@ def init_retriever():
 
 
 # ---------------------------------------------------------------------------
-# 3. Initialize the Groq LLM
+# 3. Initialize the Local Ollama LLM (Gemma)
 # ---------------------------------------------------------------------------
-def init_llm(api_key: str):
-    """Creates a ChatGoogleGenerativeAI instance with Gemini."""
-    llm = ChatGoogleGenerativeAI(
+def init_llm():
+    """Creates a ChatOllama instance with local Gemma."""
+    llm = ChatOllama(
         model=LLM_MODEL,
-        google_api_key=api_key,
         temperature=0,  # deterministic for reproducibility
+        base_url="http://localhost:11434"
     )
     return llm
 
@@ -103,8 +97,8 @@ def build_rag_chain(retriever, llm):
     prompt = ChatPromptTemplate.from_messages([
         ("system", SYSTEM_INSTRUCTION),
         ("human",
-         "Context:\n{context}\n\n"
-         "Question: {question}"),
+          "Context:\n{context}\n\n"
+          "Question: {question}"),
     ])
 
     rag_chain = (
@@ -159,7 +153,7 @@ def main():
     print(f"\nQuery: \"{QUERY}\"\n")
 
     # 1. Environment
-    api_key = load_env()
+    load_env()
 
     # 2. Retriever
     print("Initializing retriever (loading embedding model)...")
@@ -171,8 +165,8 @@ def main():
     print_retrieved_chunks(retrieved_docs)
 
     # 4. LLM
-    print(f"\nInitializing LLM ({LLM_MODEL} via Google Gemini)...")
-    llm = init_llm(api_key)
+    print(f"\nInitializing LLM ({LLM_MODEL} via local Ollama)...")
+    llm = init_llm()
 
     # 5. Build chain & generate answer
     print("Building RAG chain and generating answer...")
