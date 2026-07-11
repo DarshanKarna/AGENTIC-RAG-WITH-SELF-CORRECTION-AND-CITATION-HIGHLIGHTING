@@ -35,7 +35,6 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 import numpy as np
 import nltk
-from dotenv import load_dotenv
 
 # LangChain & LangGraph Imports
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -51,8 +50,7 @@ try:
 except Exception:
     pass
 
-# Loading global environment
-load_dotenv()
+# ---------------------------------------------------------------------------
 
 # Global Configuration Constants
 CHROMA_DB_DIR = os.path.join("data", "chroma_db_hf")
