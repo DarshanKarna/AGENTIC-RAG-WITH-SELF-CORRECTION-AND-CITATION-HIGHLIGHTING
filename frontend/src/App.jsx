@@ -785,7 +785,7 @@ export default function App() {
             </div>
             <div>
               <h1 className="font-bold text-sm tracking-wide text-white">AGENTIC SELF-CORRECTING RAG</h1>
-              <p className="text-[10px] text-emerald-500 font-mono tracking-wider font-semibold">Llama-3 + NLI Critic • Pipeline Comparison</p>
+              <p className="text-[10px] text-emerald-500 font-mono tracking-wider font-semibold">Gemma + NLI Critic • Pipeline Comparison</p>
             </div>
           </div>
           <div className="flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1">
