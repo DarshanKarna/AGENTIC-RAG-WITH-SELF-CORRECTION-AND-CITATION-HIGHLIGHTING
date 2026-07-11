@@ -4,14 +4,13 @@ baseline_rag.py - Naive RAG Retrieval & Generation
 
 Connects to the local ChromaDB vector store (populated by ingest_hf.py),
 retrieves the top-k most relevant chunks for a hardcoded query, and
-generates a grounded answer using Google Gemini via LangChain.
+generates a grounded answer using local Gemma via Ollama.
 
 Usage:
     python baseline_rag.py
 """
 
 import os
-from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain_ollama import ChatOllama
@@ -34,14 +33,6 @@ SYSTEM_INSTRUCTION = (
     "Do not introduce any information not in the context passages. "
     "Output your answer in standalone sentences, each stating one claim."
 )
-
-
-# ---------------------------------------------------------------------------
-# 1. Load environment variables
-# ---------------------------------------------------------------------------
-def load_env():
-    """Load the .env file if present."""
-    load_dotenv()
 
 
 # ---------------------------------------------------------------------------
@@ -151,9 +142,6 @@ def print_answer(answer: str):
 # ---------------------------------------------------------------------------
 def main():
     print(f"\nQuery: \"{QUERY}\"\n")
-
-    # 1. Environment
-    load_env()
 
     # 2. Retriever
     print("Initializing retriever (loading embedding model)...")
