@@ -1,7 +1,7 @@
 # 📊 B.Tech AI Project: RAG Evaluation Report
 ## Comparative Metrics: Naive Generation (Before) vs Self-Correcting LangGraph (After)
 
-This report presents the comparative metrics of the RAG system **Before** vs **After** the NLI-based sentence-level self-correction loops. Evaluated using a Groq `llama-3.3-70b-versatile` LLM judge.
+This report presents the comparative metrics of the RAG system **Before** vs **After** the NLI-based sentence-level self-correction loops. Evaluated using a local Gemma `gemma` LLM judge via Ollama.
 
 ### 📈 Core Metrics Comparative Table
 
