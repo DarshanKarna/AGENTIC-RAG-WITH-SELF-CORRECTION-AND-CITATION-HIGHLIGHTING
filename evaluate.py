@@ -19,7 +19,7 @@ except Exception:
 
 from datasets import Dataset
 from ragas import evaluate
-from ragas.metrics import faithfulness, answer_relevancy
+from ragas.metrics.collections import faithfulness, answer_relevancy
 
 # Set up LangChain Ollama for RAGAS evaluation
 from langchain_ollama import ChatOllama

@@ -28,6 +28,10 @@ except Exception:
     pass
 
 # Suppress Hugging Face symlink warnings and enable offline mode on Windows
+# IMPORTANT: HF_HUB_OFFLINE=1 prevents any model downloads from HuggingFace Hub.
+# The embedding model (all-MiniLM-L6-v2) and NLI model (cross-encoder/nli-deberta-base)
+# MUST already be cached locally before running. To pre-cache them, run once with
+# HF_HUB_OFFLINE unset or set to "0", then re-enable offline mode.
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 os.environ["HF_HUB_OFFLINE"] = "1"
 warnings.filterwarnings("ignore", category=UserWarning)
