@@ -15,9 +15,10 @@ data/chroma_db_hf/
 data/raw_pdfs/
 *.sqlite3
 
-# IDE
+# IDE & Agent Config
 .vscode/
 .idea/
+.agents/
 
 # Environment secrets
 .env
