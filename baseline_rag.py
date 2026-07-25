@@ -21,7 +21,7 @@ from langchain_core.output_parsers import StrOutputParser
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
-CHROMA_DB_DIR = os.path.join("data", "chroma_db_hf")
+CHROMA_DB_DIR = os.path.join("legacy_data", "chroma_db_hf")
 COLLECTION_NAME = "bioasq_chunks"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 LLM_MODEL = "gemma"
