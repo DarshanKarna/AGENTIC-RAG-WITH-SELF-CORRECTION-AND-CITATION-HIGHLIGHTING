@@ -1,10 +1,16 @@
 """
-baseline_rag.py - Naive RAG Retrieval & Generation
-====================================================
+baseline_rag.py - Naive RAG Baseline (Ablation Comparison)
+===========================================================
 
-Connects to the local ChromaDB vector store (populated by ingest_hf.py),
-retrieves the top-k most relevant chunks for a hardcoded query, and
-generates a grounded answer using local Gemma via Ollama.
+Connects to the active Nepali legal corpus ChromaDB vector store (in data/),
+retrieves the top-k most relevant chunks for a Nepali legal query, and
+generates an unverified single-pass answer using local Gemma via Ollama.
+
+This script serves as the "naive RAG baseline" for ablation studies against
+self_correcting_rag.py. It intentionally has:
+  - NO relevance grading / query reformulation
+  - NO NLI-based critic / hallucination verification
+  - NO sentence-level citation tracking
 
 Usage:
     python baseline_rag.py
@@ -21,17 +27,17 @@ from langchain_core.output_parsers import StrOutputParser
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
-CHROMA_DB_DIR = os.path.join("legacy_data", "chroma_db_hf")
-COLLECTION_NAME = "bioasq_chunks"
+CHROMA_DB_DIR = os.path.join("data", "chroma_db")
+COLLECTION_NAME = "document_chunks"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 LLM_MODEL = "gemma"
 TOP_K = 5
-QUERY = "What is the function of the BRCA1 gene?"
+QUERY = "नेपालको संविधान अनुसार नागरिकका प्रमुख मौलिक हकहरू के के हुन्?"
 
 SYSTEM_INSTRUCTION = (
-    "Answer strictly based on the provided context. "
-    "Do not introduce any information not in the context passages. "
-    "Output your answer in standalone sentences, each stating one claim."
+    "You are a helpful legal assistant for Nepali legal queries. "
+    "Answer the question strictly based on the provided context passages. "
+    "Do not introduce any external information or facts."
 )
 
 
@@ -116,14 +122,16 @@ def print_retrieved_chunks(docs):
 
     for i, doc in enumerate(docs, 1):
         meta = doc.metadata
-        chunk_id = f"hf_{meta.get('dataset_id', '?')}_c{meta.get('chunk_index', '?')}"
+        doc_id = meta.get("document_id", "N/A")
+        page_num = meta.get("page_number", "N/A")
+        chunk_idx = meta.get("chunk_index", "N/A")
         print(f"\n--- Chunk {i} ---")
-        print(f"  ID        : {chunk_id}")
-        print(f"  dataset_id: {meta.get('dataset_id', 'N/A')}")
-        print(f"  chunk_idx : {meta.get('chunk_index', 'N/A')}")
+        print(f"  Document ID: {doc_id}")
+        print(f"  Page Number: {page_num}")
+        print(f"  Chunk Index: {chunk_idx}")
         # Show first 300 characters of text
         snippet = doc.page_content[:300].replace("\n", " ")
-        print(f"  Text      : {snippet}...")
+        print(f"  Text       : {snippet}...")
 
     print("\n" + "-" * 70)
 
