@@ -1,6 +1,6 @@
 # Agentic RAG with Self-Correction and Citation Highlighting
 
-A robust, enterprise-grade Retrieval-Augmented Generation (RAG) system built with LangGraph, ChromaDB, and local Gemma via Ollama. This project features a state-of-the-art agentic pipeline with sentence-level hallucination detection, dynamic self-correction, query reformulation, and source citation highlighting.
+A robust, enterprise-grade Retrieval-Augmented Generation (RAG) system built with LangGraph, ChromaDB, and local Qwen3 via Ollama. This project features a state-of-the-art agentic pipeline with sentence-level hallucination detection, dynamic self-correction, query reformulation, and source citation highlighting.
 
 Developed as a B.Tech AI 4th-Semester Project by **Darshan Karna**.
 
@@ -9,11 +9,11 @@ Developed as a B.Tech AI 4th-Semester Project by **Darshan Karna**.
 ## 🌟 Key Features
 
 - **Agentic LangGraph Pipeline**: An advanced state machine that routes queries, grades documents for relevance, and triggers self-correction loops.
-- **NLI-Based Hallucination Critic**: Integrates a local DeBERTa Cross-Encoder (`nli-deberta-base`) to verify every generated sentence against retrieved context chunks.
+- **NLI-Based Hallucination Critic**: Integrates a local multilingual mDeBERTa Cross-Encoder (`MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7`) to verify every generated sentence against retrieved context chunks.
 - **Self-Correction & Fallback**: Automatically reformulates queries if retrieved documents are irrelevant, and regenerates answers if hallucinations are detected.
 - **Citation Highlighting**: Tracks which chunk of the source documents support each sentence, enabling transparent and trustworthy visual citations in the frontend.
 - **Unified Evaluation Suite**: Integrates **RAGAS** metrics to compare Naive RAG vs. Self-Correcting RAG using Faithfulness and Answer Relevancy scores.
-- **Flexible Data Ingestion**: Supports parsing local PDFs and downloading remote HuggingFace datasets (e.g., `rag-datasets/rag-mini-bioasq`) into a local ChromaDB vector store.
+- **Flexible Data Ingestion**: Parses local Nepali legal PDF documents from the `data/` directory into a local ChromaDB vector store using multilingual `BAAI/bge-m3` embeddings.
 - **Robust API Backend**: FastAPI backend exposing endpoints for chat/query and dynamic PDF uploads.
 - **Modern React Frontend**: Clean, responsive UI built with Vite and React for real-time document upload, interactive chat, and citation highlights.
 
@@ -26,17 +26,17 @@ graph TD
     A[User Query] --> B{Retrieve Documents}
     B --> C[Document Relevance Grader]
     C -- Irrelevant --> D[Reformulate Query] --> B
-    C -- Relevant --> E[LLM Generator: Gemma]
+    C -- Relevant --> E[LLM Generator: Qwen3]
     E --> F[Draft Answer]
-    F --> G[DeBERTa NLI Critic]
+    F --> G[mDeBERTa NLI Critic]
     G -- Hallucination Detected --> H[Regenerate with Correction Prompt] --> E
     G -- Verified Entailment --> I[Final Answer with Citations]
 ```
 
-1. **Retrieval**: Uses `all-MiniLM-L6-v2` SentenceTransformers to query `ChromaDB`.
+1. **Retrieval**: Uses `BAAI/bge-m3` multilingual SentenceTransformers (1024-dim) to query `ChromaDB`.
 2. **Relevance Grading**: An LLM critic checks if retrieved documents answer the question. If not, the query is reformulated.
-3. **Draft Generation**: Gemma generates an initial draft answer.
-4. **NLI Verification**: The DeBERTa critic scores the entailment of each sentence. Unsubstantiated claims are flagged as hallucinations.
+3. **Draft Generation**: Qwen3 generates an initial draft answer.
+4. **NLI Verification**: The mDeBERTa multilingual NLI critic scores the entailment of each sentence. Unsubstantiated claims are flagged as hallucinations.
 5. **Regeneration**: If hallucinations exist, the draft is sent back to the generator with specific instructions to remove or fix the flagged claims.
 
 ---
@@ -45,11 +45,10 @@ graph TD
 
 ```
 ├── api.py                    # FastAPI Backend Service (ports /api/chat, /api/upload)
-├── baseline_rag.py           # Standard Naive RAG implementation for benchmark comparison
+├── baseline_rag.py           # Naive RAG ablation baseline for benchmark comparison
 ├── self_correcting_rag.py    # Core LangGraph state machine & LLM agentic pipeline logic
-├── ingest.py                 # Ingestion pipeline supporting PDF files and HuggingFace datasets
+├── ingest.py                 # Local PDF ingestion pipeline into ChromaDB
 ├── evaluate.py               # Evaluation script comparing Naive vs Self-Correcting RAG via RAGAS
-├── evaluation_comparison_report.md  # Generated evaluation reports
 ├── .env                      # Environment configurations (API Keys)
 ├── requirements.txt          # Python dependencies
 ├── data/                     # Vector database stores and raw documents
@@ -66,7 +65,7 @@ graph TD
 ### Prerequisites
 - Python 3.10+
 - Node.js & npm (for the React frontend)
-- [Ollama](https://ollama.com/) running locally with the `gemma` model pulled
+- [Ollama](https://ollama.com/) running locally with the `qwen3` model pulled
 
 ---
 
@@ -91,20 +90,17 @@ graph TD
 
 3. **Set Up Local LLM (Ollama)**
    - Download and install [Ollama](https://ollama.com/).
-   - Pull the `gemma` model:
+   - Pull the `qwen3` model:
      ```bash
-     ollama pull gemma
+     ollama pull qwen3
      ```
    - Ensure the Ollama local service is running (by default on `http://localhost:11434`).
 
 4. **Run Ingestion**
-   Ingest sample data into ChromaDB:
+   Ingest local legal PDFs into ChromaDB:
    ```bash
-   # Ingest local PDFs (place PDFs in data/raw_pdfs/)
-   python ingest.py --source pdf
-
-   # Or ingest HuggingFace dataset (rag-datasets/rag-mini-bioasq)
-   python ingest.py --source hf
+   # Place PDFs in data/raw_pdfs/ (or any subdirectory under data/)
+   python ingest.py
    ```
 
 5. **Start the FastAPI Backend**
