@@ -26,7 +26,7 @@ DATA_DIR = Path("data")
 RAW_PDF_DIR = DATA_DIR / "raw_pdfs"
 CHROMA_DB_DIR_PDF = DATA_DIR / "chroma_db"
 
-MODEL_NAME = "all-MiniLM-L6-v2"
+MODEL_NAME = "BAAI/bge-m3"
 CHUNK_SIZE = 500
 CHUNK_OVERLAP = 50
 MAX_WORKERS = os.cpu_count() or 4
