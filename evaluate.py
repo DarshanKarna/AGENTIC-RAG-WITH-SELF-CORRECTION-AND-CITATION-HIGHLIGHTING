@@ -39,9 +39,9 @@ TEST_QUERIES = [
     "Who won the FIFA World Cup in 2022?"
 ]
 
-# Configure Local Ollama LLM (Gemma) and HuggingFace Embeddings to be used by RAGAS natively
-EVAL_LLM = ChatOllama(model="gemma", temperature=0, base_url="http://localhost:11434")
-EVAL_EMBEDDINGS = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+# Configure Local Ollama LLM (Qwen3) and HuggingFace Embeddings to be used by RAGAS natively
+EVAL_LLM = ChatOllama(model="qwen3", temperature=0, base_url="http://localhost:11434")
+EVAL_EMBEDDINGS = HuggingFaceEmbeddings(model_name="BAAI/bge-m3")
 
 def calculate_correction_delta(baseline_faithfulness: float, corrected_faithfulness: float) -> float:
     """
