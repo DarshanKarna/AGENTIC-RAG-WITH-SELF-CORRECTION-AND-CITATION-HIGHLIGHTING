@@ -4,7 +4,7 @@ baseline_rag.py - Naive RAG Baseline (Ablation Comparison)
 
 Connects to the active Nepali legal corpus ChromaDB vector store (in data/),
 retrieves the top-k most relevant chunks for a Nepali legal query, and
-generates an unverified single-pass answer using local Gemma via Ollama.
+generates an unverified single-pass answer using local Qwen3 via Ollama.
 
 This script serves as the "naive RAG baseline" for ablation studies against
 self_correcting_rag.py. It intentionally has:
@@ -29,8 +29,8 @@ from langchain_core.output_parsers import StrOutputParser
 # ---------------------------------------------------------------------------
 CHROMA_DB_DIR = os.path.join("data", "chroma_db")
 COLLECTION_NAME = "document_chunks"
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-LLM_MODEL = "gemma"
+EMBEDDING_MODEL = "BAAI/bge-m3"
+LLM_MODEL = "qwen3"
 TOP_K = 5
 QUERY = "नेपालको संविधान अनुसार नागरिकका प्रमुख मौलिक हकहरू के के हुन्?"
 
@@ -47,7 +47,7 @@ SYSTEM_INSTRUCTION = (
 def init_retriever():
     """
     Wraps the existing ChromaDB store with the same embedding model
-    used during ingestion (all-MiniLM-L6-v2) and returns a retriever
+    used during ingestion (BAAI/bge-m3) and returns a retriever
     configured for top-k=5 cosine similarity search.
     """
     embedding_fn = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
@@ -66,10 +66,10 @@ def init_retriever():
 
 
 # ---------------------------------------------------------------------------
-# 3. Initialize the Local Ollama LLM (Gemma)
+# 3. Initialize the Local Ollama LLM (Qwen3)
 # ---------------------------------------------------------------------------
 def init_llm():
-    """Creates a ChatOllama instance with local Gemma."""
+    """Creates a ChatOllama instance with local Qwen3."""
     llm = ChatOllama(
         model=LLM_MODEL,
         temperature=0,  # deterministic for reproducibility
