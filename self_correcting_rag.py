@@ -3,11 +3,11 @@ self_correcting_rag.py - Self-Correcting Agentic RAG System
 ============================================================
 
 A B.Tech AI 4th-Semester Project RAG pipeline built with LangGraph, ChromaDB,
-and Gemma 4 (local Ollama). Performs:
+and Qwen3 (local Ollama). Performs:
   1. Vector DB retrieval (ChromaDB + SentenceTransformers).
-  2. Semantic relevance grading (Gemma 4 via ChatOllama).
-  3. Agentic fallback query reformulation (Gemma 4 via ChatOllama).
-  4. Sentence-level NLI-based hallucination critic (nli-deberta-base cross-encoder).
+  2. Semantic relevance grading (Qwen3 via ChatOllama).
+  3. Agentic fallback query reformulation (Qwen3 via ChatOllama).
+  4. Sentence-level NLI-based hallucination critic (mDeBERTa-v3-base-xnli-multilingual cross-encoder).
   5. Dynamic answer regeneration logic based on critic feedback.
 
 Author: Antigravity AI Pair Programmer
@@ -29,7 +29,7 @@ except Exception:
 
 # Suppress Hugging Face symlink warnings and enable offline mode on Windows
 # IMPORTANT: HF_HUB_OFFLINE=1 prevents any model downloads from HuggingFace Hub.
-# The embedding model (all-MiniLM-L6-v2) and NLI model (cross-encoder/nli-deberta-base)
+# The embedding model (BAAI/bge-m3) and NLI model (MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7)
 # MUST already be cached locally before running. To pre-cache them, run once with
 # HF_HUB_OFFLINE unset or set to "0", then re-enable offline mode.
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
@@ -59,9 +59,9 @@ except Exception:
 # Global Configuration Constants
 CHROMA_DB_DIR = os.path.join("legacy_data", "chroma_db_hf")
 COLLECTION_NAME = "bioasq_chunks"
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-LLM_MODEL = "gemma"
-NLI_MODEL_NAME = "cross-encoder/nli-deberta-base"
+EMBEDDING_MODEL = "BAAI/bge-m3"
+LLM_MODEL = "qwen3"
+NLI_MODEL_NAME = "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7"
 
 # =====================================================================
 # 🎨 COLOR-CODED LOGGING
@@ -95,10 +95,10 @@ vectorstore = Chroma(
 )
 retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
 
-print("[2/3] Connecting to local Ollama LLM (Gemma 4)...")
+print("[2/3] Connecting to local Ollama LLM (Qwen3)...")
 llm = ChatOllama(model=LLM_MODEL, temperature=0, base_url="http://localhost:11434")
 
-print("[3/3] Loading local NLI DeBERTa Cross-Encoder (The Critic)...")
+print("[3/3] Loading local NLI mDeBERTa Cross-Encoder (The Critic)...")
 from sentence_transformers import CrossEncoder
 nli_model = CrossEncoder(NLI_MODEL_NAME)
 
@@ -184,12 +184,12 @@ def compute_entailment_scores(sentence: str, documents: List[Any]) -> Tuple[floa
     logits = nli_model.predict(pairs)
     logits = np.atleast_2d(logits)
     
-    # Compute Softmax: Label mapping [0: contradiction, 1: entailment, 2: neutral]
+    # Compute Softmax: Label mapping [0: entailment, 1: neutral, 2: contradiction]
     e_x = np.exp(logits - np.max(logits, axis=-1, keepdims=True))
     probs = e_x / e_x.sum(axis=-1, keepdims=True)
     
-    # Extract entailment probabilities (index 1)
-    entailment_probs = probs[:, 1]
+    # Extract entailment probabilities (index 0 for mDeBERTa-xnli)
+    entailment_probs = probs[:, 0]
     
     # Find the index of the highest-scoring sentence pair
     winning_idx = int(np.argmax(entailment_probs))
