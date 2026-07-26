@@ -57,8 +57,8 @@ except Exception:
 # ---------------------------------------------------------------------------
 
 # Global Configuration Constants
-CHROMA_DB_DIR = os.path.join("legacy_data", "chroma_db_hf")
-COLLECTION_NAME = "bioasq_chunks"
+CHROMA_DB_DIR = os.path.join("data", "chroma_db")
+COLLECTION_NAME = "document_chunks"
 EMBEDDING_MODEL = "BAAI/bge-m3"
 LLM_MODEL = "qwen3"
 NLI_MODEL_NAME = "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7"
