@@ -1,0 +1,58 @@
+{% set version = "5.1.4" %}
+
+package:
+  name: giflib
+  version: {{ version }}
+
+source:
+  url: http://downloads.sourceforge.net/project/giflib/giflib-{{ version }}.tar.gz
+  sha256: 34a7377ba834397db019e8eb122e551a49c98f49df75ec3fcc92b9a794a4f6d1
+
+build:
+  number: 0
+  skip: true  # [win and py27]
+  features:
+    - vc9   # [win and py27]
+    - vc10  # [win and py34]
+    - vc14  # [win and py>=35]
+
+requirements:
+  build:
+    - python  # [win]
+    - vc 9   # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and py>=35]
+  run:
+    - vc 9   # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and py>=35]
+
+
+test:
+  commands:
+    - gif2rgb -h    # [unix]
+    - gifbuild -h   # [unix]
+    - gifclrmp -h   # [unix]
+    - gifecho -h    # [unix]
+    - giffix -h     # [unix]
+    - gifinto -h    # [unix]
+    - giftext -h    # [unix]
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+    - gif2rgb.exe -h    # [win]
+    - gifbuild.exe -h   # [win]
+    - gifclrmp.exe -h   # [win]
+    - gifecho.exe -h    # [win]
+    - giffix.exe -h     # [win]
+    - gifinto.exe -h    # [win]
+    - giftext.exe -h    # [win]
+
+about:
+  home: http://giflib.sourceforge.net
+  license: MIT
+  summary: Library for reading and writing gif images
+
+extra:
+  recipe-maintainers:
+    - ocefpaf
+    - 183amir

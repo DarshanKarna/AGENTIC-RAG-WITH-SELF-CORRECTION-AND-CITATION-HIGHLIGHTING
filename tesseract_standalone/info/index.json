@@ -1,0 +1,14 @@
+{
+  "arch": "x86_64",
+  "build": "vc14_0",
+  "build_number": 0,
+  "depends": [
+    "vc 14"
+  ],
+  "features": "vc14",
+  "license": "MIT",
+  "name": "giflib",
+  "platform": "win",
+  "subdir": "win-64",
+  "version": "5.1.4"
+}

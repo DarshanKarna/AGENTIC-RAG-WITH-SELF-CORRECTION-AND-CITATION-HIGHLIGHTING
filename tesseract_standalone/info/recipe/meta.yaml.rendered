@@ -1,0 +1,39 @@
+# This file created by conda-build 1.21.2
+# meta.yaml template originally from:
+# C:\projects\libtiff-feedstock\recipe, last modified Tue Jun 28 05:20:05 2016
+# ------------------------------------------------
+
+package:
+    name: libtiff
+    version: 4.0.6
+source:
+    fn: tiff-4.0.6.tar.gz
+    md5: d1d2e940dea0b5ad435f21f03d96dd72
+    patches:
+        - def_snprintf.patch
+    url: ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.6.tar.gz
+build:
+    features:
+        - vc9
+    number: '5'
+requirements:
+    build:
+        - python
+        - cmake
+        - toolchain
+        - zlib 1.2*
+        - jpeg 9*
+    run:
+        - zlib 1.2*
+        - jpeg 9*
+test:
+    commands: ''
+about:
+    home: http://www.remotesensing.org/libtiff/
+    license: HPND
+    summary: Support for the Tag Image File Format (TIFF)
+extra:
+    recipe-maintainers:
+        - jakirkham
+        - ocefpaf
+        - stuarteberg

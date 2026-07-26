@@ -1,0 +1,113 @@
+{
+  "paths": [
+    {
+      "_path": "Library/bin/gif2rgb.exe",
+      "path_type": "hardlink",
+      "sha256": "f3df89fc724d5cda1b2ce2aab72962e07f91dc8be6a15e3a0a7e7d42f02f4601",
+      "size_in_bytes": 52224
+    },
+    {
+      "_path": "Library/bin/gifbg.exe",
+      "path_type": "hardlink",
+      "sha256": "a3a9321ed0d7efe4469cfa3602ecab9eff5e6e5ef390c0ea4cd39f520b1dff6e",
+      "size_in_bytes": 37376
+    },
+    {
+      "_path": "Library/bin/gifbuild.exe",
+      "path_type": "hardlink",
+      "sha256": "1d766fd83d9b5f6b5c3731ce2a7e6eee8f0a2b7370d350bc15066156f0c48d6c",
+      "size_in_bytes": 56320
+    },
+    {
+      "_path": "Library/bin/gifclrmp.exe",
+      "path_type": "hardlink",
+      "sha256": "e3fca38d131d377d8282fa6ec25641a3bf36d8fdb70c2ca3a06b6a7609876b4f",
+      "size_in_bytes": 48128
+    },
+    {
+      "_path": "Library/bin/gifcolor.exe",
+      "path_type": "hardlink",
+      "sha256": "ea4a3319ee12c1100e693490b18e70155b4fc5c79dc89a47422c7be7fe4d272e",
+      "size_in_bytes": 39424
+    },
+    {
+      "_path": "Library/bin/gifecho.exe",
+      "path_type": "hardlink",
+      "sha256": "4abe299c3a6f591fa8b7cd797736af1cf43a3ce0bcffbe468733c233970662af",
+      "size_in_bytes": 39936
+    },
+    {
+      "_path": "Library/bin/giffilter.exe",
+      "path_type": "hardlink",
+      "sha256": "ea3362d40245aedf9754358856e409808c9b28186bfc75fc6c6a8e862c76e87c",
+      "size_in_bytes": 37376
+    },
+    {
+      "_path": "Library/bin/giffix.exe",
+      "path_type": "hardlink",
+      "sha256": "618c6c6cfa4120599566c24e2d461726e1722f7eb1ddd0f581b84551db5c79a3",
+      "size_in_bytes": 45568
+    },
+    {
+      "_path": "Library/bin/gifhisto.exe",
+      "path_type": "hardlink",
+      "sha256": "29039db57bdc38ce882906971ee8766f56e4333547250829721e93decd06c47f",
+      "size_in_bytes": 46592
+    },
+    {
+      "_path": "Library/bin/gifinto.exe",
+      "path_type": "hardlink",
+      "sha256": "d82b16ecba1d9dea361b115c095ce0ff0377bfb63150748fea8c7c945d7fedc1",
+      "size_in_bytes": 24064
+    },
+    {
+      "_path": "Library/bin/giflib5.dll",
+      "path_type": "hardlink",
+      "sha256": "b5e1ed3e998a49d31a803191b09a8951d64baa141b7145cd7b0e0e0d0afdb7c2",
+      "size_in_bytes": 38912
+    },
+    {
+      "_path": "Library/bin/gifsponge.exe",
+      "path_type": "hardlink",
+      "sha256": "549e5519fb8194a6566f1eae6847b653c554a3acf8a9d11c5bc4b44f0cca6fca",
+      "size_in_bytes": 36864
+    },
+    {
+      "_path": "Library/bin/giftext.exe",
+      "path_type": "hardlink",
+      "sha256": "8fed15fd5c05dddde5e81d53994ce6728a20653b07ebf7001fdd5b16520a3953",
+      "size_in_bytes": 39424
+    },
+    {
+      "_path": "Library/bin/giftool.exe",
+      "path_type": "hardlink",
+      "sha256": "db8094d56502d99c77fe810823db9f7a75e10935cc5f709b4eddac7d964bab39",
+      "size_in_bytes": 45568
+    },
+    {
+      "_path": "Library/bin/gifwedge.exe",
+      "path_type": "hardlink",
+      "sha256": "4feb328927b5a21d023ab5e5146de886cb22ed8ebc224bdcf8c2ce541e2dc118",
+      "size_in_bytes": 36864
+    },
+    {
+      "_path": "Library/lib/giflib.lib",
+      "path_type": "hardlink",
+      "sha256": "db59f378fb9b6b0e21865b2870f86fe10467df3ae4860cfd6f22b56ffc1b52b4",
+      "size_in_bytes": 590514
+    },
+    {
+      "_path": "Library/lib/giflib5.lib",
+      "path_type": "hardlink",
+      "sha256": "aca755f22674e0a6315fb95881701425800841d28063dafa3ebd8926135479c8",
+      "size_in_bytes": 12692
+    },
+    {
+      "_path": "Library/lib/libgetarg.lib",
+      "path_type": "hardlink",
+      "sha256": "f0cfa6fe0f800add39d329c7bfc9c902464028b75114701a4a9ce6b3465a8603",
+      "size_in_bytes": 277462
+    }
+  ],
+  "paths_version": 1
+}
