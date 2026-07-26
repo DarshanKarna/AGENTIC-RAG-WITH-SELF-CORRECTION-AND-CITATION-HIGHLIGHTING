@@ -1,0 +1,7 @@
+[project]
+python_version = "3.13"
+python_platform = "windows"
+python_interpreter = "C:\\Users\\Darshan Karna\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+search_path = [
+    "C:\\Users\\Darshan Karna\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages",
+]
