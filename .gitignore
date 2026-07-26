@@ -9,10 +9,11 @@ build/
 venv/
 .venv/
 
-# Data — exclude generated stores but keep RAGTruth baseline code
+# Data — exclude generated stores and OKF output
 data/chroma_db/
 data/chroma_db_hf/
 data/raw_pdfs/
+okf_bundle/
 *.sqlite3
 
 # IDE & Agent Config
