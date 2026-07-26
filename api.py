@@ -24,21 +24,21 @@ import uvicorn
 
 # Reconfigure stdout to UTF-8 to prevent encoding crashes on Windows consoles
 try:
-    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stdout.reconfigure(encoding='utf-8')  # type: ignore[union-attr]
 except Exception:
     pass
 
 # Import the self-correcting RAG pipeline runner and active vectorstore
 from self_correcting_rag import run_pipeline, vectorstore
 
-def process_pdf(file_path: str, filename: str) -> list:
+def process_pdf(file_path: str, filename: str) -> list[dict[str, str | dict[str, str]]]:
     """
     Extracts text from PDF page-by-page using PyMuPDF, chunks it into 500-token
     windows with 50-token overlap using tiktoken, and returns a list of chunks
     with metadata configured for RAG citations.
     """
     doc = fitz.open(file_path)
-    chunks = []
+    chunks: list[dict[str, str | dict[str, str]]] = []
     chunk_size = 500
     overlap = 50
     
