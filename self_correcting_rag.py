@@ -32,6 +32,7 @@ except Exception:
 # The embedding model (BAAI/bge-m3) and NLI model (MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7)
 # MUST already be cached locally before running. To pre-cache them, run once with
 # HF_HUB_OFFLINE unset or set to "0", then re-enable offline mode.
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 os.environ["HF_HUB_OFFLINE"] = "1"
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -87,7 +88,7 @@ def log_agent(agent_name: str, message: str, color: str = Colors.CYAN):
 print(f"{Colors.BOLD}{Colors.HEADER}=== INITIALIZING SYSTEM MODELS ==={Colors.ENDC}")
 
 print("[1/3] Initializing Embeddings & local ChromaDB...")
-embedding_fn = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
+embedding_fn = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL, model_kwargs={'device': 'cpu'})
 vectorstore = Chroma(
     persist_directory=CHROMA_DB_DIR,
     collection_name=COLLECTION_NAME,
@@ -100,7 +101,7 @@ llm = ChatOllama(model=LLM_MODEL, temperature=0, base_url="http://localhost:1143
 
 print("[3/3] Loading local NLI mDeBERTa Cross-Encoder (The Critic)...")
 from sentence_transformers import CrossEncoder
-nli_model = CrossEncoder(NLI_MODEL_NAME)
+nli_model = CrossEncoder(NLI_MODEL_NAME, device="cpu")
 
 print(f"{Colors.GREEN}{Colors.BOLD}System fully initialized and ready!{Colors.ENDC}\n")
 
