@@ -29,6 +29,7 @@ PyMuPDF==1.27.2.3
 
 # OKF Conversion Pipeline
 python-frontmatter==1.1.0
+easyocr==1.7.2
 pytesseract==0.3.13
 Pillow==11.2.1
 
