@@ -120,6 +120,8 @@ pip install -r requirements.txt
 ollama pull qwen3
 ```
 
+> **Note:** EasyOCR is the primary OCR engine used for extracting text from scanned PDFs. Tesseract is an optional fallback only. If you would like the Tesseract fallback to be available, please install Tesseract normally for your OS rather than expecting a vendored copy in the repository.
+
 Ingest the corpus (requires the OKF bundle to already be generated via
 `convert_to_okf.py`):
 

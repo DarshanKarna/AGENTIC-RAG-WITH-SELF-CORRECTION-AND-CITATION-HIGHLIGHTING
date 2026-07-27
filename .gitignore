@@ -30,3 +30,12 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Vendored binaries
+7z_bin/
+7zr.exe
+7z_extra.7z
+innoextract.zip
+innoextract_bin/
+tesseract_standalone/
+tesseract_local/
