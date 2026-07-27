@@ -1,115 +1,155 @@
 # Agentic RAG with Self-Correction and Citation Highlighting
+### A Bilingual (English + Nepali) Legal Advisor System
 
-A robust, enterprise-grade Retrieval-Augmented Generation (RAG) system built with LangGraph, ChromaDB, and local Qwen3 via Ollama. This project features a state-of-the-art agentic pipeline with sentence-level hallucination detection, dynamic self-correction, query reformulation, and source citation highlighting.
+A 4th-semester AI project at Kathmandu University, implementing an agentic
+Retrieval-Augmented Generation (RAG) pipeline for Nepali legal and
+regulatory question-answering, with self-correction via NLI-based
+hallucination checking and sentence-level citation tracking.
 
-Developed as a B.Tech AI 4th-Semester Project by **Darshan Karna**.
-
----
-
-## 🌟 Key Features
-
-- **Agentic LangGraph Pipeline**: An advanced state machine that routes queries, grades documents for relevance, and triggers self-correction loops.
-- **NLI-Based Hallucination Critic**: Integrates a local multilingual mDeBERTa Cross-Encoder (`MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7`) to verify every generated sentence against retrieved context chunks.
-- **Self-Correction & Fallback**: Automatically reformulates queries if retrieved documents are irrelevant, and regenerates answers if hallucinations are detected.
-- **Citation Highlighting**: Tracks which chunk of the source documents support each sentence, enabling transparent and trustworthy visual citations in the frontend.
-- **Unified Evaluation Suite**: Integrates **RAGAS** metrics to compare Naive RAG vs. Self-Correcting RAG using Faithfulness and Answer Relevancy scores.
-- **Flexible Data Ingestion**: Parses local Nepali legal PDF documents from the `data/` directory into a local ChromaDB vector store using multilingual `BAAI/bge-m3` embeddings.
-- **Robust API Backend**: FastAPI backend exposing endpoints for chat/query and dynamic PDF uploads.
-- **Modern React Frontend**: Clean, responsive UI built with Vite and React for real-time document upload, interactive chat, and citation highlights.
+Developed by **Darshan Karna**.
 
 ---
 
-## 🏗️ System Architecture
+## Overview
 
-```mermaid
-graph TD
-    A[User Query] --> B{Retrieve Documents}
-    B --> C[Document Relevance Grader]
-    C -- Irrelevant --> D[Reformulate Query] --> B
-    C -- Relevant --> E[LLM Generator: Qwen3]
-    E --> F[Draft Answer]
-    F --> G[mDeBERTa NLI Critic]
-    G -- Hallucination Detected --> H[Regenerate with Correction Prompt] --> E
-    G -- Verified Entailment --> I[Final Answer with Citations]
+Generic RAG pipelines answer questions by retrieving text and generating
+a response — with no guarantee the response is actually supported by
+what was retrieved. This project adds an agentic self-correction loop
+on top of retrieval: every generated answer is checked for entailment
+against its source context before being returned, and low-confidence
+or unsupported answers trigger query reformulation and a retry.
+
+The system is built and evaluated on a real, high-stakes domain — Nepali
+statutes, NRB circulars, court verdicts, and regulatory directives —
+where citation accuracy and hallucination avoidance genuinely matter,
+rather than a generic benchmark dataset.
+
+---
+
+## Corpus
+
+| Metric | Value |
+|---|---|
+| Source PDFs | 1,073 |
+| Categories | 19 (statutes, legislative bills, case law, circulars, regulatory directives, fiscal policy, annual reports) |
+| OKF concept files | 1,073 (1,021 direct-extracted, 52 OCR-recovered, 0 failed) |
+| Vector store chunks | 80,767 |
+| Languages | English + Nepali (Devanagari), including 358 bilingual Act pairs |
+
+Source categories include the Companies Act, BAFIA, Income Tax Act,
+NRB Act and circulars, SEBON capital market regulations, Supreme and
+High Court verdicts, parliamentary bills, fiscal policy directives,
+and energy/procurement regulations.
+
+Raw PDFs are converted into an [Open Knowledge Format (OKF)](https://github.com/GoogleCloudPlatform/knowledge-catalog)
+bundle — one Markdown file per document with YAML frontmatter (`type`,
+`language`, `title_en`/`title_ne`, source provenance, bilingual
+cross-links) — before being chunked and embedded. Scanned/image-based
+PDFs (mostly court verdicts) are recovered via an EasyOCR fallback
+tier before falling back to a failed-extraction stub.
+
+---
+
+## Architecture
+
+```
+User Query
+    │
+    ▼
+Embedding (BAAI/bge-m3, multilingual) → ChromaDB retrieval
+    │
+    ▼
+Relevance Grading (mDeBERTa-v3 NLI) ──fail──> Query Rewriter ──┐
+    │ pass                                                      │
+    ▼                                                           │
+Answer Generation (Qwen3, via Ollama)                           │
+    │                                                           │
+    ▼                                                           │
+Hallucination / Faithfulness Check (mDeBERTa-v3 NLI) ──fail────┘
+    │ pass
+    ▼
+Final Answer + Sentence-Level Citations
 ```
 
-1. **Retrieval**: Uses `BAAI/bge-m3` multilingual SentenceTransformers (1024-dim) to query `ChromaDB`.
-2. **Relevance Grading**: An LLM critic checks if retrieved documents answer the question. If not, the query is reformulated.
-3. **Draft Generation**: Qwen3 generates an initial draft answer.
-4. **NLI Verification**: The mDeBERTa multilingual NLI critic scores the entailment of each sentence. Unsubstantiated claims are flagged as hallucinations.
-5. **Regeneration**: If hallucinations exist, the draft is sent back to the generator with specific instructions to remove or fix the flagged claims.
+The graph is implemented with LangGraph in `self_correcting_rag.py`.
+A non-agentic `baseline_rag.py` (single-pass retrieval + generation,
+no grading, no verification, no citation tracking) is kept as the
+naive-RAG comparison point for ablation studies.
+
+### Model stack
+
+| Component | Model | Notes |
+|---|---|---|
+| Embeddings | `BAAI/bge-m3` | Multilingual dense retrieval (1024-dim), replacing an earlier English-only MiniLM model |
+| NLI critic | `MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7` | Used for both relevance grading and hallucination/faithfulness checking |
+| Generator | `Qwen3` (via Ollama) | Chosen for demonstrated Nepali-language performance over comparable-sized alternatives |
+| OCR (scanned PDFs) | EasyOCR | GPU-accelerated where available; falls back to Tesseract if EasyOCR fails to initialize |
+| Vector store | ChromaDB | Cosine-similarity HNSW index, `data/chroma_db` |
 
 ---
 
-## 📁 Project Structure
+## Repository structure
 
 ```
-├── api.py                    # FastAPI Backend Service (ports /api/chat, /api/upload)
-├── baseline_rag.py           # Naive RAG ablation baseline for benchmark comparison
-├── self_correcting_rag.py    # Core LangGraph state machine & LLM agentic pipeline logic
-├── ingest.py                 # Local PDF ingestion pipeline into ChromaDB
-├── evaluate.py               # Evaluation script comparing Naive vs Self-Correcting RAG via RAGAS
-├── .env                      # Environment configurations (API Keys)
-├── requirements.txt          # Python dependencies
-├── data/                     # Vector database stores and raw documents
-└── frontend/                 # React frontend application (Vite-based)
-    ├── src/                  # React source components & styles
-    ├── package.json          # Frontend packages and scripts
-    └── vite.config.js        # Vite compiler configurations
+data/                  Source PDF corpus, organized by category
+okf_bundle/             Generated OKF markdown bundle (gitignored)
+legacy_data/             Archived early-stage BioASQ/RAGTruth artifacts
+convert_to_okf.py         PDF → OKF markdown converter (with OCR fallback)
+ingest.py                 OKF bundle → chunked, embedded ChromaDB store
+self_correcting_rag.py    Agentic self-correction RAG pipeline (LangGraph)
+baseline_rag.py            Naive RAG baseline for ablation comparison
+evaluate.py                 RAGAS-based evaluation suite
+api.py                        FastAPI backend
+frontend/                      React + Vite web UI
+documentation/                 Project proposal, methodology, planning docs
 ```
 
 ---
 
-## 🛠️ Setup & Installation
+## Setup & Installation
 
 ### Prerequisites
 - Python 3.10+
 - Node.js & npm (for the React frontend)
 - [Ollama](https://ollama.com/) running locally with the `qwen3` model pulled
 
----
-
 ### Backend Setup
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/DarshanKarna/AGENTIC-RAG-WITH-SELF-CORRECTION-AND-CITATION-HIGHLIGHTING.git
-   cd AGENTIC-RAG-WITH-SELF-CORRECTION-AND-CITATION-HIGHLIGHTING
-   ```
+```bash
+pip install -r requirements.txt
+ollama pull qwen3
+```
 
-2. **Create a Virtual Environment and Install Dependencies**
-   ```bash
-   python -m venv venv
-   # On Windows:
-   venv\Scripts\activate
-   # On macOS/Linux:
-   source venv/bin/activate
-   
-   pip install -r requirements.txt
-   ```
+Ingest the corpus (requires the OKF bundle to already be generated via
+`convert_to_okf.py`):
 
-3. **Set Up Local LLM (Ollama)**
-   - Download and install [Ollama](https://ollama.com/).
-   - Pull the `qwen3` model:
-     ```bash
-     ollama pull qwen3
-     ```
-   - Ensure the Ollama local service is running (by default on `http://localhost:11434`).
+```bash
+python convert_to_okf.py       # PDF → OKF markdown (one-time / incremental)
+python ingest.py                # OKF bundle → ChromaDB
+```
 
-4. **Run Ingestion**
-   Ingest local legal PDFs into ChromaDB:
-   ```bash
-   # Place PDFs in data/raw_pdfs/ (or any subdirectory under data/)
-   python ingest.py
-   ```
+Run the pipeline endpoints:
 
-5. **Start the FastAPI Backend**
-   ```bash
-   python api.py
-   ```
-   The backend will start running on `http://localhost:8000`.
+```bash
+python api.py
+```
 
----
+Or run the pipeline standalone:
+
+```bash
+python self_correcting_rag.py    # agentic, self-correcting
+python baseline_rag.py            # naive baseline, for comparison
+```
+
+### Known hardware constraint
+
+Running the full stack (Qwen3 generation + mDeBERTa NLI + bge-m3
+embeddings) concurrently can exceed available VRAM/RAM on
+lower-spec GPUs (tested failure case: 6GB VRAM / 16GB system RAM).
+`convert_to_okf.py`'s OCR step includes a concurrency guard that
+blocks running alongside `ingest.py` for the same reason. If you hit
+an out-of-memory error during generation, consider reducing Ollama's
+context window (`num_ctx`) before switching to a smaller model.
 
 ### Frontend Setup
 
@@ -131,7 +171,7 @@ graph TD
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 The FastAPI server exposes the following endpoints:
 
@@ -141,7 +181,7 @@ Submit a question to run through the self-correcting agentic pipeline.
 * **Request Body:**
   ```json
   {
-    "question": "What are the primary symptoms of Covid-19?"
+    "question": "What is the penalty for tax evasion under the Income Tax Act?"
   }
   ```
 
@@ -172,13 +212,29 @@ Dynamically upload a PDF document. Chunks and indexes the document pages into Ch
 
 ---
 
-## 📊 Evaluation & Benchmarking
+## Evaluation
 
-Compare the effectiveness of Naive RAG vs. Self-Correcting RAG:
-```bash
-python evaluate.py
-```
-This executes the RAGAS framework evaluations to measure faithfulness and answer relevancy. The results are logged and compared in `evaluation_comparison_report.md`.
+`evaluate.py` runs a RAGAS-based benchmark (faithfulness, answer
+relevance, context precision/recall) comparing the self-correcting
+pipeline against the naive `baseline_rag.py` baseline. Evaluation is
+intended to run against a hand-built adversarial question set
+(straightforward lookups, cross-references, superseded-provision
+traps, out-of-corpus questions, and bilingual pairs) rather than a
+generic benchmark, to directly test the claims this project makes
+about hallucination resistance and citation accuracy.
+
+---
+
+## Project status
+
+This project began as a generic RAG demo evaluated on a public
+biomedical QA benchmark, and was refocused onto a real, high-stakes,
+bilingual legal domain — with an expanded, verified corpus, a
+multilingual model stack, and OCR recovery for scanned court
+documents. See `documentation/` for the original proposal and
+methodology, and the project roadmap for planned next steps
+(fine-tuning, procedural/advisor question support, and formal
+ablation studies).
 
 ---
 
