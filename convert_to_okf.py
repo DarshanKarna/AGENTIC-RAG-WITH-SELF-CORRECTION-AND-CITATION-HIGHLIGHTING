@@ -6,7 +6,7 @@ bundle (okf_bundle/) with YAML frontmatter, markdown body text, and
 automated cross-links.
 
 Features:
-  - Three-tier text extraction: direct PyMuPDF → OCR fallback (pytesseract) → stub
+  - Three-tier text extraction: direct PyMuPDF → OCR fallback (EasyOCR) → stub
   - Incremental mode: skips PDFs whose .md is already up-to-date (SHA-256 hash)
   - --force flag: bypasses freshness checks and reprocesses everything
   - Four-tier summary: skipped / direct / OCR / failed
@@ -139,12 +139,10 @@ def check_tesseract() -> bool:
 
         pytesseract.get_tesseract_version()
         _tesseract_available = True
-        logger.info(f"Tesseract OCR detected ({pytesseract.pytesseract.tesseract_cmd}) — OCR fallback enabled.")
+        logger.info(f"Tesseract OCR detected ({pytesseract.pytesseract.tesseract_cmd}) — Tesseract fallback enabled (secondary to EasyOCR).")
     except Exception:
         _tesseract_available = False
-        logger.warning(
-            "Tesseract OCR not found — falling back to EasyOCR."
-        )
+        logger.warning("Tesseract OCR not found either. Both OCR engines missing.")
     return _tesseract_available
 
 
@@ -156,8 +154,8 @@ def check_ocr() -> bool:
     try:
         import easyocr
         logger.info("Initializing EasyOCR reader for Devanagari & English ('ne', 'en')...")
-        _easyocr_reader = easyocr.Reader(['ne', 'en'], gpu=False)
-        logger.info("EasyOCR initialized successfully — OCR fallback enabled.")
+        _easyocr_reader = easyocr.Reader(['ne', 'en'], gpu=True)
+        logger.info("EasyOCR initialized successfully — OCR primary enabled.")
         return True
     except Exception as e:
         logger.warning(f"EasyOCR initialization failed: {e}. Checking Tesseract...")
@@ -688,8 +686,8 @@ def convert(force: bool = False) -> None:
     logger.info("OKF Converter — Starting")
     logger.info("=" * 60)
 
-    # Check Tesseract availability upfront
-    check_tesseract()
+    # Check OCR availability upfront
+    check_ocr()
 
     # Collect all source PDFs
     pdfs = collect_pdfs()
@@ -836,6 +834,22 @@ def convert(force: bool = False) -> None:
 # CLI
 # ---------------------------------------------------------------------------
 def main():
+    import psutil
+    
+    # Explicit sequential-execution safeguard
+    for proc in psutil.process_iter(['name', 'cmdline']):
+        try:
+            cmdline = proc.info.get('cmdline')
+            if cmdline and 'ingest.py' in ' '.join(cmdline):
+                logger.error(
+                    "CRITICAL: ingest.py is currently running! "
+                    "Running OCR concurrently will cause severe VRAM contention and CUDA Out-Of-Memory errors. "
+                    "Please wait for ingest.py to finish before starting convert_to_okf.py."
+                )
+                sys.exit(1)
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            pass
+
     parser = argparse.ArgumentParser(
         description="Convert data/ PDFs to an OKF v0.2 knowledge bundle.",
     )
