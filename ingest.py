@@ -211,7 +211,10 @@ def chunk_text(passages_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
 
 def embed_chunks(chunks: List[Dict[str, Any]]) -> list:
-    logger.info(f"Loading embedding model ({MODEL_NAME})...")
+    import torch
+    num_threads = os.cpu_count() or 16
+    torch.set_num_threads(num_threads)
+    logger.info(f"Loading embedding model ({MODEL_NAME}) with {num_threads} CPU threads...")
     model = SentenceTransformer(MODEL_NAME)
     texts = [chunk["text"] for chunk in chunks]
     logger.info("Generating embeddings...")
