@@ -1,0 +1,1001 @@
+batch,chunk_id,sentences_produced,flagged,reason
+1,index_56,1,True,NLI Score 0.464
+1,index_41,1,False,Accepted
+1,index_142,1,False,Accepted
+1,index_59,3,True,NLI Score 0.352
+1,index_58,1,False,Accepted
+1,index_2,1,True,NLI Score 0.067
+1,index_11,1,True,NLI Score 0.787
+1,index_21,1,True,NLI Score 0.199
+1,index_28,1,False,Accepted
+1,index_14,1,True,NLI Score 0.408
+1,index_160,1,True,NLI Score 0.806
+1,index_149,1,True,NLI Score 0.736
+1,index_1,1,False,Accepted
+1,index_87,4,True,NLI Score 0.168
+1,parliament_bill_act_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्तावना_नेपाल_सरकारको_आर्र_573,2,False,Accepted
+1,index_141,1,True,NLI Score 0.288
+1,index_109,1,True,NLI Score 0.636
+1,index_51,2,True,NLI Score 0.571
+1,index_6,1,False,Accepted
+1,index_134,1,False,Accepted
+1,index_14,1,False,Accepted
+1,index_94,1,True,NLI Score 0.354
+1,index_113,1,False,Accepted
+1,index_157,1,True,NLI Score 0.244
+1,index_55,1,False,Accepted
+1,index_147,1,True,NLI Score 0.806
+1,index_80,1,False,Accepted
+1,index_53,1,True,NLI Score 0.720
+1,index_86,2,True,NLI Score 0.324
+1,index_140,1,True,NLI Score 0.710
+1,index_125,1,True,NLI Score 0.835
+1,index_92,1,False,Accepted
+1,index_21,1,False,Accepted
+1,index_122,1,False,Accepted
+1,index_105,2,True,NLI Score 0.636
+1,index_28,1,True,NLI Score 0.043
+1,index_89,1,True,NLI Score 0.664
+1,index_61,1,False,Accepted
+1,index_116,1,True,NLI Score 0.318
+1,index_13,1,False,Accepted
+1,index_45,1,True,NLI Score 0.259
+1,index_106,1,True,NLI Score 0.606
+1,index_48,1,True,NLI Score 0.783
+1,index_6,1,True,NLI Score 0.375
+1,index_123,1,True,NLI Score 0.675
+1,supreme_court_verdict_d09110e05e3a2752a3b927e6f15d2146_pdf_61139f_54,2,False,Accepted
+1,index_124,2,True,NLI Score 0.341
+1,parliament_bill_act_संवत्_२०७९_सालको_ऐन_नं_नेपाल_इन्जिननयरिङ_परिषद्_ऐन_२०५५_लाई_संशोधन_गनन_बनेको_ववधेयक_प्रस्तावना_नेपाल_26,2,False,Accepted
+1,index_83,1,True,NLI Score 0.441
+1,index_6,1,True,NLI Score 0.849
+2,index_119,1,False,Accepted
+2,index_3,1,True,NLI Score 0.839
+2,index_94,1,True,NLI Score 0.434
+2,index_38,1,True,NLI Score 0.556
+2,index_112,1,False,Accepted
+2,sc_verdict_2815284e_d57f1efa934ada7bdb31893bf2087bf8_15,2,False,Accepted
+2,index_77,1,False,Accepted
+2,index_63,0,True,Duplicate QA Pair
+2,index_34,1,False,Accepted
+2,parliament_bill_act_संवत्_२०७९_सालको_ऐन_नं_फौजदारी_कसूर_तथा_फौजदारी_कार्यववधि_सम्बन्िी_केही_ऐनलाई_संशोिन_गनय_बनेको_वविेर_1,0,True,Duplicate QA Pair
+2,index_163,1,False,Accepted
+2,index_145,1,False,Accepted
+2,supreme_court_verdict_246bf11177938960a050be0e0dbd6381_pdf_dc9ec2_7,2,False,Accepted
+2,index_1,1,True,NLI Score 0.773
+2,index_126,1,True,NLI Score 0.742
+2,index_57,2,False,Accepted
+2,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_1150,2,False,Accepted
+2,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_1256,2,False,Accepted
+2,index_87,1,False,Accepted
+2,index_121,1,True,NLI Score 0.518
+2,index_39,1,True,NLI Score 0.744
+2,index_74,1,False,Accepted
+2,index_88,1,True,NLI Score 0.821
+2,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७९_को_तनमभ_११४_सॉग_सम्फन्धधत_विधेमकको_न_2_273,2,False,Accepted
+2,index_155,1,False,Accepted
+2,index_13,1,True,NLI Score 0.417
+2,law_commission_act_rule_www_lawcomission_gov_np_कानूनी_सूक्तिहरू_ल्याटिन_अंग्रेजी_तथा_नेपाली_legal_maxims_480,0,True,Duplicate QA Pair
+2,index_78,1,False,Accepted
+2,index_85,1,True,NLI Score 0.513
+2,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_1380,0,True,Duplicate QA Pair
+2,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_15_34,2,False,Accepted
+2,index_74,2,False,Accepted
+2,index_11,1,False,Accepted
+2,index_54,1,False,Accepted
+2,index_137,1,False,Accepted
+2,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_80,2,False,Accepted
+2,index_2,1,False,Accepted
+2,index_41,1,True,NLI Score 0.844
+2,index_82,1,False,Accepted
+2,index_21,1,False,Accepted
+2,index_11,1,False,Accepted
+2,index_1,1,False,Accepted
+2,index_48,1,False,Accepted
+2,index_92,1,True,NLI Score 0.208
+2,index_38,1,True,NLI Score 0.777
+2,index_90,2,True,NLI Score 0.734
+2,index_81,1,True,NLI Score 0.692
+2,supreme_court_verdict_precedent_supreme_court_judgment_precedent_5d999ef_55,0,True,Duplicate QA Pair
+2,index_150,1,True,NLI Score 0.820
+2,index_81,1,True,NLI Score 0.178
+3,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_सूचनाहरू_प्रतितनतध_सभा_तनयमािली_२०८३_को_तनयम_११४_सँग_सम्बन्धधि_विधेयकको_नामः_1_8,2,False,Accepted
+3,index_158,1,False,Accepted
+3,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_314,0,True,Duplicate QA Pair
+3,index_52,1,False,Accepted
+3,index_144,1,False,Accepted
+3,index_50,1,False,Accepted
+3,index_28,1,True,NLI Score 0.829
+3,supreme_court_verdict_3f09593ec72b475869f1ea02a3377355_pdf_d5b445_35,0,True,Duplicate QA Pair
+3,index_49,1,True,NLI Score 0.627
+3,index_34,1,False,Accepted
+3,index_1,1,False,Accepted
+3,index_3,1,True,NLI Score 0.734
+3,index_73,1,True,NLI Score 0.783
+3,index_93,1,False,Accepted
+3,index_93,1,False,Accepted
+3,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_27,0,True,Duplicate QA Pair
+3,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1874,2,False,Accepted
+3,index_71,1,True,NLI Score 0.841
+3,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_970,0,True,Duplicate QA Pair
+3,index_161,1,False,Accepted
+3,index_15,1,False,Accepted
+3,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_खाद्य_स्वच्छता_तथा_गुणस्तर_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_ववधेयक_122,0,True,Duplicate QA Pair
+3,index_59,1,False,Accepted
+3,index_1,1,True,NLI Score 0.386
+3,supreme_court_verdict_precedent_supreme_court_verdict_089b8fafe852f8185d_9,2,False,Accepted
+3,index_71,1,False,Accepted
+3,index_2,1,False,Accepted
+3,index_39,1,True,NLI Score 0.569
+3,index_80,1,False,Accepted
+3,parliament_bill_act_सम्वत्_२०७६_सालको_ऐन_नं_3_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_774,0,True,Duplicate QA Pair
+3,law_commission_act_rule_www_lawcommission_gov_np_कारागार_नियमावली_२०८३_िेपाल_राजपत्रमा_प्रकाशित_नमनत_२०८३।०३।३२_80,2,False,Accepted
+3,index_49,1,True,NLI Score 0.398
+3,index_135,1,True,NLI Score 0.460
+3,index_52,1,True,NLI Score 0.382
+3,index_69,2,True,NLI Score 0.415
+3,index_6,1,False,Accepted
+3,index_151,1,False,Accepted
+3,index_11,1,True,NLI Score 0.817
+3,law_commission_act_rule_www_lawcomission_gov_np_कानूनी_सूक्तिहरू_ल्याटिन_अंग्रेजी_तथा_नेपाली_legal_maxims_1443,0,True,Duplicate QA Pair
+3,index_146,1,True,NLI Score 0.213
+3,index_99,1,True,NLI Score 0.791
+3,index_132,1,True,NLI Score 0.453
+3,index_85,1,True,NLI Score 0.622
+3,index_43,1,True,NLI Score 0.162
+3,index_45,1,False,Accepted
+3,index_86,2,True,NLI Score 0.841
+3,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७९_को_तनमभ_११४_सॉग_सम्फन्धधत_विधेमकको_न_2_681,2,False,Accepted
+3,index_100,1,True,NLI Score 0.404
+3,index_48,1,False,Accepted
+3,index_78,1,True,NLI Score 0.680
+4,index_164,1,False,Accepted
+4,index_83,1,True,NLI Score 0.652
+4,index_88,1,True,NLI Score 0.742
+4,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_72,2,False,Accepted
+4,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_4_20,2,False,Accepted
+4,index_58,1,False,Accepted
+4,index_15,1,False,Accepted
+4,index_89,1,True,NLI Score 0.821
+4,index_111,1,True,NLI Score 0.804
+4,index_3,1,False,Accepted
+4,index_40,1,True,NLI Score 0.388
+4,index_63,1,False,Accepted
+4,index_39,1,True,NLI Score 0.582
+4,index_2,1,False,Accepted
+4,index_13,1,False,Accepted
+4,index_79,1,True,NLI Score 0.220
+4,index_27,1,False,Accepted
+4,index_3,1,False,Accepted
+4,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1681,2,False,Accepted
+4,index_44,1,True,NLI Score 0.814
+4,index_34,1,False,Accepted
+4,index_56,1,False,Accepted
+4,index_73,1,True,NLI Score 0.498
+4,index_14,1,False,Accepted
+4,index_40,2,True,NLI Score 0.756
+4,index_139,1,True,NLI Score 0.676
+4,index_75,1,True,NLI Score 0.476
+4,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_सूचनाहरूको_एकीकृत_वििरण_प्रतततनतध_सभा_तनयमािली_२०८३_को_तनयम_११४_सँग_सम्बन्धध_3,2,False,Accepted
+4,index_37,1,True,NLI Score 0.569
+4,index_90,1,False,Accepted
+4,index_40,1,False,Accepted
+4,index_53,1,True,NLI Score 0.185
+4,index_153,1,False,Accepted
+4,index_82,1,False,Accepted
+4,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_सुशासन_प्रवर्धन_तथा_सावधजननक_सेवा_प्रवाह_सम्बन्र्ी_केही_नेपाल_ऐनलाई_संशोर्न_ग_29,0,True,Duplicate QA Pair
+4,index_43,1,True,NLI Score 0.524
+4,parliament_bill_act_प्रतितिति_सभा_तियमावली_मस्यौदा_सतमतिको_प्रतिवेदि_२०८३_मा_प्राप्त_संशोिि_प्रस्िावहरूको_एकीकृि_वववरण_ि_20,2,False,Accepted
+4,index_20,1,True,NLI Score 0.607
+4,index_15,1,True,NLI Score 0.390
+4,index_138,1,False,Accepted
+4,index_57,1,True,NLI Score 0.771
+4,index_118,0,True,Duplicate QA Pair
+4,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_सुरक्षण_मुद्रण_सम्बन्धमा_व्यवस्था_गनन_बनेको_ववधेयक_प्रस्तावना_सुरक्षण_मुद्रण_70,2,False,Accepted
+4,index_27,1,False,Accepted
+4,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_1028,2,False,Accepted
+4,court_bulletin_annual_report_supreme_court_official_court_holiday_cal_3,1,True,NLI Score 0.636
+4,court_bulletin_annual_report_supreme_court_official_court_holiday_cal_8,1,True,NLI Score 0.753
+4,supreme_court_verdict_a7cfdf4de6087c547a946ea7147d0418_pdf_644ec7_11,2,False,Accepted
+4,court_bulletin_annual_report_supreme_court_official_court_holiday_cal_4,1,True,NLI Score 0.485
+4,court_bulletin_annual_report_supreme_court_official_court_holiday_cal_7,1,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_14,0,True,Generation Failed/Empty
+5,nepal_mof_fiscal_policy_डाउनलोड_2_102,0,True,Generation Failed/Empty
+5,court_bulletin_annual_report_supreme_court_official_court_holiday_cal_9,1,False,Accepted
+5,court_bulletin_annual_report_supreme_court_annual_performance_report_0,1,True,NLI Score 0.628
+5,court_bulletin_annual_report_supreme_court_annual_performance_report_1,1,False,Accepted
+5,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_965,2,False,Accepted
+5,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_94,0,True,Duplicate QA Pair
+5,nepal_mof_fiscal_policy_डाउनलोड_71,1,True,NLI Score 0.756
+5,nepal_mof_fiscal_policy_डाउनलोड_2_14,1,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_1_38,1,True,NLI Score 0.280
+5,nepal_mof_fiscal_policy_डाउनलोड_2_33,1,True,NLI Score 0.719
+5,nepal_mof_fiscal_budget_directive_nepal_mof_1_13,1,True,NLI Score 0.248
+5,nepal_mof_fiscal_policy_डाउनलोड_4_16,1,True,NLI Score 0.008
+5,nepal_mof_fiscal_policy_डाउनलोड_1_49,1,True,NLI Score 0.439
+5,nepal_mof_fiscal_budget_directive_nepal_mof_1_46,1,True,NLI Score 0.548
+5,nepal_mof_fiscal_policy_डाउनलोड_2_57,1,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_1_48,1,True,NLI Score 0.596
+5,nepal_mof_fiscal_policy_डाउनलोड_2_1,5,True,NLI Score 0.376
+5,nepal_mof_fiscal_policy_डाउनलोड_1_21,4,True,NLI Score 0.634
+5,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_595,2,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_2_50,1,True,NLI Score 0.590
+5,parliament_bill_act_संवत्_२०७५_सालको_ऐन_नं_मुलुकी_संहिता_सम्बन्धी_केिी_नेपाल_ऐनलाई_संशोधन_गनन_बनेको_हवधेयक_प्रस्तावना_मु_152,2,False,Accepted
+5,nepal_mof_fiscal_budget_directive_nepal_mof_1_4,1,True,NLI Score 0.821
+5,nepal_mof_fiscal_policy_डाउनलोड_2_98,1,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_3_41,1,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_3_38,1,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_2_79,1,True,NLI Score 0.775
+5,parliament_bill_act_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्तावना_नेपाल_सरकारको_आर्र_493,2,False,Accepted
+5,law_commission_act_rule_www_lawcommission_gov_np_देवघाट_क्षेत्र_ववकास_समिमि_गठन_आदेश_२०५०_नेपाल_राजपत्रिा_प्रकाशशि_मिमि_२०५०_19,2,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_2_13,1,True,NLI Score 0.831
+5,parliament_bill_act_सम्वत्_२०७५_सालको_ऐन_नं_29_नेपालको_संववधान_अनुकूल_बनाउन_केही_नेपाल_ऐनलाई_संशोधन_गनन_बनेको_ववधेयक_प्र_166,2,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_3_17,1,True,NLI Score 0.746
+5,nepal_mof_fiscal_policy_डाउनलोड_3_14,1,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_68,1,True,NLI Score 0.485
+5,nepal_mof_fiscal_policy_डाउनलोड_1_18,1,True,NLI Score 0.235
+5,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1995,2,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_1_68,1,True,NLI Score 0.714
+5,nepal_mof_fiscal_policy_डाउनलोड_2_12,1,True,NLI Score 0.579
+5,nepal_mof_fiscal_policy_डाउनलोड_22,1,True,NLI Score 0.382
+5,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_402,2,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_1_57,1,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_2_88,1,True,NLI Score 0.424
+5,nepal_mof_fiscal_policy_डाउनलोड_2_19,1,True,NLI Score 0.505
+5,nepal_mof_fiscal_policy_डाउनलोड_2_82,1,True,NLI Score 0.535
+5,nepal_mof_fiscal_policy_डाउनलोड_1_13,1,True,NLI Score 0.355
+5,nepal_mof_fiscal_policy_डाउनलोड_4_31,1,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_32,1,True,NLI Score 0.625
+5,supreme_court_verdict_65dc7e7e85d8e91ded92058847cec91c_pdf_e854a5_22,2,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_1_16,1,False,Accepted
+5,nepal_mof_fiscal_policy_डाउनलोड_66,1,True,NLI Score 0.067
+6,nepal_mof_fiscal_policy_डाउनलोड_1_37,1,True,NLI Score 0.137
+6,nepal_mof_fiscal_policy_डाउनलोड_3_28,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_1_70,1,True,NLI Score 0.755
+6,nepal_mof_fiscal_policy_डाउनलोड_3_9,1,False,Accepted
+6,sebon_capital_market_directive_sebon_directive_nepali_14724d_4,2,False,Accepted
+6,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_695,2,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_1_51,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_28,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_2_91,1,True,NLI Score 0.701
+6,nepal_mof_fiscal_policy_डाउनलोड_62,1,True,NLI Score 0.743
+6,nepal_mof_fiscal_policy_डाउनलोड_2_59,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_2_53,1,True,NLI Score 0.744
+6,nepal_mof_fiscal_policy_डाउनलोड_24,1,True,NLI Score 0.607
+6,nepal_mof_fiscal_budget_directive_nepal_mof_1_45,1,True,NLI Score 0.796
+6,nepal_mof_fiscal_policy_डाउनलोड_4_33,1,True,NLI Score 0.703
+6,nepal_mof_fiscal_policy_डाउनलोड_4_42,1,True,NLI Score 0.224
+6,nepal_mof_fiscal_policy_डाउनलोड_3_43,1,False,Accepted
+6,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_सूचनाहरूको_एकीकृत_वििरण_प्रतततनतध_सभा_तनयमािली_२०८३_को_तनयम_११४_सँग_सम्बन्धध_260,2,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_2_89,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_4_46,1,False,Accepted
+6,nepal_mof_fiscal_budget_directive_nepal_mof_1_57,1,True,NLI Score 0.269
+6,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरूको_एकीकृत_वििरण_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन_6,2,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_3_11,1,True,NLI Score 0.012
+6,nepal_mof_fiscal_policy_डाउनलोड_12,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_2_68,1,True,NLI Score 0.821
+6,nepal_mof_fiscal_policy_डाउनलोड_4_14,2,True,NLI Score 0.018
+6,nepal_mof_fiscal_policy_डाउनलोड_1_62,1,True,NLI Score 0.759
+6,nepal_mof_fiscal_policy_डाउनलोड_4_26,1,True,NLI Score 0.266
+6,nepal_mof_fiscal_policy_डाउनलोड_4_52,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_2_49,1,True,NLI Score 0.589
+6,nepal_mof_fiscal_policy_डाउनलोड_0,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_2_76,1,True,NLI Score 0.112
+6,nepal_mof_fiscal_policy_डाउनलोड_2_11,1,True,NLI Score 0.304
+6,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_1234,2,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_1_45,1,True,NLI Score 0.130
+6,nepal_mof_fiscal_policy_डाउनलोड_2_85,1,True,NLI Score 0.834
+6,nepal_mof_fiscal_policy_डाउनलोड_2_55,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_3_34,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_58,1,True,NLI Score 0.568
+6,nepal_mof_fiscal_policy_डाउनलोड_2_0,1,True,NLI Score 0.269
+6,nepal_mof_fiscal_budget_directive_nepal_mof_1_58,1,True,NLI Score 0.754
+6,nepal_mof_fiscal_policy_डाउनलोड_2_37,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_2_60,1,True,NLI Score 0.834
+6,nepal_mof_fiscal_budget_directive_nepal_mof_1_41,1,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_1_20,1,True,NLI Score 0.587
+6,nepal_mof_fiscal_budget_directive_nepal_mof_1_3,1,True,NLI Score 0.065
+6,nepal_mof_fiscal_policy_डाउनलोड_3_30,1,True,NLI Score 0.689
+6,nepal_mof_fiscal_policy_डाउनलोड_29,1,True,NLI Score 0.696
+6,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1476,2,False,Accepted
+6,nepal_mof_fiscal_policy_डाउनलोड_42,1,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_1_0,3,True,NLI Score 0.209
+7,nepal_mof_fiscal_policy_डाउनलोड_40,1,True,NLI Score 0.773
+7,nepal_mof_fiscal_policy_डाउनलोड_2_92,1,False,Accepted
+7,parliament_bill_act_सम्वत्_२०७५_सालको_ऐन_नं_९_सुरक्षित_मातृत्व_तथा_प्रजनन_स्वास््यको_अधिकार_सम्बन्िमा_व्यवस्था_गनन_बनेको_51,2,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_8,2,True,NLI Score 0.012
+7,nepal_mof_fiscal_policy_डाउनलोड_1_7,1,True,NLI Score 0.459
+7,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_833,2,False,Accepted
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_39,1,True,NLI Score 0.155
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_12,1,True,NLI Score 0.387
+7,nepal_mof_fiscal_policy_डाउनलोड_3_15,1,False,Accepted
+7,supreme_court_verdict_c28c5518e376698261ce48ac52cf6b8e_pdf_ad1d38_49,2,False,Accepted
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_21,1,True,NLI Score 0.027
+7,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_754,2,False,Accepted
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_38,1,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_2_73,2,False,Accepted
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_48,1,False,Accepted
+7,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_साववजननक_सेवा_प्रसारण_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनव_बनेको_ववधेयक_प्रस_13,2,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_2_20,1,False,Accepted
+7,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_552,2,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_2,2,True,NLI Score 0.503
+7,nepal_mof_fiscal_policy_डाउनलोड_1_40,1,False,Accepted
+7,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_1314,0,True,Duplicate QA Pair
+7,nepal_mof_fiscal_policy_डाउनलोड_64,1,True,NLI Score 0.666
+7,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_398,2,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_39,4,True,NLI Score 0.248
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_31,1,True,NLI Score 0.642
+7,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७9_को_तनयम_११4_सँग_सम्बन्धधत_विधेयकको_न_61,2,False,Accepted
+7,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_527,2,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_17,1,True,NLI Score 0.451
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_59,1,True,NLI Score 0.760
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_43,1,True,NLI Score 0.475
+7,nepal_mof_fiscal_policy_डाउनलोड_4_44,3,True,NLI Score 0.050
+7,nepal_mof_fiscal_policy_डाउनलोड_4_24,2,True,NLI Score 0.000
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_35,1,True,NLI Score 0.761
+7,nepal_mof_fiscal_policy_डाउनलोड_1,1,True,NLI Score 0.782
+7,nepal_mof_fiscal_policy_डाउनलोड_2_3,1,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_3_31,1,True,NLI Score 0.021
+7,nepal_mof_fiscal_policy_डाउनलोड_2_94,1,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_1_73,1,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_3_25,1,True,NLI Score 0.626
+7,nepal_mof_fiscal_policy_डाउनलोड_3_10,2,True,NLI Score 0.023
+7,nepal_mof_fiscal_policy_डाउनलोड_3_24,1,True,NLI Score 0.001
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_44,1,True,NLI Score 0.607
+7,nepal_mof_fiscal_policy_डाउनलोड_4_22,1,True,NLI Score 0.202
+7,nepal_mof_fiscal_policy_डाउनलोड_3_22,1,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_4_34,10,True,NLI Score 0.043
+7,nepal_mof_fiscal_policy_डाउनलोड_2_38,1,True,NLI Score 0.608
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_52,1,False,Accepted
+7,nepal_mof_fiscal_budget_directive_nepal_mof_1_32,1,False,Accepted
+7,nepal_mof_fiscal_policy_डाउनलोड_2_62,1,True,NLI Score 0.567
+8,nepal_mof_fiscal_budget_directive_nepal_mof_1_54,1,True,NLI Score 0.032
+8,nepal_mof_fiscal_policy_डाउनलोड_2_66,1,True,NLI Score 0.822
+8,nepal_mof_fiscal_budget_directive_nepal_mof_1_1,1,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_2_81,5,True,NLI Score 0.402
+8,nepal_mof_fiscal_policy_डाउनलोड_2_74,1,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_3_18,1,True,NLI Score 0.395
+8,nepal_mof_fiscal_policy_डाउनलोड_2_47,1,True,NLI Score 0.787
+8,nepal_mof_fiscal_budget_directive_nepal_mof_1_36,1,True,NLI Score 0.782
+8,nepal_mof_fiscal_policy_डाउनलोड_4_43,1,True,NLI Score 0.122
+8,nepal_mof_fiscal_policy_डाउनलोड_2_63,1,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_2_27,2,False,Accepted
+8,nepal_mof_fiscal_budget_directive_nepal_mof_1_47,1,True,NLI Score 0.836
+8,sebon_capital_market_directive_sebon_directive_5e5de3_6,2,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_2_42,1,True,NLI Score 0.758
+8,nepal_mof_fiscal_policy_डाउनलोड_3_0,1,True,NLI Score 0.830
+8,nepal_mof_fiscal_policy_डाउनलोड_4_9,5,True,NLI Score 0.003
+8,nepal_mof_fiscal_budget_directive_nepal_mof_1_40,1,True,NLI Score 0.455
+8,nepal_mof_fiscal_budget_directive_nepal_mof_1_42,1,True,NLI Score 0.799
+8,nepal_mof_fiscal_policy_डाउनलोड_3_3,1,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_3_39,1,True,NLI Score 0.301
+8,nepal_mof_fiscal_policy_डाउनलोड_1_12,1,True,NLI Score 0.577
+8,nepal_mof_fiscal_policy_डाउनलोड_20,1,True,NLI Score 0.444
+8,nepal_mof_fiscal_policy_डाउनलोड_3_20,1,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_2_100,1,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_37,1,True,NLI Score 0.705
+8,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१२_वन_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_ववधेयक_प्रस्तावना_राविय_वनल_121,2,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_47,1,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_3_42,1,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_3_8,1,True,NLI Score 0.550
+8,nepal_mof_fiscal_policy_डाउनलोड_2_16,1,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_4_12,1,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_2_45,1,True,NLI Score 0.285
+8,nepal_mof_fiscal_policy_डाउनलोड_77,1,True,NLI Score 0.433
+8,nepal_mof_fiscal_budget_directive_nepal_mof_2_1,1,True,NLI Score 0.351
+8,nepal_mof_fiscal_policy_डाउनलोड_69,1,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_50,1,True,NLI Score 0.666
+8,nepal_mof_fiscal_policy_डाउनलोड_4_48,1,True,NLI Score 0.258
+8,nepal_mof_fiscal_policy_डाउनलोड_1_14,1,True,NLI Score 0.690
+8,nepal_mof_fiscal_policy_डाउनलोड_1_59,1,True,NLI Score 0.295
+8,nepal_mof_fiscal_policy_डाउनलोड_18,1,True,NLI Score 0.573
+8,nepal_mof_fiscal_budget_directive_nepal_mof_1_20,1,True,NLI Score 0.331
+8,nepal_mof_fiscal_policy_डाउनलोड_1_6,2,True,NLI Score 0.433
+8,nepal_mof_fiscal_policy_डाउनलोड_79,1,True,NLI Score 0.652
+8,parliament_bill_act_संवत्_२०83_सालको_ऐन_नं_सहकारी_ऐन_2074_लाई_संशोधन_गनन_बनेको_ववधेयक_प्रस्तावना_सहकारी_ऐन_२०७४_लाई_संशो_24,2,False,Accepted
+8,parliament_bill_act_संवत्_२०८२_सालको_ऐन_नं_केही_नेपाल_ऐनलाई_संशोधन_गनन_बनेको_ववधेयक_प्रस्तावनााः_प्रचललत_नेपाल_ऐनमा_समसा_17,2,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_4_40,1,True,NLI Score 0.027
+8,nepal_mof_fiscal_policy_डाउनलोड_2_8,1,True,NLI Score 0.504
+8,nepal_mof_fiscal_budget_directive_nepal_mof_1_23,1,False,Accepted
+8,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_3_91,2,False,Accepted
+8,nepal_mof_fiscal_policy_डाउनलोड_4_0,1,True,NLI Score 0.478
+9,nepal_mof_fiscal_policy_डाउनलोड_2_70,1,False,Accepted
+9,nepal_mof_fiscal_budget_directive_nepal_mof_1_6,1,True,NLI Score 0.709
+9,nepal_mof_fiscal_budget_directive_nepal_mof_1_18,1,True,NLI Score 0.521
+9,nepal_mof_fiscal_policy_डाउनलोड_53,1,True,NLI Score 0.186
+9,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_198,1,False,Accepted
+9,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1670,1,False,Accepted
+9,parliament_bill_act_सॊवत्_२०७५_सारको_ऐन_नॊ_फारफाङ्झरका_सम्फन्धी_कानूनराई_सॊशोधन_य_एकीकयण_गनन_फनेको_ङ्जवधेमक_प्रस्तावना_फ_110,1,False,Accepted
+9,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_182,2,False,Accepted
+9,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_साववजननक_सेवा_प्रसारण_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनव_बनेको_ववधेयक_प्रस_51,2,False,Accepted
+9,parliament_bill_act_संवत्_२०८२_सालको_ऐन_नं_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्त_428,2,False,Accepted
+9,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_आर्थिक_कार्िववर्ि_तथा_ववत्तीर्_उत्तरदावर्त्व_ऐन_२०७६_लाई_संशोिन_गनि_बनेको_ववि_30,1,True,NLI Score 0.787
+9,parliament_bill_act_सॊवत्_२०७५_सारको_ऐन_नॊ_फारफाङ्झरका_सम्फन्धी_कानूनराई_सॊशोधन_य_एकीकयण_गनन_फनेको_ङ्जवधेमक_प्रस्तावना_फ_170,1,True,NLI Score 0.027
+9,parliament_bill_act_बीमा_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_बीमा_प्रणाली_तथा_बीमा_व्यिसायलाई_273,1,False,Accepted
+9,parliament_bill_act_संवत्_२०83_सालको_ऐन_नं_सहकारी_ऐन_2074_लाई_संशोधन_गनन_बनेको_ववधेयक_प्रस्तावना_सहकारी_ऐन_२०७४_लाई_संशो_49,2,True,NLI Score 0.004
+9,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_1237,1,False,Accepted
+9,parliament_bill_act_संवत्_२०८०_सालको_ऐन_नं_सम्पत्ति_शुद्धीकरण_मनी_लाउण्डररङ्ग_ननवारण_तथा_व्यावसाययक_वातावरण_प्रवद्धधन_सम_79,1,False,Accepted
+9,parliament_bill_act_संवत्_२०८२_सालको_ऐन_नं_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्त_38,2,False,Accepted
+9,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_1318,1,True,NLI Score 0.498
+9,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_13_सेफगार्डसस_एन्टी_डम्पिङ्ग_तथा_काउण्टरभेललङ्ग_सपबन्धमा_व्यवस्था_गनस_बनेको_व_7,1,True,NLI Score 0.833
+9,parliament_bill_act_सम्वत्_२०७७_सालको_ऐन_नं_6_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_554,1,False,Accepted
+9,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_230,1,False,Accepted
+9,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_683,1,True,NLI Score 0.643
+9,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_907,1,True,NLI Score 0.555
+9,parliament_bill_act_सम्वत्_२०७५_सालको_ऐन_नं_३२_साववजननक_ननजी_साझेदारी_तथा_लगानी_सम्बन्धमा_व्यवस्था_गनव_बनेको_ववधेयक_प्रस_104,2,True,NLI Score 0.048
+9,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_1417,1,False,Accepted
+9,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_173,2,False,Accepted
+9,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1425,2,False,Accepted
+9,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1159,1,False,Accepted
+9,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१९_औद्योगिक_व्यवसाय_सम्बन्धी_प्रचगलत_कानूनलाई_संशोधन_र_एकीकरण_िनन_बनेको_ववधेय_60,1,True,NLI Score 0.802
+9,parliament_bill_act_सम्वत्_२०७५_सालको_ऐन_नं_२८_केही_नेपाल_ऐनलाई_संशोधन_गनन_बनेको_ववधेयक_प्रस्तावनााः_प्रचललत_नेपाल_ऐनमा_86,1,True,NLI Score 0.724
+9,parliament_bill_act_संवत्_२०८2_सालको_ऐन_नं_शहीद_दशरथ_चन्द_स्वास््य_ववज्ञान_ववश्वववद्यालय_सम्बन्धमा_व्यवस्था_गनन_बनेको_वव_55,2,False,Accepted
+9,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_665,2,False,Accepted
+9,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_896,1,True,NLI Score 0.595
+9,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_745,1,True,NLI Score 0.351
+9,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७९_को_तनमभ_११४_सॉग_सम्फन्धधत_विधेमकको_न_2_141,2,False,Accepted
+9,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_1266,2,False,Accepted
+9,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_12_16,1,False,Accepted
+9,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७9_को_तनयम_११4_सँग_सम्बन्धधत_विधेयकको_न_2_89,1,True,NLI Score 0.495
+9,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७९_को_तनमभ_११४_सॉग_सम्फन्धधत_विधेमकको_न_2_345,1,False,Accepted
+9,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_507,1,True,NLI Score 0.412
+9,parliament_bill_act_सम्वत्_२०७५_सालको_ऐन_नं_29_नेपालको_संववधान_अनुकूल_बनाउन_केही_नेपाल_ऐनलाई_संशोधन_गनन_बनेको_ववधेयक_प्र_117,2,False,Accepted
+9,parliament_bill_act_संवत्_२०83_सालको_ऐन_नं_वैकल्पिक_ववकास_ववत्त_िरिचालनका_सम्बन्धमा_व्यवस्था_गनन_बनेको_ववधेयक_प्रस्तावना_90,1,True,NLI Score 0.741
+9,parliament_bill_act_सम्वत्_२०७६_सालको_ऐन_नं_3_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_385,1,False,Accepted
+9,parliament_bill_act_सम्वत्_२०७६_सालको_ऐन_नं_3_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_136,2,False,Accepted
+9,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_777,1,False,Accepted
+9,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१२_वन_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_ववधेयक_प्रस्तावना_राविय_वनल_146,1,True,NLI Score 0.091
+9,parliament_bill_act_विधेयकमा_प्राप्_त_ंशोधध_ंूच_ाकध_एकीकृत_वििरण_प्रततत_तध_ंभा_त_यमािली_२०83_कध_त_यम_११४_ंँग_ंम्बन्धधत_व_69,2,False,Accepted
+9,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1802,1,True,NLI Score 0.024
+9,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_381,2,True,NLI Score 0.152
+9,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_1106,2,False,Accepted
+10,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_608,1,False,Accepted
+10,parliament_bill_act_संवत्_२०८०_सालको_ऐन_नं_सम्पत्ति_शुद्धीकरण_मनी_लाउण्डररङ्ग_ननवारण_तथा_व्यावसाययक_वातावरण_प्रवद्धधन_सम_197,1,True,NLI Score 0.226
+10,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_7_103,1,False,Accepted
+10,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१९_औद्योगिक_व्यवसाय_सम्बन्धी_प्रचगलत_कानूनलाई_संशोधन_र_एकीकरण_िनन_बनेको_ववधेय_15,1,True,NLI Score 0.398
+10,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७५_को_तनयम_११३_सँग_सम्बन्धधत_विधेयकको_न_83,1,False,Accepted
+10,parliament_bill_act_संवत्_२०८२_सालको_ऐन_नं_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्त_570,1,True,NLI Score 0.361
+10,parliament_bill_act_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्तावना_नेपाल_सरकारको_आर्र_300,1,True,NLI Score 0.738
+10,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_2863,1,True,NLI Score 0.809
+10,parliament_bill_act_सम्वत्_२०७५_सालको_ऐन_नं_२७_कर्मचारी_सर्ायोजन_सम्बन्धर्ा_व्यवस्था_गनम_बनेको_ववधेयक_प्रस्तावना_सरकारी_41,2,False,Accepted
+10,parliament_bill_act_विधेयकमा_संशोधनको_वििरण_प्रतितनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधि_विधेयकको_नामः_तनमााणमु_132,2,True,NLI Score 0.554
+10,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_1535,2,False,Accepted
+10,parliament_bill_act_संवत्_२०८२_सालको_ऐन_नं_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्त_391,1,False,Accepted
+10,parliament_bill_act_सम्वत्_२०७६_सालको_ऐन_नं_2_आर्थिक_वर्ि_207६_07७_को_सेवा_र_कार्िको_लार्ि_संघीर्_सञ्चित_कोर्बाट_केही_रक_18,2,False,Accepted
+10,parliament_bill_act_सम्वत्_२०७६_सालको_ऐन_नं_3_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_334,1,True,NLI Score 0.743
+10,parliament_bill_act_संवत्_२०७९_सालको_ऐन_नं_रेल्वे_सम्बन्धमा_व्यवस्था_गनन_बनेको_ववधेयक_प्रस्तावना_नेपालमा_रेल्वेको_ववकास_51,1,True,NLI Score 0.667
+10,parliament_bill_act_सम्वत्_२०७७_सालको_ऐन_नं_6_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_1078,1,False,Accepted
+10,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_505,2,False,Accepted
+10,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_809,1,True,NLI Score 0.796
+10,sebon_capital_market_directive_sebon_directive_5e5de3_0,2,False,Accepted
+10,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_९_वातावरण_संरक्षण_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_ववधेयक_प्रस्ताव_32,1,False,Accepted
+10,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_1333,1,False,Accepted
+10,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_15_ħƴाचार_ǔनवारण_ऐन_२०५९_लाइ_संशोधन_गन_बनेको_ǒवधेयक_ĥèतावना_ħƴाचार_ǔनवारण_ऐन_40,1,True,NLI Score 0.791
+10,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_7_41,1,False,Accepted
+10,parliament_bill_act_सम्वत्_२०७६_सालको_ऐन_नं_3_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_542,1,True,NLI Score 0.824
+10,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१८_राष्ट्रिय_पररचयपत्र_तथा_पञ्जीकरणको_सम्बन्धमा_व्यवस्था_गनन_बनेको_ष्ट्रवधेयक_12,2,False,Accepted
+10,parliament_bill_act_सम्वत्_२०७७_सालको_ऐन_नं_6_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_1151,1,True,NLI Score 0.842
+10,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_105,2,False,Accepted
+10,parliament_bill_act_विधेयकमा_संशोधनको_वििरण_प्रतितनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधि_विधेयकको_नामः_तनमााणमु_169,2,False,Accepted
+10,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_3,1,True,NLI Score 0.804
+10,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_791,2,False,Accepted
+10,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_628,1,True,NLI Score 0.349
+10,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_बेपत्ता_पारिएका_व्यक्तिको_छानबबन_सत्य_बनरुपण_तथा_मेलबमलाप_आयोग_ऐन_२०७१_लाई_सं_15,1,False,Accepted
+10,parliament_bill_act_सम्वत्_२०७७_सालको_ऐन_नं_6_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_70,1,True,NLI Score 0.229
+10,parliament_bill_act_प्रतितिति_सभा_तियमावली_मस्यौदा_सतमतिको_प्रतिवेदि_२०८३_मा_प्राप्त_संशोिि_प्रस्िावहरूको_एकीकृि_वववरण_ि_50,1,False,Accepted
+10,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_278,1,False,Accepted
+10,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_594,2,False,Accepted
+10,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_233,1,False,Accepted
+10,nepal_budget_2081_82_highlights_56,2,False,Accepted
+10,parliament_bill_act_संवत्_२०७७_सालको_ऐन_नं_खेलकुद_ववकास_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_ववधेयक_प्रस्तावना_खे_110,1,False,Accepted
+10,parliament_bill_act_संवत्_२०७९_सालको_ऐन_नं_मदन_भण्डारी_ववज्ञान_तथा_प्रववधि_ववश्वववद्यालय_सम्बन्िमा_व्यवस्था_गनन_बनेको_वव_36,1,True,NLI Score 0.185
+10,parliament_bill_act_संवत्_२०८२_सालको_ऐन_नं_भन्सार_सम्बन्धी_कानुनलाई_संशोधन_र_एकीकरण_गनन_बनेको_ववधेयक_प्रस्तावना_भन्सार_प_109,1,False,Accepted
+10,parliament_bill_act_संवत्_२०८2_सालको_ऐन_नं_शहीद_दशरथ_चन्द_स्वास््य_ववज्ञान_ववश्वववद्यालय_सम्बन्धमा_व्यवस्था_गनन_बनेको_वव_74,1,True,NLI Score 0.467
+10,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_13_सेफगार्डसस_एन्टी_डम्पिङ्ग_तथा_काउण्टरभेललङ्ग_सपबन्धमा_व्यवस्था_गनस_बनेको_व_11,1,False,Accepted
+10,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१२_वन_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_ववधेयक_प्रस्तावना_राविय_वनल_110,1,True,NLI Score 0.766
+10,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_444,1,False,Accepted
+10,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_१२_सुरि_त_कारोबार_ऐन_२०६३_लाई_संशोधन_गन_बनेको_ǒवधेयक_ĥèतावना_सुरि_त_कारोबार_ऐ_62,1,True,NLI Score 0.586
+10,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_996,2,True,NLI Score 0.808
+10,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_890,1,False,Accepted
+10,parliament_bill_act_संवत्_२०७९_सालको_ऐन_नं_t_hfa_tyf_cgo_3fts_f_folgs_kbfy_sf_lgodgsf_dagwdf_joj_yf_ug_ag_sf_ljw_os_k_t_3,2,True,NLI Score 0.003
+10,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_874,1,True,NLI Score 0.341
+11,parliament_bill_act_सम्वत्_२०७७_सालको_ऐन_नं_6_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_996,1,False,Accepted
+11,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_467,1,True,NLI Score 0.660
+11,parliament_bill_act_सम्वत्_२०७७_सालको_ऐन_नं_6_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_709,1,False,Accepted
+11,parliament_bill_act_सम्वत्_२०७७_सालको_ऐन_नं_6_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_860,2,False,Accepted
+11,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_578,1,True,NLI Score 0.801
+11,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१९_औद्योगिक_व्यवसाय_सम्बन्धी_प्रचगलत_कानूनलाई_संशोधन_र_एकीकरण_िनन_बनेको_ववधेय_53,1,True,NLI Score 0.038
+11,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_352,1,True,NLI Score 0.350
+11,parliament_bill_act_संवत्_२०७७_सालको_ऐन_नं_शिक्षा_सम्बन्धी_केही_नेपाल_ऐन_संिोधन_गनन_बनेको_ववधेयक_प्रस्तावना_शिक्षा_सम्बन_38,0,True,Duplicate QA Pair
+11,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_6_41,1,False,Accepted
+11,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७९_को_तनमभ_११४_सॉग_सम्फन्धधत_विधेमकको_न_5_27,1,True,NLI Score 0.664
+11,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_292,1,False,Accepted
+11,supreme_court_verdict_d09110e05e3a2752a3b927e6f15d2146_pdf_61139f_22,2,False,Accepted
+11,parliament_bill_act_संवत्_२०८०_सालको_ऐन_नं_सम्पत्ति_शुद्धीकरण_मनी_लाउण्डररङ्ग_ननवारण_तथा_व्यावसाययक_वातावरण_प्रवद्धधन_सम_109,1,True,NLI Score 0.730
+11,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_प्रशासकीय_अदालतको_सम्बन्धमा_व्यवस्था_गनन_बनेको_ववधेयक_प्रस्तावना_प्रशासकीय_अद_17,1,False,Accepted
+11,parliament_bill_act_विधेयकमा_संशोधनको_वििरण_प्रतितनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधि_विधेयकको_नामः_तनमााणमु_340,1,True,NLI Score 0.541
+11,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_1113,1,False,Accepted
+11,parliament_bill_act_सॊवत्_२०७५_सारको_ऐन_नॊ_अऩयाधफाट_ऩीडडतको_सॊयऺण_सम्फन्धभा_व्मवस्था_गनन_फनेको_ववधेमक_प्रस्तावना्_नेऩारक_116,1,True,NLI Score 0.758
+11,parliament_bill_act_सम्वत्_२०७६_सालको_ऐन_नं_3_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_159,2,False,Accepted
+11,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१०_आर्थिक_कार्िववर्ि_तथा_ववत्तीर्_उत्तरदावर्त्व_सम्बन्िमा_व्र्वस्था_गनि_बनेको_187,1,True,NLI Score 0.211
+11,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1231,1,True,NLI Score 0.743
+11,supreme_court_verdict_f31066bd33efa27ce6db72727a8492a8_pdf_0abb04_22,2,False,Accepted
+11,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_385,2,True,NLI Score 0.596
+11,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_1077,1,False,Accepted
+11,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_465,1,False,Accepted
+11,parliament_bill_act_संवत्_२०७७_सालको_ऐन_नं_gful_s_nufgl_sf_if_p_g_nfo_zf_wg_ug_ag_sf_ljw_os_k_tfjgfm_gful_s_nufgl_6,1,True,NLI Score 0.006
+11,parliament_bill_act_विधेयकमा_प्राप्_त_ंशोधध_ंूच_ाकध_एकीकृत_वििरण_प्रततत_तध_ंभा_त_यमािली_२०83_कध_त_यम_११४_ंँग_ंम्बन्धधत_व_95,1,True,NLI Score 0.347
+11,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७9_को_तनयम_११4_सँग_सम्बन्धधत_विधेयकको_न_109,2,False,Accepted
+11,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_बेपत्ता_पारिएका_व्यक्तिको_छानबबन_सत्य_बनरुपण_तथा_मेलबमलाप_आयोग_ऐन_२०७१_लाई_सं_73,1,False,Accepted
+11,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७9_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_3_25,2,False,Accepted
+11,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_93,1,True,NLI Score 0.439
+11,income_tax_act_2058_24,2,False,Accepted
+11,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1714,2,True,NLI Score 0.694
+11,parliament_bill_act_संवत्_२०83_सालको_ऐन_नं_साववजननक_खरिद_ऐन_२०६३_लाई_संशोधन_गनव_बनेको_ववधेयक_प्रस्तावनााः_साववजननक_खरिद_99,1,False,Accepted
+11,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_26,1,True,NLI Score 0.427
+11,parliament_bill_act_विधेयकमा_संशोधनको_वििरण_प्रतितनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधि_विधेयकको_नामः_तनमााणमु_183,1,True,NLI Score 0.306
+11,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1977,2,False,Accepted
+11,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_777,1,False,Accepted
+11,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_1137,1,True,NLI Score 0.802
+11,nepal_erc_electricity_डाउनलोड_a6875b_0,2,False,Accepted
+11,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1709,2,True,NLI Score 0.578
+11,parliament_bill_act_संवत्_२०७९_सालको_ऐन_नं_फौजदारी_कसूर_तथा_फौजदारी_कार्यववधि_सम्बन्िी_केही_ऐनलाई_संशोिन_गनय_बनेको_वविेर_18,1,False,Accepted
+11,parliament_bill_act_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्तावना_नेपाल_सरकारको_आर्र_158,1,True,NLI Score 0.531
+11,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_1700,1,False,Accepted
+11,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_सुरक्षण_मुद्रण_सम्बन्धमा_व्यवस्था_गनन_बनेको_ववधेयक_प्रस्तावना_सुरक्षण_मुद्रण_59,1,True,NLI Score 0.577
+11,parliament_bill_act_संवत्_२०८२_सालको_ऐन_नं_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्त_760,2,False,Accepted
+11,parliament_bill_act_सम्वत्_२०७६_सालको_ऐन_नं_3_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_44,1,False,Accepted
+11,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_सूचनाहरूको_एकीकृत_वििरण_प्रतततनतध_सभा_तनयमािली_२०८३_को_तनयम_११४_सँग_सम्बन्धध_222,1,True,NLI Score 0.602
+11,acts_rules_judicial_policy_acts_rules_policy_907836_126,2,False,Accepted
+11,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_68,1,True,NLI Score 0.204
+11,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७9_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_1_61,1,True,NLI Score 0.706
+12,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_139,1,False,Accepted
+12,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१९_औद्योगिक_व्यवसाय_सम्बन्धी_प्रचगलत_कानूनलाई_संशोधन_र_एकीकरण_िनन_बनेको_ववधेय_158,1,True,NLI Score 0.783
+12,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७५_को_तनयम_११३_सँग_सम्बन्धधत_विधेयकको_न_54,2,False,Accepted
+12,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_1_आर्थिक_वर्ि_२०७८_०७९_को_सेवा_र_कार्िको_लार्ि_सङ्_घीर्_सञ्_ित_कोर्बाट_केही_6,1,True,NLI Score 0.325
+12,parliament_bill_act_संवत्_२०७७_सालको_ऐन_नं_खेलकुद_ववकास_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_ववधेयक_प्रस्तावना_खे_81,2,True,NLI Score 0.422
+12,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_9_42,1,False,Accepted
+12,parliament_bill_act_संवत्_२०७९_सालको_ऐन_नं_रेल्वे_सम्बन्धमा_व्यवस्था_गनन_बनेको_ववधेयक_प्रस्तावना_नेपालमा_रेल्वेको_ववकास_121,2,True,NLI Score 0.737
+12,parliament_bill_act_सॊवत्_२०७९_सारको_ऐन_नॊ_कायागाय_सम्फन्धी_कानूनराई_सॊशोधन_य_एकीकयण_गनन_फनेको_ङ्जवधेमक_प्रस्तावना_कायाग_39,2,True,NLI Score 0.530
+12,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७९_को_तनमभ_११४_सॉग_सम्फन्धधत_विधेमकको_न_2_136,1,True,NLI Score 0.092
+12,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_80,1,True,NLI Score 0.432
+12,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७9_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_3_69,1,False,Accepted
+12,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_1001,2,False,Accepted
+12,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1861,1,True,NLI Score 0.414
+12,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_422,1,True,NLI Score 0.002
+12,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_868,1,True,NLI Score 0.839
+12,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_1043,3,True,NLI Score 0.138
+12,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_15_ħƴाचार_ǔनवारण_ऐन_२०५९_लाइ_संशोधन_गन_बनेको_ǒवधेयक_ĥèतावना_ħƴाचार_ǔनवारण_ऐन_44,1,True,NLI Score 0.046
+12,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_सूचनाहरू_प्रतितनतध_सभा_तनयमािली_२०८३_को_तनयम_११४_सँग_सम्बन्धधि_विधेयकको_नामः_8,2,False,Accepted
+12,parliament_bill_act_सम्वत्_२०७७_सालको_ऐन_नं_6_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_59,1,True,NLI Score 0.840
+12,parliament_bill_act_सम्वत्_२०७६_सालको_ऐन_नं_3_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_310,1,True,NLI Score 0.001
+12,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_505,1,False,Accepted
+12,parliament_bill_act_सॊवत्_२०७५_सारको_ऐन_नॊ_फारफाङ्झरका_सम्फन्धी_कानूनराई_सॊशोधन_य_एकीकयण_गनन_फनेको_ङ्जवधेमक_प्रस्तावना_फ_12,1,False,Accepted
+12,parliament_bill_act_सम्वत्_२०७७_सालको_ऐन_नं_6_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_747,1,True,NLI Score 0.221
+12,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_12_25,2,True,NLI Score 0.829
+12,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_567,1,True,NLI Score 0.107
+12,parliament_bill_act_संवत्_२०७९_सालको_ऐन_नं_खानेपानी_तथा_सरसफाइ_सम्बन्धमा_व्यवस्था_गनन_बनेको_ववधेयक_प्रस्तावना_स्वच्छ_तथा_10,1,False,Accepted
+12,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_547,2,False,Accepted
+12,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_409,1,True,NLI Score 0.336
+12,parliament_bill_act_संवत्_२०८२_सालको_ऐन_नं_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्त_136,1,False,Accepted
+12,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_9_43,1,False,Accepted
+12,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७९_को_तनमभ_११४_सॉग_सम्फन्धधत_विधेमकको_न_2_592,2,False,Accepted
+12,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_246,1,True,NLI Score 0.559
+12,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1058,1,True,NLI Score 0.762
+12,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_148,1,True,NLI Score 0.315
+12,parliament_bill_act_नेऩार_सयकायको_अथथ_सम्फन्धी_प्रस्तावराई_कामाथन्वमन_गनथ_फनेको_ङ्जवधेमक_प्रस्तावना_नेऩार_सयकायको_आङ्झथथ_1135,1,True,NLI Score 0.646
+12,parliament_bill_act_ङ्जिधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रङ्झतङ्झनङ्झध_सबाङ्झनमभािरी_२०७९_को_ङ्झनमभ_११४_सॉग_सम्फन्धीत_265,1,True,NLI Score 0.506
+12,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_814,2,True,NLI Score 0.589
+12,parliament_bill_act_विधेयकमा_संशोधनको_वििरण_प्रतितनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधि_विधेयकको_नामः_तनमााणमु_65,2,False,Accepted
+12,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७५_को_तनमभ_११३_सॉग_सम्फन्धधत_विधेमकको_न_1,20,True,NLI Score 0.364
+12,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_1231,1,False,Accepted
+12,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_15_98,1,True,NLI Score 0.431
+12,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_933,2,False,Accepted
+12,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_4_1,2,False,Accepted
+12,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_283,1,False,Accepted
+12,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_1104,2,False,Accepted
+12,parliament_bill_act_संवत्_२०८२_सालको_ऐन_नं_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्त_274,1,True,NLI Score 0.737
+12,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1066,1,False,Accepted
+12,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1333,1,True,NLI Score 0.763
+12,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1758,1,True,NLI Score 0.728
+12,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१९_औद्योगिक_व्यवसाय_सम्बन्धी_प्रचगलत_कानूनलाई_संशोधन_र_एकीकरण_िनन_बनेको_ववधेय_103,1,True,NLI Score 0.835
+13,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_1275,2,False,Accepted
+13,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७९_को_तनमभ_११४_सॉग_सम्फन्धधत_विधेमकको_न_2_186,1,False,Accepted
+13,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७९_को_तनमभ_११४_सॉग_सम्फन्धधत_विधेमकको_न_2_351,2,True,NLI Score 0.678
+13,parliament_bill_act_सार्वजनिक_ऋण_व्यर्स्थापि_सम्बन्धी_कािूिलाई_संशोधि_र_एकीकरण_गिव_बिेको_वर्धेयक_प्रस्तार्िा_देशको_द्रुत_50,1,False,Accepted
+13,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1025,2,False,Accepted
+13,nrb_monetary_banking_directive_nrb_banking_circular_directive_nrb_circu_11,1,True,NLI Score 0.220
+13,sebon_capital_market_directive_sebon_directive_nepali_bf699f_14,3,True,NLI Score 0.246
+13,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_29,1,False,Accepted
+13,sebon_capital_market_directive_sebon_directive_5e5de3_37,1,True,NLI Score 0.243
+13,parliament_bill_act_विधेयकमा_प्राप्_त_ंशोधध_ंूच_ाकध_एकीकृत_वििरण_प्रततत_तध_ंभा_त_यमािली_२०83_कध_त_यम_११४_ंँग_ंम्बन्धधत_व_58,0,True,Duplicate QA Pair
+13,sebon_capital_market_directive_sebon_directive_nepali_340bed_1,1,True,NLI Score 0.717
+13,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_108,1,True,NLI Score 0.831
+13,sebon_capital_market_directive_sebon_directive_nepali_340bed_29,1,False,Accepted
+13,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_150,1,True,NLI Score 0.647
+13,parliament_bill_act_संवत्_२०७७_सालको_ऐन_नं_खेलकुद_ववकास_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_ववधेयक_प्रस्तावना_खे_86,2,False,Accepted
+13,nepal_erc_electricity_डाउनलोड_29798f_7,1,True,NLI Score 0.289
+13,nrb_monetary_banking_directive_nrb_banking_circular_directive_nrb_circu_1,1,True,NLI Score 0.158
+13,nrb_monetary_banking_directive_nepal_monetary_policy_highlights_and_gov_6,1,True,NLI Score 0.658
+13,sebon_capital_market_directive_sebon_directive_english_69a744_0,1,True,NLI Score 0.421
+13,sebon_capital_market_directive_sebon_directive_nepali_ef8ff2_8,1,True,NLI Score 0.240
+13,sebon_capital_market_directive_sebon_directive_5e5de3_3,1,False,Accepted
+13,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_38,1,True,NLI Score 0.666
+13,nepal_erc_electricity_डाउनलोड_3,1,True,NLI Score 0.229
+13,nepal_erc_electricity_डाउनलोड_3ecaac_31,1,True,NLI Score 0.065
+13,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_45,1,False,Accepted
+13,nepal_erc_electricity_डाउनलोड_11,1,True,NLI Score 0.059
+13,sebon_capital_market_directive_sebon_directive_nepali_340bed_25,1,True,NLI Score 0.760
+13,sebon_capital_market_directive_sebon_directive_5e5de3_25,2,True,NLI Score 0.324
+13,nepal_erc_electricity_डाउनलोड_f2a78a_52,1,True,NLI Score 0.638
+13,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_6_16,2,False,Accepted
+13,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_25,1,False,Accepted
+13,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_122,1,False,Accepted
+13,nepal_erc_electricity_डाउनलोड_f2a78a_26,1,False,Accepted
+13,sebon_capital_market_directive_sebon_directive_nepali_bf699f_7,1,False,Accepted
+13,supreme_court_verdict_precedent_supreme_court_verdict_case_074_wo_0526_49,2,False,Accepted
+13,nrb_monetary_banking_directive_nepal_monetary_policy_highlights_and_gov_18,2,True,NLI Score 0.827
+13,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_13,1,False,Accepted
+13,nepal_erc_electricity_डाउनलोड_2,1,True,NLI Score 0.708
+13,nepal_erc_electricity_डाउनलोड_3ecaac_52,1,False,Accepted
+13,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_75,1,True,NLI Score 0.227
+13,nepal_erc_electricity_डाउनलोड_f2a78a_33,1,False,Accepted
+13,parliament_bill_act_पशु_स्वास््य_तथा_पशु_सेवा_व्यवसायी_परिषद्_सम्बन्धमा_व्यवस्था_गर्न_बर्ेको_ववधेयक_प्रस्तावर्ा_प्रचलित_48,2,False,Accepted
+13,high_court_appellate_verdict_supreme_court_verdict_case_8_wf_2_72,2,False,Accepted
+13,nepal_erc_electricity_डाउनलोड_41,1,True,NLI Score 0.047
+13,sc_verdict_cfab0e09_supreme_press_bigyapti2022118_0,2,False,Accepted
+13,sebon_capital_market_directive_sebon_directive_nepali_6e034a_2,1,True,NLI Score 0.401
+13,nepal_erc_electricity_डाउनलोड_f2a78a_17,2,True,NLI Score 0.530
+13,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_61,1,True,NLI Score 0.703
+13,nepal_erc_electricity_डाउनलोड_3ecaac_15,1,False,Accepted
+13,nepal_erc_electricity_डाउनलोड_50,2,True,NLI Score 0.092
+14,sebon_capital_market_directive_sebon_directive_nepali_bf699f_2,1,True,NLI Score 0.144
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_106,1,True,NLI Score 0.811
+14,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1746,2,False,Accepted
+14,nepal_erc_electricity_डाउनलोड_f2a78a_16,1,True,NLI Score 0.587
+14,nepal_erc_electricity_डाउनलोड_42,2,True,NLI Score 0.045
+14,sebon_capital_market_directive_sebon_directive_nepali_14724d_5,1,True,NLI Score 0.319
+14,nepal_erc_electricity_डाउनलोड_3ecaac_0,1,True,NLI Score 0.600
+14,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1420,0,True,Duplicate QA Pair
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_81,1,True,NLI Score 0.169
+14,nepal_erc_electricity_डाउनलोड_1,1,False,Accepted
+14,nepal_erc_electricity_डाउनलोड_f2a78a_20,1,True,NLI Score 0.259
+14,nepal_erc_electricity_डाउनलोड_f2a78a_36,1,False,Accepted
+14,sebon_capital_market_directive_sebon_directive_english_3ec695_0,1,True,NLI Score 0.256
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_134,1,True,NLI Score 0.721
+14,nepal_erc_electricity_डाउनलोड_38,2,True,NLI Score 0.068
+14,sebon_capital_market_directive_sebon_directive_listed_companies_annual_2,1,True,NLI Score 0.087
+14,sebon_capital_market_directive_sebon_capital_market_directive_sebon_fin_2,2,True,NLI Score 0.589
+14,sebon_capital_market_directive_sebon_directive_nepali_340bed_6,1,False,Accepted
+14,nepal_erc_electricity_डाउनलोड_f2a78a_37,1,True,NLI Score 0.753
+14,sebon_capital_market_directive_sebon_directive_5e5de3_13,2,True,NLI Score 0.526
+14,sebon_capital_market_directive_sebon_directive_nepali_6e034a_1,1,False,Accepted
+14,nrb_monetary_banking_directive_nepal_monetary_policy_highlights_and_gov_8,1,True,NLI Score 0.816
+14,sebon_capital_market_directive_sebon_directive_nepali_bf699f_25,2,True,NLI Score 0.296
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_102,6,True,NLI Score 0.074
+14,sebon_capital_market_directive_sebon_directive_nepali_b76e10_6,1,True,NLI Score 0.813
+14,nepal_erc_electricity_डाउनलोड_29798f_21,2,True,NLI Score 0.041
+14,nepal_erc_electricity_डाउनलोड_3ecaac_49,1,True,NLI Score 0.838
+14,nepal_erc_electricity_डाउनलोड_52,1,True,NLI Score 0.431
+14,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_११_राहदानी_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_ववधेयक_प्रस्तावना_ववदे_15,2,False,Accepted
+14,nrb_monetary_banking_directive_nepal_monetary_policy_highlights_and_gov_15,1,False,Accepted
+14,nepal_erc_electricity_डाउनलोड_f2a78a_9,1,True,NLI Score 0.176
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_44,1,True,NLI Score 0.677
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_33,1,True,NLI Score 0.765
+14,sebon_capital_market_directive_sebon_directive_5e5de3_19,2,True,NLI Score 0.227
+14,sebon_capital_market_directive_sebon_directive_nepali_ef8ff2_4,1,False,Accepted
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_47,1,True,NLI Score 0.685
+14,nepal_erc_electricity_डाउनलोड_3ecaac_18,1,False,Accepted
+14,nepal_erc_electricity_डाउनलोड_20,2,True,NLI Score 0.086
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_135,1,False,Accepted
+14,nepal_erc_electricity_डाउनलोड_26,1,True,NLI Score 0.495
+14,nepal_erc_electricity_डाउनलोड_f2a78a_35,1,True,NLI Score 0.479
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_116,1,True,NLI Score 0.812
+14,sebon_capital_market_directive_sebon_directive_nepali_ef8ff2_2,2,True,NLI Score 0.165
+14,nrb_monetary_banking_directive_nrb_banking_circular_directive_nrb_circu_2,1,False,Accepted
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_51,1,True,NLI Score 0.548
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_67,1,False,Accepted
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_141,1,True,NLI Score 0.211
+14,nepal_erc_electricity_डाउनलोड_29798f_9,1,True,NLI Score 0.245
+14,nrb_monetary_banking_directive_nrb_banking_circular_directive_nrb_circu_10,1,False,Accepted
+14,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_42,1,True,NLI Score 0.001
+15,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७९_को_तनमभ_११४_सॉग_सम्फन्धधत_विधेमकको_न_5_75,0,True,Duplicate QA Pair
+15,sebon_capital_market_directive_sebon_directive_5e5de3_21,3,True,NLI Score 0.222
+15,nepal_erc_electricity_डाउनलोड_3ecaac_43,2,True,NLI Score 0.220
+15,parliament_bill_act_संवत्_२०८२_सालको_ऐन_नं_केही_नेपाल_ऐनलाई_संशोधन_गनन_बनेको_ववधेयक_प्रस्तावनााः_प्रचललत_नेपाल_ऐनमा_समसा_85,2,False,Accepted
+15,nepal_erc_electricity_डाउनलोड_3ecaac_46,1,True,NLI Score 0.831
+15,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_93,2,True,NLI Score 0.419
+15,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_56,6,True,NLI Score 0.399
+15,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_22,1,True,NLI Score 0.517
+15,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_11,1,False,Accepted
+15,nepal_erc_electricity_डाउनलोड_f2a78a_46,1,True,NLI Score 0.680
+15,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_73,4,True,NLI Score 0.575
+15,parliament_bill_act_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्तावना_नेपाल_सरकारको_आर्र_282,2,False,Accepted
+15,sebon_capital_market_directive_sebon_directive_nepali_b76e10_1,1,False,Accepted
+15,sebon_capital_market_directive_sebon_directive_5e5de3_23,2,True,NLI Score 0.451
+15,sebon_capital_market_directive_sebon_directive_nepali_bf699f_24,1,True,NLI Score 0.800
+15,sebon_capital_market_directive_sebon_directive_english_3ec695_1,1,True,NLI Score 0.345
+15,nepal_erc_electricity_डाउनलोड_a6875b_0,1,True,NLI Score 0.140
+15,parliament_bill_act_विधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रतततनतध_सबा_तनमभािरी_२०७९_को_तनमभ_११४_सॉग_सम्फन्धधत_विधेमकको_न_44,2,False,Accepted
+15,nrb_monetary_banking_directive_nepal_monetary_policy_highlights_and_gov_0,1,True,NLI Score 0.401
+15,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_3,1,True,NLI Score 0.622
+15,nepal_erc_electricity_डाउनलोड_3ecaac_19,4,True,NLI Score 0.423
+15,law_commission_act_rule_www_lawcomission_gov_np_कानूनी_सूक्तिहरू_ल्याटिन_अंग्रेजी_तथा_नेपाली_legal_maxims_877,2,False,Accepted
+15,nepal_erc_electricity_डाउनलोड_3ecaac_5,1,True,NLI Score 0.692
+15,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_98,1,True,NLI Score 0.834
+15,index_111,2,False,Accepted
+15,sebon_capital_market_directive_sebon_directive_nepali_340bed_16,1,True,NLI Score 0.720
+15,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_226,0,True,Duplicate QA Pair
+15,nrb_monetary_banking_directive_nepal_monetary_policy_highlights_and_gov_10,1,False,Accepted
+15,nepal_erc_electricity_डाउनलोड_3ecaac_36,1,True,NLI Score 0.550
+15,parliament_bill_act_सम्वत्_२०७७_सालको_ऐन_नं_6_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_447,2,False,Accepted
+15,sebon_capital_market_directive_sebon_directive_english_69a744_1,2,True,NLI Score 0.681
+15,sebon_capital_market_directive_sebon_directive_nepali_ed51d3_6,2,False,Accepted
+15,sebon_capital_market_directive_sebon_directive_nepali_ed51d3_0,1,False,Accepted
+15,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_40,1,False,Accepted
+15,parliament_bill_act_ङ्जिधेमकभा_प्राप्त_सॊशोधन_प्रस्तािहरु_प्रङ्झतङ्झनङ्झध_सबाङ्झनमभािरी_२०७९_को_ङ्झनमभ_११४_सॉग_सम्फन्धीत_31,2,False,Accepted
+15,sebon_capital_market_directive_sebon_directive_nepali_340bed_12,1,False,Accepted
+15,nepal_erc_electricity_डाउनलोड_3ecaac_13,1,True,NLI Score 0.620
+15,sebon_capital_market_directive_sebon_directive_5e5de3_9,1,True,NLI Score 0.002
+15,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_153,0,True,Duplicate QA Pair
+15,sebon_capital_market_directive_sebon_directive_3d1f7d_0,1,True,NLI Score 0.812
+15,nepal_erc_electricity_डाउनलोड_f2a78a_41,1,True,NLI Score 0.699
+15,sebon_capital_market_directive_sebon_directive_nepali_340bed_35,1,True,NLI Score 0.079
+15,nepal_erc_electricity_डाउनलोड_3ecaac_27,1,True,NLI Score 0.682
+15,nepal_erc_electricity_डाउनलोड_43,3,True,NLI Score 0.108
+15,nepal_erc_electricity_डाउनलोड_f2a78a_8,2,False,Accepted
+15,sebon_capital_market_directive_sebon_directive_nepali_14724d_4,1,False,Accepted
+15,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_107,1,True,NLI Score 0.688
+15,parliament_bill_act_संवत्_२०८३_सालको_ऐन_नं_नेपाल_सरकारको_अर्थसम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्ता_517,2,False,Accepted
+15,sebon_capital_market_directive_sebon_directive_nepali_bf699f_18,1,False,Accepted
+15,nepal_erc_electricity_डाउनलोड_29798f_6,1,True,NLI Score 0.401
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_26,1,True,NLI Score 0.243
+16,nepal_erc_electricity_डाउनलोड_40,1,True,NLI Score 0.370
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_110,1,True,NLI Score 0.284
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_7,1,True,NLI Score 0.040
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_8,1,False,Accepted
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_97,1,False,Accepted
+16,acts_rules_judicial_policy_acts_rules_policy_907836_33,2,False,Accepted
+16,nrb_monetary_banking_directive_nrb_banking_circular_directive_nrb_circu_8,1,True,NLI Score 0.538
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_55,2,True,NLI Score 0.002
+16,sebon_capital_market_directive_sebon_directive_5e5de3_31,1,True,NLI Score 0.789
+16,nepal_erc_electricity_डाउनलोड_29798f_10,1,True,NLI Score 0.387
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_76,2,True,NLI Score 0.475
+16,sebon_capital_market_directive_sebon_directive_nepali_14724d_6,1,True,NLI Score 0.229
+16,nrb_monetary_banking_directive_nrb_banking_circular_directive_nrb_circu_9,1,True,NLI Score 0.846
+16,nepal_erc_electricity_डाउनलोड_29798f_14,1,True,NLI Score 0.118
+16,sebon_capital_market_directive_sebon_directive_nepali_340bed_34,2,True,NLI Score 0.293
+16,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_605,2,False,Accepted
+16,nepal_erc_electricity_डाउनलोड_3ecaac_39,1,True,NLI Score 0.075
+16,sebon_capital_market_directive_sebon_directive_5e5de3_33,3,True,NLI Score 0.301
+16,nrb_monetary_banking_directive_nrb_banking_circular_directive_nrb_circu_7,2,True,NLI Score 0.772
+16,sebon_capital_market_directive_sebon_directive_5e5de3_7,2,True,NLI Score 0.119
+16,nepal_erc_electricity_डाउनलोड_3ecaac_50,1,False,Accepted
+16,law_commission_act_rule_www_lawcomission_gov_np_कानूनी_सूक्तिहरू_ल्याटिन_अंग्रेजी_तथा_नेपाली_legal_maxims_1198,2,False,Accepted
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_113,2,True,NLI Score 0.288
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_92,4,True,NLI Score 0.206
+16,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_901,2,False,Accepted
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_4,2,True,NLI Score 0.231
+16,sebon_capital_market_directive_sebon_directive_nepali_bf699f_23,1,True,NLI Score 0.691
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_27,2,True,NLI Score 0.029
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_144,1,False,Accepted
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_36,1,True,NLI Score 0.643
+16,nepal_erc_electricity_डाउनलोड_f2a78a_5,1,False,Accepted
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_30,1,False,Accepted
+16,nepal_erc_electricity_डाउनलोड_3ecaac_10,1,False,Accepted
+16,nepal_erc_electricity_डाउनलोड_45,1,True,NLI Score 0.750
+16,parliament_bill_act_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्तावना_नेपाल_सरकारको_आर्र_107,2,False,Accepted
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_130,1,True,NLI Score 0.809
+16,nepal_erc_electricity_डाउनलोड_29798f_2,1,False,Accepted
+16,nepal_erc_electricity_डाउनलोड_6,1,True,NLI Score 0.639
+16,nepal_erc_electricity_डाउनलोड_f2a78a_28,1,True,NLI Score 0.516
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_2,1,True,NLI Score 0.157
+16,sebon_capital_market_directive_sebon_directive_5e5de3_18,1,True,NLI Score 0.211
+16,nepal_erc_electricity_डाउनलोड_3ecaac_53,1,True,NLI Score 0.160
+16,nepal_erc_electricity_डाउनलोड_f2a78a_2,1,True,NLI Score 0.399
+16,sebon_capital_market_directive_sebon_directive_nepali_bf699f_11,1,False,Accepted
+16,nepal_erc_electricity_डाउनलोड_46,2,True,NLI Score 0.046
+16,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_16,1,True,NLI Score 0.483
+16,parliament_bill_act_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्रस्तावना_नेपाल_सरकारको_आर्र_695,2,False,Accepted
+16,nepal_erc_electricity_डाउनलोड_24,1,True,NLI Score 0.726
+16,sebon_capital_market_directive_sebon_directive_5e5de3_4,1,False,Accepted
+17,sebon_capital_market_directive_sebon_directive_nepali_b76e10_3,1,True,NLI Score 0.684
+17,parliament_bill_act_सम्वत्_२०७६_सालको_ऐन_नं_3_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_274,2,False,Accepted
+17,nrb_monetary_banking_directive_nrb_directive_fifl_fifth_amendment_2025_68,1,True,NLI Score 0.811
+17,sebon_capital_market_directive_sebon_directive_nepali_340bed_22,1,False,Accepted
+17,notice_june_17_2026_130,1,True,NLI Score 0.135
+17,notice_june_17_2026_69,1,True,NLI Score 0.571
+17,notice_june_17_2026_31,1,True,NLI Score 0.331
+17,nrb_bank_supervision_016_march_3_2026_2,1,True,NLI Score 0.451
+17,notice_june_17_2026_5,1,False,Accepted
+17,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_2699,2,False,Accepted
+17,nrb_bank_supervision_013_march_17_2026_1,1,True,NLI Score 0.382
+17,notice_june_17_2026_70,1,True,NLI Score 0.075
+17,nrb_bank_supervision_001_july_10_2026_2,2,True,NLI Score 0.462
+17,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1879,2,False,Accepted
+17,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_सुशासन_प्रवर्धन_तथा_सावधजननक_सेवा_प्रवाह_सम्बन्र्ी_केही_नेपाल_ऐनलाई_संशोर्न_ग_42,2,False,Accepted
+17,nrb_bank_supervision_008_june_10_2026_0,1,True,NLI Score 0.450
+17,notice_june_17_2026_104,4,True,NLI Score 0.393
+17,notice_june_17_2026_110,1,True,NLI Score 0.097
+17,notice_june_17_2026_39,1,True,NLI Score 0.564
+17,notice_june_17_2026_88,2,True,NLI Score 0.783
+17,sc_verdict_79f802a4_cdf0ef05eb43842006ccc3f8e655f692_9,2,False,Accepted
+17,notice_june_17_2026_0,1,True,NLI Score 0.728
+17,circular_march_17_2026_17,3,True,NLI Score 0.081
+17,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1518,0,True,Duplicate QA Pair
+17,notice_june_17_2026_55,1,True,NLI Score 0.671
+17,nrb_bank_supervision_010_june_10_2026_2,1,True,NLI Score 0.066
+17,notice_june_17_2026_68,1,True,NLI Score 0.071
+17,notice_june_17_2026_51,1,False,Accepted
+17,notice_june_17_2026_94,1,True,NLI Score 0.348
+17,nrb_bank_supervision_001_july_10_2026_3,1,True,NLI Score 0.118
+17,circular_march_17_2026_4,1,True,NLI Score 0.045
+17,nrb_bank_supervision_013_march_17_2026_8,2,False,Accepted
+17,notice_june_17_2026_123,1,True,NLI Score 0.819
+17,parliament_bill_act_संवत्_२०७५_सालको_ऐन_नं_मुलुकी_संहिता_सम्बन्धी_केिी_नेपाल_ऐनलाई_संशोधन_गनन_बनेको_हवधेयक_प्रस्तावना_मु_10,2,False,Accepted
+17,circular_march_17_2026_7,1,True,NLI Score 0.697
+17,notice_june_17_2026_114,1,True,NLI Score 0.672
+17,notice_june_17_2026_67,2,True,NLI Score 0.444
+17,notice_june_17_2026_95,2,True,NLI Score 0.365
+17,notice_june_17_2026_111,1,True,NLI Score 0.447
+17,notice_june_17_2026_34,1,True,NLI Score 0.162
+17,supreme_court_verdict_246bf11177938960a050be0e0dbd6381_pdf_dc9ec2_34,2,False,Accepted
+17,notice_june_17_2026_63,2,True,NLI Score 0.638
+17,notice_june_17_2026_127,1,True,NLI Score 0.251
+17,notice_june_17_2026_138,1,True,NLI Score 0.569
+17,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_1297,2,False,Accepted
+17,nrb_bank_supervision_003_june_24_2026_10,1,True,NLI Score 0.039
+17,notice_june_17_2026_134,1,True,NLI Score 0.136
+17,nrb_bank_supervision_016_march_3_2026_0,1,False,Accepted
+17,circular_june_18_2026_8,1,True,NLI Score 0.279
+17,notice_june_17_2026_103,1,False,Accepted
+18,nrb_bank_supervision_013_march_17_2026_33,0,True,Generation Failed/Empty
+18,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_459,2,False,Accepted
+18,nrb_bank_supervision_003_june_24_2026_2,1,True,NLI Score 0.517
+18,circular_march_17_2026_29,1,True,NLI Score 0.424
+18,notice_june_17_2026_142,1,True,NLI Score 0.226
+18,notice_june_17_2026_21,1,True,NLI Score 0.573
+18,notice_june_17_2026_86,2,True,NLI Score 0.502
+18,circular_march_17_2026_10,1,True,NLI Score 0.058
+18,nrb_bank_supervision_013_march_17_2026_20,1,True,NLI Score 0.335
+18,nrb_bank_supervision_013_march_17_2026_10,1,True,NLI Score 0.058
+18,nrb_bank_supervision_015_march_13_2026_0,1,True,NLI Score 0.727
+18,parliament_bill_act_संवत्_२०८१_सालको_ऐन_नं_बेपत्ता_पारिएका_व्यक्तिको_छानबबन_सत्य_बनरुपण_तथा_मेलबमलाप_आयोग_ऐन_२०७१_लाई_सं_53,2,False,Accepted
+18,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1470,0,True,Duplicate QA Pair
+18,notice_june_17_2026_101,1,True,NLI Score 0.485
+18,notice_june_17_2026_64,1,True,NLI Score 0.352
+18,circular_march_17_2026_5,1,True,NLI Score 0.705
+18,notice_june_17_2026_13,1,True,NLI Score 0.774
+18,notice_june_17_2026_1,1,True,NLI Score 0.717
+18,nrb_bank_supervision_017_march_1_2026_2,1,False,Accepted
+18,notice_june_17_2026_12,1,True,NLI Score 0.633
+18,nrb_bank_supervision_013_march_17_2026_19,1,True,NLI Score 0.801
+18,notice_june_17_2026_105,1,True,NLI Score 0.641
+18,circular_march_17_2026_37,1,True,NLI Score 0.295
+18,nrb_bank_supervision_015_march_13_2026_1,1,True,NLI Score 0.583
+18,notice_june_17_2026_91,1,True,NLI Score 0.400
+18,notice_june_17_2026_106,2,True,NLI Score 0.379
+18,notice_june_17_2026_49,1,True,NLI Score 0.807
+18,notice_june_17_2026_79,2,True,NLI Score 0.651
+18,notice_june_17_2026_97,1,True,NLI Score 0.491
+18,notice_june_17_2026_54,2,True,NLI Score 0.221
+18,nrb_bank_supervision_013_march_17_2026_36,6,True,NLI Score 0.215
+18,notice_june_17_2026_85,3,True,NLI Score 0.011
+18,notice_june_17_2026_102,1,True,NLI Score 0.044
+18,notice_june_17_2026_60,5,True,NLI Score 0.127
+18,nrb_bank_supervision_010_june_10_2026_0,1,True,NLI Score 0.346
+18,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1902,2,False,Accepted
+18,notice_june_17_2026_57,1,True,NLI Score 0.386
+18,notice_june_17_2026_116,1,True,NLI Score 0.313
+18,notice_june_17_2026_89,3,True,NLI Score 0.200
+18,notice_june_17_2026_148,1,True,NLI Score 0.080
+18,notice_june_17_2026_44,1,True,NLI Score 0.089
+18,notice_june_17_2026_74,1,True,NLI Score 0.491
+18,notice_june_17_2026_16,1,True,NLI Score 0.785
+18,nrb_bank_supervision_013_march_17_2026_13,1,True,NLI Score 0.630
+18,circular_march_17_2026_33,1,False,Accepted
+18,notice_june_17_2026_6,1,False,Accepted
+18,notice_june_17_2026_87,1,True,NLI Score 0.652
+18,notice_june_17_2026_93,1,True,NLI Score 0.491
+18,circular_june_18_2026_5,1,True,NLI Score 0.830
+18,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_853,2,False,Accepted
+19,notice_june_17_2026_132,0,True,Generation Failed/Empty
+19,nrb_bank_supervision_016_march_3_2026_3,1,False,Accepted
+19,nrb_bank_supervision_013_march_17_2026_30,1,False,Accepted
+19,parliament_bill_act_विधेयकमा_संशोधनको_विवरणरण_प्रतिनिधि_सभा_नियमावलीली_२०७९_को_नियमयम_११४_सँग_सम्बन्धित_विधेयकको_नामः_वि_1554,2,False,Accepted
+19,notice_june_17_2026_141,1,True,NLI Score 0.434
+19,notice_june_17_2026_115,3,True,NLI Score 0.049
+19,parliament_bill_act_भन्सार_महसुल_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_विधेयक_प्रस्तािना_नेपालबाट_ननकासी_हुने_र_ने_491,2,False,Accepted
+19,notice_june_17_2026_107,1,False,Accepted
+19,notice_june_17_2026_53,1,True,NLI Score 0.780
+19,nrb_bank_supervision_013_march_17_2026_14,1,True,NLI Score 0.362
+19,nrb_bank_supervision_003_june_24_2026_9,1,True,NLI Score 0.287
+19,parliament_bill_act_सम्वत्_२०७७_सालको_ऐन_नं_6_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_549,0,True,Duplicate QA Pair
+19,nrb_bank_supervision_013_march_17_2026_7,1,True,NLI Score 0.681
+19,notice_june_17_2026_100,1,False,Accepted
+19,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_12_51,0,True,Duplicate QA Pair
+19,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७9_को_तनयम_११4_सँग_सम्बन्धधत_विधेयकको_न_2_128,2,False,Accepted
+19,circular_june_18_2026_6,1,True,NLI Score 0.115
+19,notice_june_17_2026_50,1,True,NLI Score 0.249
+19,nrb_bank_supervision_003_june_24_2026_11,1,False,Accepted
+19,parliament_bill_act_विधेयकमा_प्राप्_त_ंशोधध_ंूच_ाकध_एकीकृत_वििरण_प्रततत_तध_ंभा_त_यमािली_२०83_कध_त_यम_११४_ंँग_ंम्बन्धधत_व_135,2,False,Accepted
+19,notice_june_17_2026_149,1,True,NLI Score 0.255
+19,nrb_bank_supervision_003_june_24_2026_4,3,True,NLI Score 0.510
+19,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_1664,2,False,Accepted
+19,notice_june_17_2026_143,1,True,NLI Score 0.297
+19,notice_june_17_2026_30,1,True,NLI Score 0.312
+19,circular_march_17_2026_18,1,True,NLI Score 0.711
+19,notice_june_17_2026_73,1,True,NLI Score 0.806
+19,nrb_bank_supervision_013_march_17_2026_4,3,True,NLI Score 0.310
+19,notice_june_17_2026_119,1,True,NLI Score 0.807
+19,nrb_bank_supervision_003_june_24_2026_3,1,True,NLI Score 0.420
+19,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_सूचनाहरूको_एकीकृत_वििरण_प्रतततनतध_सभा_तनयमािली_२०८३_को_तनयम_११४_सँग_सम्बन्धध_152,0,True,Duplicate QA Pair
+19,notice_june_17_2026_66,2,True,NLI Score 0.435
+19,notice_june_17_2026_145,1,True,NLI Score 0.203
+19,parliament_bill_act_विधेयक_संखययाः_नेपयल_सरकयरको_अर्थ_सम्बन्धी_प्रस्तयिलयई_कयययथन्ियन_गनथ_बनेको_विधेयक_2079_12,0,True,Duplicate QA Pair
+19,notice_june_17_2026_28,1,True,NLI Score 0.622
+19,notice_june_17_2026_11,2,True,NLI Score 0.447
+19,nrb_bank_supervision_001_july_10_2026_0,1,True,NLI Score 0.542
+19,notice_june_17_2026_33,2,True,NLI Score 0.348
+19,notice_june_17_2026_98,1,True,NLI Score 0.084
+19,notice_june_17_2026_15,1,True,NLI Score 0.622
+19,notice_june_17_2026_25,1,True,NLI Score 0.488
+19,parliament_bill_act_सम्वत्_२०७५_सालको_ऐन_नं_९_सुरक्षित_मातृत्व_तथा_प्रजनन_स्वास््यको_अधिकार_सम्बन्िमा_व्यवस्था_गनन_बनेको_52,2,False,Accepted
+19,notice_june_17_2026_42,1,True,NLI Score 0.219
+19,circular_march_17_2026_16,3,True,NLI Score 0.467
+19,nrb_bank_supervision_013_march_17_2026_9,0,True,Duplicate QA Pair
+19,circular_march_17_2026_14,1,True,NLI Score 0.362
+19,notice_june_17_2026_144,1,True,NLI Score 0.325
+19,notice_june_17_2026_81,1,True,NLI Score 0.121
+19,parliament_bill_act_संवत्_२०83_सालको_ऐन_नं_स्वास््य_ववज्ञान_प्रततष्ठान_सम्बन्धी_केही_नेपाल_ऐनलाई_संशोधन_गनन_बनेको_ववधेयक_37,0,True,Duplicate QA Pair
+19,circular_june_18_2026_4,1,True,NLI Score 0.848
+20,notice_june_17_2026_18,1,True,NLI Score 0.193
+20,nrb_bank_supervision_003_june_24_2026_5,1,True,NLI Score 0.488
+20,nrb_bank_supervision_017_march_1_2026_0,1,True,NLI Score 0.391
+20,notice_june_17_2026_61,1,True,NLI Score 0.298
+20,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधत_विधेयकको_न_14_683,2,False,Accepted
+20,notice_june_17_2026_2,1,True,NLI Score 0.827
+20,notice_june_17_2026_27,2,True,NLI Score 0.511
+20,circular_march_13_2026_1,1,True,NLI Score 0.832
+20,circular_june_18_2026_7,1,True,NLI Score 0.775
+20,parliament_bill_act_विधेयकमा_प्राप्त_संशोधन_प्रस्तािहरु_प्रतततनतध_सभा_तनयमािली_२०७9_को_तनयम_११4_सँग_सम्बन्धधत_विधेयकको_न_41,2,False,Accepted
+20,circular_may_22_2026_3,1,True,NLI Score 0.004
+20,notice_june_17_2026_48,1,False,Accepted
+20,parliament_bill_act_सम्वत्_२०७८_सालको_ऐन_नं_2_नेपाल_सरकारको_अर्थ_सम्बन्धी_प्रस्तावलाई_कार्ाथन्वर्न_गनथ_बनेको_ववधेर्क_प्र_214,0,True,Duplicate QA Pair
+20,circular_june_24_2026_0,1,True,NLI Score 0.589
+20,notice_june_17_2026_19,2,True,NLI Score 0.425
+20,parliament_bill_act_संवत्_२०७९_सालको_ऐन_नं_प्रत्यायन_सम्बन्धमा_व्यवस्था_गनन_बनेको_ववधेयक_प्रस्तावना_समरूपता_परीक्षण_गने_36,2,False,Accepted
+20,circular_march_17_2026_15,1,True,NLI Score 0.618
+20,nrb_bank_supervision_001_july_10_2026_1,2,True,NLI Score 0.453
+20,nrb_bank_supervision_014_march_17_2026_0,2,True,NLI Score 0.139
+20,notice_june_17_2026_29,1,True,NLI Score 0.322
+20,notice_june_17_2026_153,1,True,NLI Score 0.168
+20,circular_march_17_2026_1,1,True,NLI Score 0.366
+20,circular_june_18_2026_3,1,True,NLI Score 0.463
+20,law_commission_act_rule_www_lawcomission_gov_np_कानूनी_सूक्तिहरू_ल्याटिन_अंग्रेजी_तथा_नेपाली_legal_maxims_185,0,True,Duplicate QA Pair
+20,circular_march_17_2026_2,1,True,NLI Score 0.440
+20,notice_june_17_2026_10,1,True,NLI Score 0.336
+20,notice_june_17_2026_23,1,True,NLI Score 0.618
+20,notice_june_17_2026_36,2,True,NLI Score 0.817
+20,law_commission_act_rule_www_lawcomission_gov_np_कानूनी_सूक्तिहरू_ल्याटिन_अंग्रेजी_तथा_नेपाली_legal_maxims_643,0,True,Duplicate QA Pair
+20,supreme_court_verdict_precedent_supreme_court_judgment_precedent_9783ae4_316,2,False,Accepted
+20,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१२_वन_सम्बन्धी_कानूनलाई_संशोधन_र_एकीकरण_गनन_बनेको_ववधेयक_प्रस्तावना_राविय_वनल_95,2,False,Accepted
+20,circular_march_17_2026_31,1,True,NLI Score 0.619
+20,nrb_bank_supervision_013_march_17_2026_16,1,False,Accepted
+20,parliament_bill_act_संवत्_२०७९_सालको_ऐन_नं_रेल्वे_सम्बन्धमा_व्यवस्था_गनन_बनेको_ववधेयक_प्रस्तावना_नेपालमा_रेल्वेको_ववकास_31,0,True,Duplicate QA Pair
+20,parliament_bill_act_विधेयकमा_संशोधनको_वििरण_प्रतितनतध_सभा_तनयमािली_२०७९_को_तनयम_११४_सँग_सम्बन्धधि_विधेयकको_नामः_तनमााणमु_179,2,False,Accepted
+20,nrb_bank_supervision_003_june_24_2026_0,1,False,Accepted
+20,notice_june_17_2026_22,1,True,NLI Score 0.482
+20,notice_june_17_2026_99,1,True,NLI Score 0.001
+20,notice_june_17_2026_140,1,True,NLI Score 0.313
+20,notice_june_17_2026_112,1,True,NLI Score 0.704
+20,circular_march_17_2026_0,1,True,NLI Score 0.814
+20,circular_march_13_2026_0,1,True,NLI Score 0.664
+20,nrb_bank_supervision_003_june_24_2026_1,1,True,NLI Score 0.539
+20,parliament_bill_act_संवत्_२०७६_सालको_ऐन_नं_१५_भूमि_सम्बन्धी_ऐन_२०२१_लाई_संशोधन_गनन_बनेको_ववधेयक_प्रस्तावना_भूमि_सम्बन्धी_52,2,False,Accepted
+20,circular_march_17_2026_11,3,True,NLI Score 0.538
+20,circular_march_17_2026_12,1,True,NLI Score 0.425
+20,notice_june_17_2026_128,1,True,NLI Score 0.293
+20,notice_june_17_2026_56,5,True,NLI Score 0.434
+20,circular_march_17_2026_13,1,True,NLI Score 0.630
+20,nrb_bank_supervision_013_march_17_2026_23,0,True,Duplicate QA Pair
