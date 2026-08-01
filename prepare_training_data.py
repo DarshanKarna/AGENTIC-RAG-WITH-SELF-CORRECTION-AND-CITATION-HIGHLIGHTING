@@ -147,18 +147,21 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--pilot", type=int, help="Run a small pilot with N samples")
     parser.add_argument("--resume", action="store_true", help="Resume from existing train.jsonl")
+    parser.add_argument("--target-n", type=int, default=TARGET_SAMPLES, help="Target number of chunks to sample")
     args = parser.parse_args()
 
     processed_chunks = set()
+    seen_qa = set()
     if args.resume and os.path.exists(TRAIN_OUTPUT):
         with open(TRAIN_OUTPUT, "r", encoding="utf-8") as f:
             for line in f:
                 try:
                     data = json.loads(line)
                     processed_chunks.add(f"{data['source_act']}_{data['chunk_index']}")
+                    seen_qa.add((data.get('instruction', ''), data.get('output', '')))
                 except:
                     pass
-        logger.info(f"Resuming: found {len(processed_chunks)} already processed chunks.")
+        logger.info(f"Resuming: found {len(processed_chunks)} already processed chunks and {len(seen_qa)} existing QA pairs.")
 
     logger.info("Parsing OKF Bundle...")
     all_chunks = []
@@ -169,15 +172,21 @@ def main():
         chunks = chunk_text(passages)
         for c in chunks:
             c['chunk_id'] = f"{c['metadata'].get('document_id', 'unknown')}_{c['metadata'].get('chunk_index', 0)}"
-        all_chunks.extend(chunks)
+            
+            # Exclude chunks whose source is from per_act_pdfs
+            source_pdf = c['metadata'].get('source_pdf', '')
+            if 'per_act_pdfs' in source_pdf or 'per_act_pdfs.ne' in source_pdf:
+                continue
+                
+            all_chunks.append(c)
         
-    logger.info(f"Total chunks extracted: {len(all_chunks)}")
+    logger.info(f"Total chunks extracted (after filtering excluded dirs): {len(all_chunks)}")
     
     if args.resume:
         all_chunks = [c for c in all_chunks if c['chunk_id'] not in processed_chunks]
         logger.info(f"Chunks remaining to process: {len(all_chunks)}")
 
-    sampled_chunks = perform_stratified_sampling(all_chunks, TARGET_SAMPLES)
+    sampled_chunks = perform_stratified_sampling(all_chunks, args.target_n)
     if args.pilot:
         sampled_chunks = random.sample(sampled_chunks, min(args.pilot, len(sampled_chunks)))
         logger.info(f"PILOT RUN: Selected {len(sampled_chunks)} chunks.")
@@ -201,18 +210,27 @@ def main():
         'nli_rejected_by_lang': defaultdict(int),
         'successful': 0
     }
+    
+    mode = "a" if args.resume else "w"
+    tracking_f = open("generation_report.csv", mode, encoding="utf-8")
+    if not args.resume:
+        tracking_f.write("batch,chunk_id,sentences_produced,flagged,reason\n")
 
     for i in tqdm(range(0, len(sampled_chunks), batch_size), desc="Processing Batches"):
         batch = sampled_chunks[i:i+batch_size]
+        batch_idx = (i // batch_size) + 1
         
-        logger.info(f"Generating QA pairs for batch {i//batch_size + 1}...")
+        logger.info(f"Generating QA pairs for batch {batch_idx}...")
         batch_results = []
         for chunk in tqdm(batch, desc="Qwen3 Generation", leave=False):
             dt = chunk['metadata'].get('document_type', 'unknown')
             lang = chunk['metadata'].get('language', 'unknown')
+            chunk_id = chunk.get('chunk_id', 'unknown')
+            
             q, a = generate_qa_pair(chunk['text'], dt, lang)
             if not q or not a:
                 stats['low_content_skipped'] += 1
+                tracking_f.write(f"{batch_idx},{chunk_id},0,True,Generation Failed/Empty\n")
                 continue
             
             # 15% chance to generate a refusal example
@@ -251,6 +269,18 @@ def main():
             for idx, r in enumerate(batch_results):
                 dt = r['chunk']['metadata'].get('document_type', 'unknown')
                 lang = r['chunk']['metadata'].get('language', 'unknown')
+                chunk_id = r['chunk'].get('chunk_id', 'unknown')
+                
+                # Deduplication check
+                qa_tuple = (r.get('question', ''), r.get('answer', ''))
+                if qa_tuple in seen_qa:
+                    logger.info(f"[REJECTED] Duplicate QA pair generated.")
+                    stats['nli_rejected'] += 1 # Or track in a new counter
+                    tracking_f.write(f"{batch_idx},{chunk_id},0,True,Duplicate QA Pair\n")
+                    continue
+                
+                sentences = get_sentences(r['answer'])
+                num_sentences = len(sentences)
                 
                 if r.get('example_type') == 'refusal':
                     # Lightweight quality check: Reject if refusal hallucinated concrete citations/claims
@@ -260,10 +290,10 @@ def main():
                         stats['nli_rejected'] += 1
                         stats['nli_rejected_by_type'][dt] += 1
                         stats['nli_rejected_by_lang'][lang] += 1
+                        tracking_f.write(f"{batch_idx},{chunk_id},{num_sentences},True,Refusal Hallucination\n")
                         continue
                     prob = 1.0 # Force pass for clean refusals
                 else:
-                    sentences = get_sentences(r['answer'])
                     if not sentences:
                         prob = 0.0
                     else:
@@ -281,11 +311,13 @@ def main():
                     stats['nli_rejected'] += 1
                     stats['nli_rejected_by_type'][dt] += 1
                     stats['nli_rejected_by_lang'][lang] += 1
+                    tracking_f.write(f"{batch_idx},{chunk_id},{num_sentences},True,NLI Score {prob:.3f}\n")
                     
                     if args.pilot and idx < 3: 
                         logger.info(f"[REJECTED] Score: {prob:.3f} | Q: {r['question']} | A: {r['answer']}")
                 else:
                     stats['successful'] += 1
+                    tracking_f.write(f"{batch_idx},{chunk_id},{num_sentences},False,Accepted\n")
                     record = {
                         "instruction": r["question"],
                         "input": r["chunk"]["text"],
@@ -299,9 +331,12 @@ def main():
                         "nli_score": prob if r.get('example_type') != 'refusal' else None
                     }
                     out_f.write(json.dumps(record, ensure_ascii=False) + "\n")
+                    seen_qa.add(qa_tuple)
                     
                     if args.pilot and idx < 3:
                         logger.info(f"[ACCEPTED] Score: {prob:.3f} | Q: {r['question']} | A: {r['answer']}")
+                        
+    tracking_f.close()
 
     elapsed = time.time() - start_time
     logger.info("="*50)
