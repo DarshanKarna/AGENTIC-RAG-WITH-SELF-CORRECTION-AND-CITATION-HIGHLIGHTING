@@ -173,11 +173,7 @@ def main():
         for c in chunks:
             c['chunk_id'] = f"{c['metadata'].get('document_id', 'unknown')}_{c['metadata'].get('chunk_index', 0)}"
             
-            # Exclude chunks whose source is from per_act_pdfs
-            source_pdf = c['metadata'].get('source_pdf', '')
-            if 'per_act_pdfs' in source_pdf or 'per_act_pdfs.ne' in source_pdf:
-                continue
-                
+            
             all_chunks.append(c)
         
     logger.info(f"Total chunks extracted (after filtering excluded dirs): {len(all_chunks)}")
